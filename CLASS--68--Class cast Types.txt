@@ -1,0 +1,219 @@
+Class Level Type casting
+--------------------------------
+Upcasting 
+-------------
+class A{
+}
+class B extends A{
+}
+B b=new B();
+A a=b;
+
+01) 
+package com.durgasoft.core;
+class A{
+	void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();
+			b.m1();
+			A a=b;
+			a.m1();
+			
+			
+		}
+}
+
+O/P:
+------
+m2-B
+m1-A
+m1-A
+
+02)--Downcasting 
+-----------------------
+A a=new B();
+B b=(B)a;
+
+package com.durgasoft.core;
+class A{
+	void m1(){
+		System.out.println("m1-A");
+	}
+	void m2(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m3(){
+		System.out.println("m2-B");
+	}
+	void m4(){
+		System.out.println("m2-B");
+	}
+	
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a=new B();
+			B b=(B)a;
+			b.m1();
+			b.m2();
+			b.m3();
+			b.m4();
+		}
+}
+
+O/P:
+-------
+m1-A
+m1-A
+m2-B
+m2-B
+
+03) 
+A a=new B();
+B b=(B)a;
+Status:No compilation error,no exception
+b.m1();
+b.m2();
+}
+}
+
+04) 
+class A
+{
+	 void m1()
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1()
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) {
+		 A a=new A();
+		 B b=a;
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:19: error: incompatible types: A cannot be converted to B
+                 B b=a;
+                     ^
+1 error
+
+05)
+class A
+{
+	 void m1()
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1()
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) {
+		 /*
+		 A a=new A();
+		 B b=a;
+		 */
+		 A a=new A();
+		 B b=(B)a;
+	}
+
+}
+
+O/P:
+--------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Exception in thread "main" java.lang.ClassCastException: A cannot be cast to B
+        at Test.main(Test.java:23)
+
+06) 
+class A
+{
+	 void m1()
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m2()
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) {
+		 /*
+		 A a=new A();
+		 B b=a;
+		 */
+		 /*
+		 A a=new A();
+		 B b=(B)a;
+		 */
+		 A a=new B();
+		 B b=(B)a;
+		 b.m1();
+		 b.m2();
+	}
+
+}
+
+O/P:
+-----
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m1-B
+
+
+
+
+
+
+
+
+
+			
+
+			
+			
+
+			

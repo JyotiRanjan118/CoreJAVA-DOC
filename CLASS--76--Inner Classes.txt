@@ -1,0 +1,355 @@
+INNER CLASSES
+---------------------
+Declaring a class inside a class is called as Inner class.
+
+Syntax:
+----------
+class Outer_Class {
+              class Inner_Class  {
+                 --------
+      }
+}
+
+In java applications, Inner classes are able to provide the following advantages.
+
+1.Modularity
+-------------------
+Class Account {
+       class StudentAccount {
+       }
+       class EmployeeAccount {
+       }
+       class LoanAmount {
+       }
+} 
+
+2.Abstraction
+------------------
+class A{ 
+     class B {
+          int i = 10;
+         // int k = j + 10; ------> Error
+      }
+      class C{
+         // int j = i + 10;  ------> Error
+          int j = 20;
+    }
+}
+
+3.Security
+--------------
+private class A { // Error
+}
+class A {
+   private class B  {  ---->  No Error
+  }
+}
+
+4.Reusability
+-----------------
+class A {
+     class B {
+       ---
+     }
+     class C extends B {
+      ----
+      }
+}
+ 
+5.Sharability
+-----------------
+static class A  { // ---> Error
+}
+
+class A {
+     static class B  { //----> No Error
+     }
+}
+
+Object creation of Innner Class
+-----------------------------------------
+Syn:   Outer.Inner ref_Var=new Outer().new Inner();
+
+There are four types of inner classes in java.
+1.Member Inner class
+2.Static Inner class
+3.Method Local Inner class
+4.Anonymous Inner class.
+
+1.Member Inner class
+-----------------------------
+P-1
+-----
+package innerclasses;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+	class B{
+		void m2() {
+			System.out.println("m2-B");
+		}
+		void m3() {
+			System.out.println("m3-B");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		a.m1();
+		//a.m2(); ---->Error
+		A.B ab=new A().new B();        //Inner class Object Creation
+		//ab.m1();---->Error
+		ab.m2();
+		ab.m3();
+	}
+
+}
+
+O/P:
+------
+m1-A
+m2-B
+m3-B
+
+02)--Inner class and Outer class Variable 
+
+package innerclasses;
+class A{
+	int i=10;
+	void m1() {
+		System.out.println("m1-A");
+		//System.out.println(j);  --->Error  (Inner class variable cant be accessed in Outer class)
+	}
+	class B{
+		int j=20;
+		void m2() {
+			System.out.println("m2-B");
+			System.out.println(i);	//Outer class variable can be accessed in Inner Class bt Inner class variable cant be accessed in Outer class
+		}
+		void m3() {
+			System.out.println("m3-B");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		a.m1();
+		//a.m2(); ---->Error
+		A.B ab=new A().new B();
+		//ab.m1();---->Error
+		ab.m2();
+		ab.m3();
+	}
+
+}
+
+m1-A
+m2-B
+10   
+m3-B
+
+03)--Static keyword in Inner class
+--------------------------------------------
+package innerclasses;
+class A{
+	int i=10;
+	void m1() {
+		System.out.println("m1-A");
+		//System.out.println(j);  --->Error
+	}
+	class B{
+		int j=20;
+		//static int k=30; --->Error    	            // Member inner classes are not allowing static declarations directly, 
+				 	                 but, static keyword is allowed along with final keyword
+		static final int k=30;
+		void m2() {
+			System.out.println("m2-B");
+			System.out.println(i);
+		}
+		void m3() {
+			System.out.println("m3-B");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		a.m1();
+		//a.m2(); ---->Error
+		A.B ab=new A().new B();
+		//ab.m1();---->Error
+		ab.m2();
+		ab.m3();
+	}
+
+}
+
+m1-A
+m2-B
+10   
+m3-B
+
+04)--Inheritance in Inner class
+----------------------------------------
+package innerclasses;
+class A{
+	class B{
+		void m1() {
+			System.out.println("m1-B");
+		}
+	}
+	class C extends B{
+		void m2() {
+			System.out.println("m2-C");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new A().new B();
+		ab.m1();
+		A.C ac=new A().new C();	//Subclass object of Inner class
+		ac.m1();
+		ac.m2();
+	}
+
+}
+
+m1-B
+m1-B
+m2-C
+
+05) 
+package innerclasses;
+class A{
+	class B{
+	}
+}
+class C{
+	class D extends A.B{       //Error ----> 
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		
+	}
+
+}
+
+06) --Extends One complete Outer class to another inner class of another Outer Class
+
+package innerclasses;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B{
+	class C extends A{
+		void m2() {
+			System.out.println("m2-C");
+		}
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new B().new C();
+		a.m1();
+		B.C bc = new B().new C();
+		bc.m1();
+		bc.m2();
+	}
+
+}
+
+O/P:
+--------
+m1-A
+m1-A
+m2-C
+
+07) 
+package innerclasses;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+	class B extends A{			// We can extend the immediate outer class to its inner class.
+	    void m1() {
+		  System.out.println("m1-B");
+	  }
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A().new B();
+		a.m1();
+	}
+
+}
+
+O/P:
+-----
+m1-B
+
+08)--Interface in Inner class
+-------------------------------------
+Yes, it is possible to provide an interface inside a class, but, the respective implementation class must be provided with in the same outer class.
+package innerclasses;
+class A{
+	interface I{
+		void m1();
+		void m2();
+		void m3();
+	}
+	class B implements I{
+		public void m1() {
+			System.out.println("m1-B");
+		}
+		public void m2() {
+			System.out.println("m2-B");
+		}
+		public void m3() {
+			System.out.println("m3-B");
+		}
+	}
+	
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		A.I ai=new A().new B();
+		ai.m1();
+		ai.m2();
+		ai.m3();
+	}
+
+}
+
+O/P:
+--------
+m1-B
+m2-B
+m3-B
+
+
+-------------------***THE END***----------------------------
+
+
+
+
+
+

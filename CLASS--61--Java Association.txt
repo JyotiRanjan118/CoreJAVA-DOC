@@ -1,0 +1,256 @@
+Relationship In JAVA
+======================
+Relationships in JAVA:
+As part of Java application development,we have to use entities as per the application requirements.
+In Java application development,if we want to provide optimizations over memory utilization,code Reusability, 
+Execution Time, Sharability then we have to define relationships between entities.
+
+There are three types of relationships between entities.
+1.Has-A relationship
+2.IS-A relationship
+3.USE-A relationship
+
+Has-A relationship will define associations between entities in Java applications,here associations between entities will improve communication between 
+entities and data navigation between entities.
+IS-A Relationship is able to define inheritance between entity classes, it will improve "Code Reusability" in java applications.
+
+1.One-To-One Association
+2.One-To-Many Association
+3.Many-To-One Association
+4.Many-To-Many Association
+
+
+
+ONE TO ONE RELATIONSHIP EXAMPLE (One Employee has one account)
+-------------------------------------------------
+
+01) Account Class
+-------------------------------
+package com.durgasoft.entities;
+
+public class Account {
+   private String accNo;
+   private String accName;
+   private String accType;
+   private int balance;
+   
+public String getAccNo() {
+	return accNo;
+}
+public void setAccNo(String accNo) {
+	this.accNo = accNo;
+}
+public String getAccName() {
+	return accName;
+}
+public void setAccName(String accName) {
+	this.accName = accName;
+}
+public String getAccType() {
+	return accType;
+}
+public void setAccType(String accType) {
+	this.accType = accType;
+}
+public int getBalance() {
+	return balance;
+}
+public void setBalance(int balance) {
+	this.balance = balance;
+}
+   
+   
+}
+
+1.1) Employee Class
+--------------------------
+package com.durgasoft.entities;
+
+public class Employee {
+  private String eid;
+  private String ename;
+  private float esal;
+  private String eaddr;
+  private Account acc;
+  
+public String getEid() {
+	return eid;
+}
+public void setEid(String eid) {
+	this.eid = eid;
+}
+public String getEname() {
+	return ename;
+}
+public void setEname(String ename) {
+	this.ename = ename;
+}
+public float getEsal() {
+	return esal;
+}
+public void setEsal(float esal) {
+	this.esal = esal;
+}
+public String getEaddr() {
+	return eaddr;
+}
+public void setEaddr(String eaddr) {
+	this.eaddr = eaddr;
+}
+public Account getAcc() {
+	return acc;
+}
+public void setAcc(Account acc) {
+	this.acc = acc;
+}
+  
+  public void getEmpDetails() {
+	  System.out.println("Employee Details");
+	  System.out.println("--------------------");
+	  System.out.println("Employee ID      :"+eid);
+	  System.out.println("Employee Name    :"+ename);
+	  System.out.println("Employee Sal     :"+esal);
+	  System.out.println("Employee address :"+eaddr);
+	  System.out.println();
+	  System.out.println("Account Details");
+	  System.out.println("----------------------");
+	  System.out.println("Account No      :"+acc.getAccNo());
+	  System.out.println("Account Name    :"+acc.getAccName());
+	  System.out.println("Account Type    :"+acc.getAccType());
+	  System.out.println("Account balance :"+acc.getBalance());
+  }
+}
+
+TEST CLASS
+-----------------
+package com.durgasoft.test;
+
+import com.durgasoft.entities.Account;
+import com.durgasoft.entities.Employee;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Account acc=new Account();
+		acc.setAccNo("abc123");
+		acc.setAccName("Durga");
+		acc.setAccType("Savings");
+		acc.setBalance(20000);
+		
+		Employee emp=new Employee();
+		emp.setEid("E-111");
+		emp.setEname("Durga");
+		emp.setEsal(10000);
+		emp.setEaddr("HYD");
+		emp.setAcc(acc);
+		
+		emp.getEmpDetails();
+
+	}
+
+}
+
+O/P: 
+---------
+Employee Details
+--------------------
+Employee ID      :E-111
+Employee Name    :Durga
+Employee Sal     :10000.0
+Employee address :HYD
+
+Account Details
+----------------------
+Account No      :abc123
+Account Name    :Durga
+Account Type    :Savings
+Account balance :20000
+
+ONE TO MANY RELATIONSHIP: (In One Dept different emplopyees)
+----------------------------------------------------------------------------------------
+02)--Employee Class:
+----------------------------
+package com.durgasoft.entities;
+
+public class Employee {
+	String eid;
+	String ename;
+	float esal;
+	String eaddr;
+	
+	public Employee(String eid,String ename,float esal,String eaddr) {
+		this.eid=eid;
+		this.ename=ename;
+		this.esal=esal;
+		this.eaddr=eaddr;
+	}
+}
+
+2.1)--Dept Class:
+----------------------------- 
+package com.durgasoft.entities;
+
+public class Department {
+	private String did;
+	private String dname;
+	Employee[] emps;
+	
+	public Department(String did,String dname,Employee[] emps) {
+		this.did=did;
+		this.dname=dname;
+		this.emps=emps;
+		
+	}
+	
+	public void getEmpDetails() {
+		System.out.println("Deaprtment Details");
+		System.out.println("-------------------------");
+		System.out.println("Deaprment ID    :"+did);
+		System.out.println("Department Name :"+dname);
+		System.out.println("EID\tENAME\tESAL\tEADDR");
+		System.out.println("---------------------------");
+		for (int i = 0; i < emps.length; i++) {				//One to many Relationship
+			Employee emp=emps[i];
+			System.out.println(emp.eid+"\t"+emp.ename+"\t"+"emp.esal"+"\t"+emp.eaddr);
+		}
+	}
+}
+
+Test Class:
+----------------
+package com.durgasoft.test;
+
+import com.durgasoft.entities.Department;
+import com.durgasoft.entities.Employee;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Employee emp1=new Employee("E-111","AAA",5000,"Hyd");
+		Employee emp2=new Employee("E-222","BBB",6000,"Hyd");
+		Employee emp3=new Employee("E-333","CCC",7000,"Hyd");
+		Employee emp4=new Employee("E-444","DDD",8000,"Hyd");
+		
+		Employee[] emps= {emp1,emp2,emp3,emp4}; 
+		
+		Department dept=new Department("D-111","Admin", emps);
+		dept.getEmpDetails();
+
+
+	}
+
+}
+
+O/P:
+--------
+Deaprtment Details
+-------------------------
+Deaprment ID    :D-111
+Department Name :Admin
+EID	ENAME	ESAL	EADDR
+---------------------------
+E-111	AAA	5000.0	Hyd
+E-222	BBB	6000.0	Hyd
+E-333	CCC	7000.0	Hyd
+E-444	DDD	8000.0	Hyd
+

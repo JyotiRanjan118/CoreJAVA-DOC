@@ -1,0 +1,332 @@
+01)--Many-To-One association   (Different Student have one Branch)
+-----------------------------------------------------------------------------------------
+1.1) Branch class
+------------------------------------------
+package com.durgasoft.entities;
+
+public class Branch {
+	private String bid;
+	private String bname;
+	
+	public Branch(String bid,String bname) {
+		this.bid=bid;
+		this.bname=bname;
+	}
+
+	public String getBid() {
+		return bid;
+	}
+
+	public void setBid(String bid) {
+		this.bid = bid;
+	}
+
+	public String getBname() {
+		return bname;
+	}
+
+	public void setBname(String bname) {
+		this.bname = bname;
+	}
+	
+	
+}
+
+1.2) Student Class
+--------------------
+package com.durgasoft.entities;
+
+public class Student {
+	private String sid;
+	private String sname;
+	private String saddr;
+	private Branch branch;
+	
+	public Student(String sid,String sname,String saddr,Branch branch) {
+		this.sid=sid;
+		this.sname=sname;
+		this.saddr=saddr;
+		this.branch=branch;
+	}
+	public void getStudentDetails() {
+		System.out.println("Student Details");
+		System.out.println("----------------");
+		System.out.println("Student id      :"+sid);
+		System.out.println("Student Name    :"+sname);
+		System.out.println("Student Address :"+saddr);
+		System.out.println("Branch ID   :"+branch.getBid());
+		System.out.println("Branch Name :"+branch.getBname());
+		System.out.println();
+	}
+	
+	
+}
+
+Test Class
+--------------
+package com.durgasoft.test;
+
+import com.durgasoft.entities.Branch;
+import com.durgasoft.entities.Student;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Branch branch=new Branch("B-111","Computers");
+		
+		Student std1=new Student("S-111","AAA","Hyd", branch);
+		Student std2=new Student("S-222","BBB","Hyd", branch);
+		Student std3=new Student("S-333","CCC","Hyd", branch);
+		std1.getStudentDetails();
+		std2.getStudentDetails();
+		std3.getStudentDetails();
+	}
+
+}
+
+
+O/P:
+--------
+Student Details
+----------------
+Student id      :S-111
+Student Name    :AAA
+Student Address :Hyd
+Branch ID   :B-111
+Branch Name :Computers
+
+Student Details
+----------------
+Student id      :S-222
+Student Name    :BBB
+Student Address :Hyd
+Branch ID   :B-111
+Branch Name :Computers
+
+Student Details
+----------------
+Student id      :S-333
+Student Name    :CCC
+Student Address :Hyd
+Branch ID   :B-111
+Branch Name :Computers
+
+
+02)--Many-To-Many Association:(Different students have different course)
+------------------------------------------
+Program:
+--------------
+2.1)--Course Class
+----------------------------
+package com.durgasoft.entities;
+
+public class Course {
+	private String cid;
+	private String cname;
+	private int ccost;
+	
+	public Course(String cid,String cname,int ccost) {
+		this.cid=cid;
+		this.cname=cname;
+		this.ccost=ccost;
+	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCid(String cid) {
+		this.cid = cid;
+	}
+	public String getCname() {
+		return cname;
+	}
+
+	public void setCname(String cname) {
+		this.cname = cname;
+	}
+
+	public int getCcost() {
+		return ccost;
+	}
+
+	public void setCcost(int ccost) {
+		this.ccost = ccost;
+	}
+}
+
+2.2)--Student Class
+-------------------------
+package com.durgasoft.entities;
+
+public class Student {
+	private String sid;
+	private String sname;
+	private String saddr;
+	private Course[] cources;
+	
+	public Student(String sid,String sname,String saddr,Course[] cources) {
+		this.sid=sid;
+		this.sname=sname;
+		this.saddr=saddr;
+		this.cources=cources;
+	}
+	
+	public void getStudentDetails() {
+		System.out.println("Student Details");
+		System.out.println("--------------------");
+		System.out.println("Student ID        :"+sid);
+		System.out.println("Student Name      :"+sname);
+		System.out.println("Student Address   :"+saddr);
+		System.out.println("Course Details");
+		System.out.println("CID\tCNAME\tCCOST");
+		System.out.println("------------------------");
+		for (int i = 0; i < cources.length; i++) {
+			Course c=cources[i];
+			System.out.print(c.getCid()+"\t");
+			System.out.print(c.getCname()+"\t");
+			System.out.println(c.getCcost()+"\t");
+		}
+		System.out.println();
+	}
+}
+
+3.3)--Test Class
+---------------------
+package com.durgasoft.test;
+
+import com.durgasoft.entities.Course;
+import com.durgasoft.entities.Student;
+
+public class Test {
+
+	public static void main(String[] args) {
+		Course c1=new Course("C-111","C",5000);
+		Course c2=new Course("C-222","CPP",10000);
+		Course c3=new Course("C-333","JAVA",15000);
+		
+		Course[] courses= {c1,c2,c3};
+		
+		Student std1=new Student("S-111","AAA","HYD",courses);
+		Student std2=new Student("S-222","BBB","HYD",courses);
+		Student std3=new Student("S-333","CCC","HYD",courses);
+		
+		std1.getStudentDetails();
+		std2.getStudentDetails();
+		std3.getStudentDetails();
+
+	}
+
+}
+
+O/P:
+---------
+Student Details
+--------------------
+Student ID        :S-111
+Student Name      :AAA
+Student Address   :HYD
+Course Details
+CID	CNAME	CCOST
+------------------------
+C-111	C	5000	
+C-222	CPP	10000	
+C-333	JAVA	15000	
+
+Student Details
+--------------------
+Student ID        :S-222
+Student Name      :BBB
+Student Address   :HYD
+Course Details
+CID	CNAME	CCOST
+------------------------
+C-111	C	5000	
+C-222	CPP	10000	
+C-333	JAVA	15000	
+
+Student Details
+--------------------
+Student ID        :S-333
+Student Name      :CCC
+Student Address   :HYD
+Course Details
+CID	CNAME	CCOST
+------------------------
+C-111	C	5000	
+C-222	CPP	10000	
+C-333	JAVA	15000	
+
+
+03) INHERITANCE
+-------------------
+Program
+--------------------------------
+package inheritanceapp;
+class Employee{
+	String eid;
+	String ename;
+	float esal;
+	String eaddr;
+	
+	public void getEmpDetails() {
+		System.out.println("Employee ID     :"+eid);
+		System.out.println("Employee Name   :"+ename);
+		System.out.println("Employee Sal    :"+esal);
+		System.out.println("Employee Addr   :"+eaddr);
+	}
+}
+class Manager extends Employee {
+	public Manager(String emp_id,String emp_Name,float emp_Sal,String emp_Addr ) {
+		eid=emp_id;
+		ename=emp_Name;
+		esal=emp_Sal;
+		eaddr=emp_Addr;
+	}
+	
+	public void getManagerDetails() {
+		System.out.println("Manager Details");
+		System.out.println("---------------------");
+		getEmpDetails();
+	}
+}
+class Accountant extends Employee{
+	public Accountant(String emp_Id,String emp_Name,float emp_Sal,String emp_Addr) {
+		eid=emp_Id;
+		ename=emp_Name;
+		esal=emp_Sal;
+		eaddr=emp_Addr;
+	}
+	
+	public void getAccountantDetails() {
+		System.out.println("Accountant Details");
+		System.out.println("-----------------------");
+		getEmpDetails();
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		Manager mngr=new Manager("E-111","AAA",15000,"Hyd");
+		mngr.getManagerDetails();
+		System.out.println();
+		Accountant accnt=new Accountant("E-222","BBB",25000, "Hyd");
+		accnt.getAccountantDetails();
+
+	}
+
+}
+
+Manager Details
+---------------------
+Employee ID     :E-111
+Employee Name   :AAA
+Employee Sal    :15000.0
+Employee Addr   :Hyd
+
+Accountant Details
+-----------------------
+Employee ID     :E-222
+Employee Name   :BBB
+Employee Sal    :25000.0
+Employee Addr   :Hyd
+
+

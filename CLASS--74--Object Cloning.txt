@@ -1,0 +1,191 @@
+Adapter Classes
+------------------------
+
+Object Cloning
+--------------------
+If we want to perform Object Cloning in Java application then we have to use the following steps.
+
+1.Declare an User defined Class.
+2.Implement java.lang.Cloneable interface inorder to make eligible any object for cloning.
+3.Override Object class clone() method in user defined class.
+    public Object clone() throws CloneNotSupportedException
+4.In Main class,in main() method,access clone() method over the respective object.
+
+Program-1
+---------------
+package com.durgasoft.core;
+class Student implements Cloneable {		//If Cloneable Interface is not implented then Exception will occur
+	String sid;
+	String sname;
+	String saddr;
+	
+	public Student(String sid,String sname,String saddr) {
+		this.sid=sid;
+		this.sname=sname;
+		this.saddr=saddr;
+	}
+	
+	public void getStudentDetails() {
+		System.out.println("Student Details");
+		System.out.println("--------------------");
+		System.out.println("Student ID     :"+sid);
+		System.out.println("Student Name   :"+sname);
+		System.out.println("Student Addr   :"+saddr);
+	}
+	
+	public Object clone()throws CloneNotSupportedException{
+		Object obj=super.clone();
+		return obj;
+	}
+}
+class Test
+{
+	public static void main(String[] args) throws Exception {
+		Student std1=new Student("S-111","AAA", "Hyd");
+		System.out.println("Student Details from Original Object");
+		std1.getStudentDetails();
+		System.out.println("Original Student Obj Ref   :"+std1);
+		Student std2=(Student)std1.clone();
+		System.out.println();
+		System.out.println("Student Details from Duplicate Object");
+		std2.getStudentDetails();
+		System.out.println("Duplicate Student Obj Ref  :"+std2);
+	}
+}
+
+O/P:
+-------
+Student Details from Original Object
+Student Details
+--------------------
+Student ID     :S-111
+Student Name   :AAA
+Student Addr   :Hyd
+Original Student Obj Ref   :com.durgasoft.core.Student@15db9742
+
+Student Details from Duplicate Object
+Student Details
+--------------------
+Student ID     :S-111
+Student Name   :AAA
+Student Addr   :Hyd
+Duplicate Student Obj Ref  :com.durgasoft.core.Student@6d06d69c
+
+
+Shallow Cloning
+==============
+Container Object reference value must be different and Contained Object reference value must be same in shawllow cloning
+ 
+02) package com.durgasoft.core;
+class Account{
+	String accNo;
+	String accName;
+	String accType;
+	int balance;
+	
+	Account(String accNo,String accName,String accType,int balance){
+		this.accNo=accNo;
+		this.accName=accName;
+		this.accType=accType;
+		this.balance=balance;
+	}
+
+}
+class Employee implements Cloneable{
+	String eid;
+	String ename;
+	float esal;
+	String eaddr;
+	Account acc;
+	
+	public Employee(String eid,String ename,float esal,String eaddr,Account acc) {
+		this.eid=eid;
+		this.ename=ename;
+		this.esal=esal;
+		this.eaddr=eaddr;
+		this.acc=acc;
+	}
+	public void getEmpDetails() {
+		System.out.println("Employee Details");
+		System.out.println("----------------------");
+		System.out.println("Employee ID     :"+eid);
+		System.out.println("Employee Name   :"+ename);
+		System.out.println("Employee Sal    :"+esal);
+		System.out.println("Employee Addr   :"+eaddr);
+		System.out.println("Account Details");
+		System.out.println("----------------------");
+		System.out.println("Account No     :"+acc.accNo);
+		System.out.println("Account Name   :"+acc.accName);
+		System.out.println("Account Type   :"+acc.accType);
+		System.out.println("Account Bal    :"+acc.balance);
+	}
+	
+	public Object clone() throws CloneNotSupportedException{
+		return super.clone();
+	}
+}
+class Test
+{
+	public static void main(String[] args) throws Exception {
+		Account acc1=new Account("abc123","AAA","Savings", 20000);
+		Employee emp1=new Employee("E-111","AAA",10000,"Hyd", acc1);
+		System.out.println("Employee Details from Original Employee Object");
+		emp1.getEmpDetails();
+		System.out.println("Original Employee Obj ref :"+emp1);
+		System.out.println("Original Account Obj ref  :"+acc1);
+		Employee emp2=(Employee)emp1.clone();
+		emp2.getEmpDetails();
+		System.out.println("Duplicate Employee Obj Ref :"+emp2);
+		System.out.println("Duplicate Account Obj Ref  :"+emp2.acc);
+		
+	}
+}
+
+O/p:
+-------
+Employee Details from Original Employee Object
+Employee Details
+----------------------
+Employee ID     :E-111
+Employee Name   :AAA
+Employee Sal    :10000.0
+Employee Addr   :Hyd
+Account Details
+----------------------
+Account No     :abc123
+Account Name   :AAA
+Account Type   :Savings
+Account Bal    :20000
+Original Employee Obj ref :com.durgasoft.core.Employee@15db9742
+Original Account Obj ref  :com.durgasoft.core.Account@6d06d69c
+
+Employee Details
+----------------------
+Employee ID     :E-111
+Employee Name   :AAA
+Employee Sal    :10000.0
+Employee Addr   :Hyd
+Account Details
+----------------------
+Account No     :abc123
+Account Name   :AAA
+Account Type   :Savings
+Account Bal    :20000
+Duplicate Employee Obj Ref :com.durgasoft.core.Employee@7852e922
+Duplicate Account Obj Ref  :com.durgasoft.core.Account@6d06d69c
+
+
+
+			
+
+			
+
+
+
+
+			
+
+			
+
+
+

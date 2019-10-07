@@ -1,0 +1,112 @@
+Instance Context of Inheritance
+----------------------------------------
+Ex: Static ,instance and Constructor Example in Inheritance
+
+01) package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("Con-A");
+	}
+	static {
+		System.out.println("SB-A");
+	}
+	int m1() {
+		System.out.println("m1-A");
+		return 10;
+	}
+	static int i=m2();
+	{
+		System.out.println("IB-A");
+	}
+	static int m2() {
+		System.out.println("m2-A");
+		return 20;
+	}
+	int j=m1();
+	
+}
+class B extends A{
+	static {
+		System.out.println("SB-B");
+	}
+	static int m3() {
+		System.out.println("m3-B");
+		return 30;
+	}
+	static int k=m3();
+	B(){
+		System.out.println("B-Con");
+	}
+	{
+		System.out.println("IB-B");
+	}
+	int m4() {
+		System.out.println("m4-B");
+		return 40;
+	}
+	int l=m4();
+	
+}
+class C extends B{
+	static {
+		System.out.println("SB-C");
+	}
+	{
+		System.out.println("IB-C");
+	}
+	static int m5() {
+		System.out.println("m5-C");
+		return 50;
+	}
+	int m6() {
+		System.out.println("m6-C");
+		return 60;
+	}
+	static int m=m5();
+	int n=m6();
+	C(){
+		System.out.println("C-Con");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			C c1=new C();
+			System.out.println();
+			C c2=new C();
+		}
+}
+
+O/P:
+-----
+SB-A                                          //  All the Static Constext of all the classes will be executed first
+m2-A		           //  Then all the Instance context and constructor of each class will be executed  Super class to sub class sequentially.
+SB-B
+m3-B
+SB-C
+m5-C
+
+IB-A
+m1-A
+Con-A
+IB-B
+m4-B
+B-Con
+IB-C
+m6-C
+C-Con
+
+IB-A                                  // All the static context are loaded during class bytecode loading.So second time Static context are not executed.
+m1-A
+Con-A
+IB-B
+m4-B
+B-Con
+IB-C
+m6-C
+C-Con
+
+			
+
+			

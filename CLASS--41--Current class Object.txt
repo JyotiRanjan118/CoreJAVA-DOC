@@ -1,0 +1,156 @@
+To return current class object
+-------------------------------------
+01) 
+package com.durgasoft.core;
+class A{
+	A getRef() {
+		A obj=new A();
+		return obj;
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		System.out.println(a.getRef());
+		System.out.println(a.getRef());
+		System.out.println(a.getRef());
+		
+	}
+
+}
+
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@6d06d69c
+com.durgasoft.core.A@7852e922
+
+02) 
+package com.durgasoft.core;
+class A{
+	A getRef() {
+		A obj=new A();
+		return obj;
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		System.out.println(a);
+		System.out.println();
+		System.out.println(a.getRef());
+		System.out.println(a.getRef());
+		System.out.println(a.getRef());
+		
+	}
+
+}
+
+com.durgasoft.core.A@15db9742
+
+com.durgasoft.core.A@6d06d69c
+com.durgasoft.core.A@7852e922
+com.durgasoft.core.A@4e25154f
+
+03)
+package com.durgasoft.core;
+class A{
+	A getRef1() {
+		A obj=new A();
+		return obj;
+	}
+	A getRef2() {
+		return this;
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		System.out.println(a);
+		System.out.println();
+		System.out.println(a.getRef1());
+		System.out.println(a.getRef1());
+		System.out.println(a.getRef1());
+		System.out.println();
+		System.out.println(a.getRef2());
+		System.out.println(a.getRef2());
+		System.out.println(a.getRef2());
+		
+	}
+
+}
+
+com.durgasoft.core.A@15db9742
+
+com.durgasoft.core.A@6d06d69c
+com.durgasoft.core.A@7852e922
+com.durgasoft.core.A@4e25154f
+
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+
+04)--STATIC KEYWORDS  
+--------------------------------
+(VARIABLE,METHOD,BLOCKS,IMPORT)
+
+package com.durgasoft.core;
+class A{
+	static int i=10;
+	int j=20;
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a=new A();
+		System.out.println(a.i);
+		System.out.println(A.i);
+		System.out.println(a.j);
+		
+	}
+
+}
+
+10
+10
+20
+
+05)--STATIC VARIABLE BY CALLING NULL VALUE
+------------------------------------------------------------
+Static variable can be only declared in Class level ,cant be declared in Local variable
+package com.durgasoft.core;
+class A{
+	static int i=10;
+	int j=20;
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A a1=new A();
+		System.out.println(a1.i);
+		System.out.println(A.i);
+		System.out.println(a1.j);
+		System.out.println();
+		A a2=null;
+		System.out.println(a2.i);//In case Static variable it is possible to contain null in reference variable 
+		//System.out.println(a2.j); //Throw exception because variable "j" is instance variable
+		 
+		
+		
+	}
+
+}
+
+O/P:
+
+10
+10
+20
+
+10
+
+-----------------------****THE END****--------------------------------------------------------

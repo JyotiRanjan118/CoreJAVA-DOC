@@ -1,0 +1,102 @@
+Main method parameters:
+----------------------------------
+1.Static Input
+2.Dynamic Input
+3.Command Line Input
+
+1)--Static Input:
+-----------------------
+Providing input to the Java program at the time of writing Java program.
+EX:
+class Addition
+{
+	int i=10;       //Static Input
+	int j=20;
+	void add()
+	{
+		System.out.println(i+j);
+	}
+}
+class Test 
+{
+	public static void main(String[] args) 
+	{
+		Addition ad=new Addition();
+		ad.add();
+	}
+}
+
+O/P:
+-----
+30
+
+
+02) Dynamic Input
+---------------------------
+Providing Input to the Java program at runtime.
+
+D:\Java7>javac Add.java
+D:\java7>java Add
+First value : 10   //Input at runtime
+Second value :20
+Addition :30
+
+03) Command Line Input:
+---------------------------------
+Providing input to the Java program along with "java" command on command prompt.
+
+EX:1
+-----
+D:\java7>javac Add.java
+D:\java7>java Add 10 20
+Addition : 30
+
+Ex: 2
+-------
+04) class Test 
+{
+	public static void main(String[] args) 
+	{
+		for (int i=0;i< args.length ;i++)
+		{
+			System.out.println(args[i]);
+		}
+	}
+}
+
+O/P:
+------
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test 10 "abc" 'A' true 22.22f 2456.234D  //Command line input
+10
+abc
+'A'
+true
+22.22f
+2456.234D
+
+Ex: 3
+-------
+05)--class Test
+{
+	public static void main(String[] args) throws Exception
+	{
+		String val1=args[0];
+		String val2=args[1];
+		int fval=Integer.parseInt(val1);
+		int sval=Integer.parseInt(val2);
+		System.out.println("ADD :"+(fval+sval));
+		System.out.println("SUB :"+(fval-sval));
+		System.out.println("MUL :"+(fval*sval));
+	}
+} 
+
+O/P
+-----
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test 10 5
+ADD :15
+SUB :5
+MUL :50

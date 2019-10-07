@@ -1,0 +1,242 @@
+01)--DISPLAY HELLOWORLD MSG
+
+class Employee
+{
+
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		System.out.println("Hello world!");
+    }  
+}
+
+02)--Display Employee Details?
+
+class Employee
+{
+	String eid="E-111";
+	String ename="Durga";
+	float esal=25000.0f;
+	String eaddrs="HYD";
+	String eemail="Drugasoft@gmail.com";
+	String Mobile="91-70084533698";
+
+	public void displayEmpDetails()
+	{
+		System.out.println("Employee Details");
+		System.out.println("------------------------");
+		System.out.println("Employee ID: "+eid);
+		System.out.println("Employee Name: "+ename);
+		System.out.println("Employee Salary: "+esal);
+		System.out.println("Employee Addrs: "+eaddrs);
+		System.out.println("Employee Email: "+eemail);
+		System.out.println("Employee No: "+Mobile);
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Employee emp=new Employee();
+		emp.displayEmpDetails();
+    }  
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Employee Details
+------------------------
+Employee ID: E-111
+Employee Name: Durga
+Employee Salary: 25000.0
+Employee Addrs: HYD
+Employee Email: Drugasoft@gmail.com
+Employee No: 91-70084533698
+
+03) --Display Student Details?
+class Student
+{
+	String sid="S-111";
+	String sname="Durga charan";
+	String saddr="HYD";
+	String smail="durgasoft@gmail.com";
+	String smobile="91-7008451195";
+
+	public void displayStuDetails()
+	{
+		System.out.println("Student Details");
+		System.out.println("--------------------");
+		System.out.println("Student ID       :"+sid);
+		System.out.println("Student Name     :"+sname);
+		System.out.println("Student address  :"+saddr);
+		System.out.println("Student Mail     :"+smail);
+		System.out.println("Student Mobile   :"+smobile);
+
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Student std=new Student();
+		std.displayStuDetails();
+    }  
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Student Details
+--------------------
+Student ID       :S-111
+Student Name     :Durga charan
+Student address  :HYD
+Student Mail     :durgasoft@gmail.com
+Student Mobile   :91-7008451195
+
+04)--Display student Details 3 times? 
+class Student
+{
+	String sid="S-111";
+	String sname="Durga charan";
+	String saddr="HYD";
+	String smail="durgasoft@gmail.com";
+	String smobile="91-7008451195";
+
+	public void displayStuDetails()
+	{
+		System.out.println("Student Details");
+		System.out.println("------------------------");
+		System.out.println("Student ID       :"+sid);
+		System.out.println("Student Name     :"+sname);
+		System.out.println("Student address  :"+saddr);
+		System.out.println("Student Mail     :"+smail);
+		System.out.println("Student Mobile   :"+smobile);
+
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Student std1=new Student();
+		std1.displayStuDetails();
+
+		Student std2=new Student();
+		std2.displayStuDetails();
+
+		Student std3=new Student();
+		std3.displayStuDetails();
+    }  
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Student Details
+------------------------
+Student ID       :S-111
+Student Name     :Durga charan
+Student address  :HYD
+Student Mail     :durgasoft@gmail.com
+Student Mobile   :91-7008451195
+Student Details
+------------------------
+Student ID       :S-111
+Student Name     :Durga charan
+Student address  :HYD
+Student Mail     :durgasoft@gmail.com
+Student Mobile   :91-7008451195
+Student Details
+------------------------
+Student ID       :S-111
+Student Name     :Durga charan
+Student address  :HYD
+Student Mail     :durgasoft@gmail.com
+Student Mobile   :91-7008451195
+
+05)--Display different Student Details?
+
+class Student
+{
+	String sid;
+	String sname;
+	String saddr;
+	String smail;
+	String smobile;
+
+	public void setStuDetails(String st_id,String st_name,
+                    String st_addr,String stmail,String stmobile)
+	{
+		sid=st_id;
+		sname=st_name;
+		saddr=st_addr;
+		smail=stmail;
+		smobile=stmobile;
+	}
+
+	public void displayStuDetails()
+	{
+		System.out.println("Student Details");
+		System.out.println("------------------------");
+		System.out.println("Student ID       :"+sid);
+		System.out.println("Student Name     :"+sname);
+		System.out.println("Student address  :"+saddr);
+		System.out.println("Student Mail     :"+smail);
+		System.out.println("Student Mobile   :"+smobile);
+
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Student std1=new Student();
+		std1.setStuDetails("S-111","JYOTI","NALCO","jyotiranjan118@gmail.com","91-7008451193");
+		std1.displayStuDetails();
+		System.out.println();
+
+		Student std2=new Student();
+		std2.setStuDetails("S-112","LIZZU","BBSR","lizzu95@gmail.com","91-7004589632");
+		std2.displayStuDetails();
+		System.out.println();
+
+		Student std3=new Student();
+		std3.setStuDetails("S-113","SATYA","KENDRAPARA","satya1234@gmail.com","91-7005632145");
+		std3.displayStuDetails();
+    }  
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Student Details
+------------------------
+Student ID       :S-111
+Student Name     :JYOTI
+Student address  :NALCO
+Student Mail     :jyotiranjan118@gmail.com
+Student Mobile   :91-7008451193
+
+Student Details
+------------------------
+Student ID       :S-112
+Student Name     :LIZZU
+Student address  :BBSR
+Student Mail     :lizzu95@gmail.com
+Student Mobile   :91-7004589632
+
+Student Details
+------------------------
+Student ID       :S-113
+Student Name     :SATYA
+Student address  :KENDRAPARA
+Student Mail     :satya1234@gmail.com
+Student Mobile   :91-7005632145

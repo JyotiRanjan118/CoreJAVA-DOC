@@ -1,0 +1,414 @@
+Super Keyword
+---------------------
+super.var_Name;     			//To refer super class variables:
+super.method_Name([Param_List]);        //To refer super class method:
+super(param-list)		                 // To refer super class constructor
+
+01) To refer super class variables:
+package com.durgasoft.core;
+class A{
+	int i=10;
+	int j=20;
+}
+class B extends A{
+	int i=30;
+	int j=40;
+	 B(int i,int j) {
+		System.out.println(i+"    "+j);
+  }
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a=new B(50,60);
+			
+		}
+}
+
+O/P:
+--------
+50        60
+
+02) 
+package com.durgasoft.core;
+class A{
+	int i=10;
+	int j=20;
+}
+class B extends A{
+	int i=30;
+	int j=40;
+	 B(int i,int j) {
+		System.out.println(i+"    "+j);
+		System.out.println(this.i+"    "+this.j);
+		System.out.println(super.i+"    "+super.j);
+  }
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a=new B(50,60);
+			
+		}
+}
+
+O/P:
+----------			
+50    60
+30    40
+10    20
+
+03) To refer super class Method:
+------------------------------------------
+01) 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();			
+			
+		}
+}
+
+O/P:
+--------
+m1-B
+
+02) To refer super class Method:
+------------------------------------------
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2() {
+		System.out.println("m2-B");
+		m1();
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();
+			
+		}
+}
+
+O/P:
+--------
+m2-B
+m1-A
+	
+03) To refer super class Method:
+------------------------------------------
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2() {
+		System.out.println("m2-B");
+		m1();
+	}
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();		//JVM will execute the local method first 
+			
+		}
+}
+
+O/P:
+---------
+m2-B
+m1-B			//JVM will execute the local method in sub class first, If it is not available then it goes to super class
+
+04) 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2() {
+		System.out.println("m2-B");
+		m1();
+		this.m1();
+	}
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();
+			
+		}
+}
+
+O/P:
+-------
+m2-B
+m1-B
+m1-B
+
+
+05)--Use of Super keyword
+------------------------------------ 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m2() {
+		System.out.println("m2-B");
+		m1();
+		this.m1();
+		super.m1();
+	}
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			b.m2();
+			
+		}
+}
+			
+
+O/P:
+-------
+m2-B
+m1-B
+m1-B
+m1-A
+
+To refer Super class Constructor
+------------------------------------------
+06) 
+package com.durgasoft.core;
+class A{
+	
+}
+class B extends A{
+	 B() {
+		System.out.println("B-Con");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+		}
+}
+
+O/P:
+---------
+B-Con
+
+07) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+}
+class B extends A{
+	 B() {
+		System.out.println("B-Con");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+		}
+}
+
+O/P:
+-------
+A-Con
+B-Con
+
+08) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+	A(int i){
+		System.out.println("A-int-Param-Con");
+	}
+}
+class B extends A{
+	 B() {
+		System.out.println("B-Con");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			
+		}
+}
+
+O/P:
+--------
+A-Con
+B-Con
+	
+09) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+	A(int i){
+		System.out.println("A-int-Param-Con");
+	}
+}
+class B extends A{
+	 B(int i) {
+		System.out.println("B-Con");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B(10);
+			
+		}
+}
+
+O/P:
+-------
+A-Con
+B-Con
+
+10) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+	A(int i){
+		System.out.println("A-int-Param-Con");
+	}
+}
+class B extends A{
+	 B() {
+		 
+		System.out.println("B-Con");
+	}
+	void m1() {
+		super(10);                             	//Error-To refer super class constructor  "Super" keyword is allowed only in sub class Constructor
+		System.out.println();
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			B b=new B();
+			
+		}
+}
+
+
+11) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+	A(int i){
+		System.out.println("A-int-Param-Con");
+	}
+}
+class B extends A{
+	 B() {
+		super(10);
+		System.out.println("B-Con");
+	}
+	
+}
+class Test
+{
+	public static void main(String[] args) {
+		B b=new B();
+		
+	}
+}
+
+O/P:
+-------
+A-int-Param-Con
+B-Con
+
+			
+
+			
+		
+
+						
+
+			
+			
+
+						
+
+					
+
+			
+
+
+			
+
+			
+
+
+					
+
+			

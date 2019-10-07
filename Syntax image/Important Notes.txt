@@ -1,0 +1,2 @@
+public, protected, <default> and private.
+Where public and <default> are allowed for classes, protected and private are not allowed for classes.

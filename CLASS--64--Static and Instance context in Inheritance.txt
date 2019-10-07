@@ -1,0 +1,187 @@
+Static Context in Inheritance:(1,2) program
+--------------------------------------
+01)--Static Flow 
+package staticflowapp;
+class A{
+	static {
+		System.out.println("SB-A");
+	}
+}
+class B extends A{
+	static {
+		System.out.println("SB-B");
+	}
+}
+class C extends B{
+	static {
+		System.out.println("SB-C");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		C c=new C();
+
+	}
+
+}
+
+O/p:
+-------
+SB-A
+SB-B
+SB-C
+
+P2)--Static Flow (static method,static variable)
+------------------------------------------------------------
+package staticflowapp;
+class A{
+	static int i=m1();
+	static {
+		System.out.println("SB-A");
+	}
+	static int m1() {
+		System.out.println("m1-A");
+		return 10;
+	}
+	
+}
+class B extends A{
+	static {
+		System.out.println("SB-B");
+	}
+	static int m2() {
+		System.out.println("m2-B");
+		return 20;
+	}
+	static int j=m2();
+}
+class C extends B{
+	static {
+		System.out.println("SB-C");
+	}
+	static int m3() {
+		System.out.println("m3-C");
+		return 30;
+	}
+	static int k=m3();
+}
+public class Test {
+
+	public static void main(String[] args) {
+		C c1=new C();
+		C c2=new C();  //it will not be executed because all the respective static context are loaded into memory
+
+	}
+
+}
+
+O/P:
+------
+m1-A
+SB-A
+SB-B
+m2-B
+SB-C
+m3-C
+
+Instance Context in Inheritance:(3,4)
+------------------------------------------
+In the case of Inheritance,if we create object for sub class then JVM has to execute sub class constructor,
+but before executing sub class constructor JVM has to execute 0-argument constructor in the respective super class
+
+03) package staticflowapp;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+}
+class B extends A{
+	B(){
+		System.out.println("B-Con");
+	}
+}
+class C extends B{
+	C(){
+		System.out.println("C-Con");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		C c=new C();
+
+	}
+
+}
+
+O/P:
+------
+A-Con
+B-Con
+C-Con
+
+04)--
+package staticflowapp;
+class A{
+	A(){
+		System.out.println("A-Con");
+	}
+	{
+		System.out.println("IB-A");
+	}
+	int m1() {
+		System.out.println("m1-A");
+		return 10;
+	}
+	int i=m1();
+}
+class B extends A{
+	int j=m2();
+	B(){
+		System.out.println("B-Con");
+	}
+	{
+		System.out.println("IB-B");
+	}
+	int m2() {
+		System.out.println("m2-B");
+		return 20;
+	}
+}
+class C extends B{
+	{
+		System.out.println("IB-C");
+	}
+	int m3() {
+		System.out.println("m3-C");
+		return 30;
+	}
+	int k=m3();
+	C(){
+		System.out.println("C-Con");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		C c=new C();
+
+	}
+
+}
+
+O/P:
+------
+IB-A
+m1-A
+A-Con
+m2-B
+IB-B
+B-Con
+IB-C
+m3-C
+C-Con
+
+---------------------THE END----------------------------
+

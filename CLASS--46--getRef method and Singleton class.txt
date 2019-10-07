@@ -1,0 +1,233 @@
+Factory Method
+-----------------------
+01) 
+package com.durgasoft.core;
+class A{
+	 private A() {
+		System.out.println("A-con");
+	}
+	static void m1() {
+		System.out.println("m1-A");
+	}
+	
+	
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();//error -->constructor is private 
+		a.m1();
+		
+	}
+}
+
+02) --Static method calling without creating Object of Class A
+
+package com.durgasoft.core;
+class A{
+	 private A() {
+		System.out.println("A-con");
+	}
+	static void m1() {
+		System.out.println("m1-A");
+	}
+	
+	
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A.m1();
+	}
+}
+
+Ans
+------
+m1-A
+
+03) --getRef Method in Private Constructor
+---------------------------------------------------------
+package com.durgasoft.core;
+class A{
+	 private A() {
+		System.out.println("A-con");
+	}
+	void m1() {
+		System.out.println("m1-A");
+	}
+	static A getRef() {			//Use of getRef Mrthod //Factory Method
+		A a=new A();
+		return a;
+	}
+	
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=A.getRef();
+		a.m1();
+		
+	}
+}
+
+O/P
+---------
+A-con
+m1-A
+
+Two types of Factory Methods
+1.Static Factory Method
+Static Factory Method is a static method returns the same class object.
+Ex:
+Class c=Class.forName(--);
+NumberFormat nf=NumberFormat.getInstance(-);
+DateFormat df=DateForamt.getInstance(--);
+ResourceBundle rb=ResourceBundle.getBundle(--);
+
+2.Instance Factory Method
+
+Allmost all the String class methods are Instance Factory methods.
+String str=new String("DurgaSoftware Solutions");
+String str1=str.concat(" Hyderabad");
+String str2=str.trim();
+String str3=str.toUpperCase();
+String str4=str.substring(5,14);
+
+SINGLETON CLASS
+=================
+01) Different Object creation
+----------------------------------------
+package com.durgasoft.core;
+class A{
+	 private A() {
+		
+	}
+	static A getRef() {
+		A a=new A();
+		return a;
+	}
+	
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a1=A.getRef();
+		A a2=A.getRef();
+		A a3=A.getRef();
+		System.out.println(a1);
+		System.out.println(a2);
+		System.out.println(a3);
+	}
+}
+
+O/P
+------
+com.durgasoft.core.A@15db9742  //Different Object created
+com.durgasoft.core.A@6d06d69c
+com.durgasoft.core.A@7852e922
+
+02)--ONE OBJECT CREATION
+---------------------------------------
+package com.durgasoft.core;
+class A{
+	 static A a=null;
+	 static {
+		 a = new A();
+	 }
+	 private A() {
+		 
+	 }
+	static A getRef() {
+	    return a;
+	}
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a1=A.getRef();
+		A a2=A.getRef();
+		A a3=A.getRef();
+		System.out.println(a1);
+		System.out.println(a2);
+		System.out.println(a3);
+	}
+}
+
+O/P
+------
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+
+2.1) 
+package com.durgasoft.core;
+class A{
+	 static A a=null;
+	 private A() {
+		 
+	 }
+	static A getRef() {
+	    if (a == null) {
+	    	a =new A();
+	    	return a;
+	    }
+	    else {
+	    	return a;
+	    }
+	}
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a1=A.getRef();
+		A a2=A.getRef();
+		A a3=A.getRef();
+		System.out.println(a1);
+		System.out.println(a2);
+		System.out.println(a3);
+	}
+}
+
+O/P
+-------
+com.durgasoft.core.A@15db9742   //One object created So output will be same
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+
+2.2) package com.durgasoft.core;
+class A{
+	 static A a=new A();
+	 
+	 private A() {
+		 
+	 }
+	static A getRef() {
+	   return a;
+	}
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a1=A.getRef();
+		A a2=A.getRef();
+		A a3=A.getRef();
+		System.out.println(a1);
+		System.out.println(a2);
+		System.out.println(a3);
+	}
+}
+
+O/P
+------
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+com.durgasoft.core.A@15db9742
+
+

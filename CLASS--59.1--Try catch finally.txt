@@ -1,0 +1,175 @@
+Try Catch Finally
+===============
+try{}
+catch(Exception_Name ref_value){}
+finally{}
+
+To display Exception in Command Prompt
+1.e.printStackTrace()   //Display Exception Name,Exception Description and Exception Location.
+2.System.out.println(e):   // Exception name,Exception description.
+3.System.out.println(e.getMessage());      //  Exception Description
+
+01) 
+package com.durgasoft.core;
+
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			try{
+				throw new ArithmeticException("My Arithmetic Exception");
+			}
+			catch(ArithmeticException e){
+			e.printStackTrace();
+			System.out.println();
+			System.out.println(e);
+			System.out.println();
+			System.out.println(e.getMessage());
+			}
+			finally{
+			}
+			
+		}
+}
+
+O/P:
+-----
+java.lang.ArithmeticException: My Arithmetic Exception
+	at com.durgasoft.core.Test.main(Test.java:8)
+
+java.lang.ArithmeticException: My Arithmetic Exception
+
+My Arithmetic Exception
+
+02) package com.durgasoft.core;
+
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+		 try {
+			int a=100;
+			int b=0;
+			float f=a/b;
+			System.out.println("After Exception"); //It will not be Executed. since the execution going to catch block
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println();
+			System.out.println(e);
+			System.out.println();
+			System.out.println(e.getMessage());
+		}finally {
+			
+		}
+			
+		}
+}
+
+java.lang.ArithmeticException: / by zero
+	at com.durgasoft.core.Test.main(Test.java:10)
+
+java.lang.ArithmeticException: / by zero
+
+/ by zero
+
+03) 
+package com.durgasoft.core;
+
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+		 System.out.println("Before try");
+		 try {
+			System.out.println("Inside Try");
+		} catch (Exception e) {
+			System.out.println("Inside Catch");   //It will not be Executed.
+		}finally {
+			System.out.println("Inside Finally");
+		}
+		System.out.println("After Finally");	
+		}
+}
+
+Before try
+Inside Try
+Inside Finally
+After Finally
+
+04) 
+package com.durgasoft.core;
+
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+		 System.out.println("Before try");
+		 try {
+			System.out.println("Inside try,before Exception");
+			int a=100;
+			int b=0;
+			float f=a/b;
+			System.out.println(f);
+			System.out.println("Inside try,after Exception");   //It will not be executed as Exception is found before the Instruction
+		} catch (Exception e) {
+			System.out.println("Inside catch");
+		}finally {
+			System.out.println("Inside finally");
+		}
+		System.out.println("After Finally");	
+		}
+}
+
+O/p:
+			
+Before try
+Inside try,before Exception
+Inside catch
+Inside finally
+After Finally
+
+05) package com.durgasoft.core;
+class A{
+	int m1(){
+		try{
+			return 10;
+		}
+		catch(Exception e){
+			return 20;
+		}
+		finally{
+			return 30;
+		}
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			A a=new A();
+			int val=a.m1();
+			System.out.println(val);
+		}
+}
+
+O/P:
+----
+30            //Always return latest return value because finally block 
+
+
+
+
+======================****THE END****===================================
+			
+
+			
+
+			
+			
+
+						
+
+			
+			
+
+			

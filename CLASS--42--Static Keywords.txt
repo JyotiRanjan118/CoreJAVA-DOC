@@ -1,0 +1,245 @@
+STATIC VARIABLE
+================
+In Java applications,static variables must be declared as class level variables only ,they never be declared as local variables.
+In Java applications,to access current class static variables we can use "this" keyword.
+P-1
+------
+class A
+{
+        static int i=10;
+        int j=10;
+        void m1()
+       {
+            //static int k=30;--->error	//static variables must be declared as class level variables
+            System.out.println("m1-A");
+            System.out.println(this.i);
+       }
+}
+class Test
+{
+          public static void main(String args[])
+          {
+          	A a=new A();
+          	System.out.println(a.i);
+          	System.out.println(A.i);
+         	 a.m1();
+         	A a1=null;
+        	//System.out.println(a1.j);--->NullPointerException
+        	System.out.println(a1.i);
+          }
+}
+
+10
+10
+m1-A
+10
+10
+
+02)--Static Variable
+
+class A
+{
+           static int i=10;
+           int j=10;
+}
+class Test
+{
+           public static void main(String args[])
+           {
+                    A a1=new A();
+	System.out.println(a1.i+" "+a1.j);  10 10
+	a1.i=a1.i+1;
+	a1.j=a1.j+1;
+	System.out.println(a1.i+" "+a1.j);   11  11
+	A a2=new A();
+	System.out.println(a2.i+" "+a2.j);  11   10
+	a2.i=a2.i+1;
+	a2.j=a2.j+1;
+	System.out.println(a1.i+" "+a1.j);  12   11
+	System.out.println(a2.i+" "+a2.j);  12   11
+	A a3=new A();
+	System.out.println(a3.i+" "+a3.j);  12   10
+	a3.i=a3.i+1;
+	a3.j=a3.j+1;
+	System.out.println(a1.i+" "+a1.j); 13   11
+	System.out.println(a2.i+" "+a2.j);  13       11
+	System.out.println(a3.i+" "+a3.j);  13       11
+          }
+}
+
+OP:
+10 10
+11 11
+11 10
+12 11
+12 11
+12 11
+12 10
+13 11
+13 11
+13 11
+
+03)--STATIC METHOD
+===================
+Syn: Ex1:  A a=new A(); // by creating object it is accessible for instance variable in STATIC METHOD
+                 System.out.println(a.i); 
+         Ex2: A a=new A();  //By calling object for method
+                  a.m1();
+	
+                  A.m1();
+
+P1)
+package com.durgasoft.core;
+class A{
+	static void m1() {
+		System.out.println("m1-A");
+	}
+	void m2() {
+		System.out.println("m2-A");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		
+		A a=new A();
+		a.m1();
+		A.m1();  //Static Method can be accessed through class name
+		a.m2();
+		A a2=null; 
+		a2.m1();  //Static Method can be accessed through a null container
+		a2.m2(); //Raise NullPointerException
+		
+		
+	}
+
+}
+
+m1-A
+m1-A
+m2-A
+m1-A
+
+04) 
+STATIC METHOD--P2)
+----------------------------
+package com.durgasoft.core;
+class A{
+	int i=10;
+	static int j=20;
+	static void m1() {
+		System.out.println("m1-A");
+		//System.out.println(i);      Error (In static method instance variable cannot be accessed)
+		System.out.println(j);         //Only static variable is allowed to access in static method
+		A a=new A();
+		System.out.println(a.i);
+		//System.out.println(this.i);     -->Error ("This" key word cant use in static method)
+	}
+	void m2() {
+		System.out.println("m2-A");
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		
+		A a=new A();
+		a.m1();
+		A.m1();
+		a.m2();
+		A a2=null;
+		a2.m1();
+		//a2.m2();      -->Raise NullPointerException
+		
+		
+	}
+
+}
+
+O/P:
+------
+m1-A
+20
+10
+m1-A
+20
+10
+m2-A
+m1-A
+20
+10
+
+05)--Without Main Method Display the Message?
+(Upto java 6 version possible)
+
+class Test
+{
+        static int i=m1();
+        static int m1()
+        {
+     	System.out.println("Welcome to durga software soultions");
+     	System.exit(0);        //to terminate the application
+	return 10;
+        }
+}
+
+Welcome to durga software soultions
+
+06) --STATIC BLOCK
+=================
+P1) 
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("SB-A");
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		A a=new A();
+		
+		
+	}
+
+}
+
+SB-A
+
+02)--
+STATIC BLOCK P2)
+----------------------
+package com.durgasoft.core;
+class A{
+	int i=10;
+	static int j=20;
+	static {
+		System.out.println("SB-A");
+		//System.out.println(i);   -->Error(Instance variable cannt be accessed in Static block)
+		System.out.println(j);
+		A a=new A();	
+		System.out.println(a.i);
+		//System.out.println(this.j); -->Error("This" keyword cannt be used in static Block)
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		
+		A a=new A();
+		
+		
+	}
+
+}
+
+O/P
+----
+SB-A
+20
+10
+
+

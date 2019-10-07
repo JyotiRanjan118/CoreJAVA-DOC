@@ -1,0 +1,50 @@
+01) 
+package com.durgasoft.core;
+
+public class Hello {
+
+	public static void main(String[] args) {
+		System.out.println("Welcome to Durgasoft");
+		System.out.println("Ameerpet");
+		System.out.println("Hyderabad");
+
+	}
+
+}
+
+Welcome to Durgasoft
+Ameerpet
+Hyderabad
+
+02) 
+package com.durgasoft.core;
+class A{
+	A()
+	{
+		this(22.34f);
+		System.out.println("A-con");
+	}
+	A(int i)
+	{
+		System.out.println("A-int-par-con");
+	}
+	A(float f)
+	{
+		this(10);
+		System.out.println("A-float-par-con");
+	}
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		
+		A a=new A();
+	}
+
+}
+
+A-int-par-con
+A-float-par-con
+A-con
+

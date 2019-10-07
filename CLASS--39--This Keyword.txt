@@ -1,0 +1,398 @@
+THIS KEYWORD
+==============
+1.To refer current class variable
+2.To refer current class methods
+3.To refer current class constructors
+4.To refer current class object
+
+Note:
+In Java applications,if we provide same set of variables at local and at class level and if we access that variables then JVM will give first priority for local variables,
+if local variables are not available then JVM will search for that variables at class level even at class level also if that variables are not available then 
+JVM will search at super class level.At all the above locations,if the specified variables are not available then compiler will rise an error.
+
+this.var_Name                                               Ex-this.esal --->To refer current class variable
+this.method_Name([param_List]);        Ex-this.m1(); ---> To refer current class methods
+this([param_List]);                                       --->this(10);  ----> To refer current class constructor
+
+01) 
+class A
+{
+	int i=10;
+	int j=20;
+	A(int i,int j)
+	{
+		System.out.println(i+"    "+j);
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A(30,40);
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+30    40
+
+
+02)--Use of this Keyword in Constructor to call Class variable
+-------------------------------------------------------------------------------
+class A
+{
+	int i=10;
+	int j=20;
+	A(int i,int j)
+	{
+		System.out.println(i+"    "+j);
+		System.out.println(this.i+"    "+j);
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A(30,40);
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+30    40
+10    40
+
+03) 
+class Employee   //eid,ename,esal,eaddr
+{
+	private String eid;
+	private String ename;
+	private float esal;
+	private String eaddr;
+
+	public void setEmpID(String Emp_id)
+	{
+		eid=Emp_id;
+	}
+	public void setEmpName(String Emp_Name)
+	{
+		ename=Emp_Name;
+	}
+	public void setEmpsal(float Emp_sal)
+	{
+		esal=Emp_sal;
+	}
+	public void setEmpAddr(String Emp_addr)
+	{
+		eaddr=Emp_addr;
+	}
+
+	public String getEmpID()
+	{	
+		return eid;
+	}
+	public String getEmpName()
+	{
+		return ename;
+	}
+	public float getEmpSal()
+	{
+		return esal;
+	}
+	public String getEmpAddr()
+	{
+		return eaddr;
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		Employee emp=new Employee();
+		emp.setEmpID("abc123");
+		emp.setEmpName("Druga");
+		emp.setEmpsal(5000);
+		emp.setEmpAddr("HYD");
+
+		System.out.println("Employee Details       :");
+		System.out.println("-----------------------------");
+		System.out.println("Employee Name        :"+emp.getEmpName());
+		System.out.println("Employee ID          :"+emp.getEmpID());
+		System.out.println("Employee Salary      :"+emp.getEmpSal());
+		System.out.println("Employee Address     :"+emp.getEmpAddr());
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Employee Details       :
+-----------------------------
+Employee Name        :Druga
+Employee ID          :abc123
+Employee Salary      :5000.0
+Employee Address     :HYD
+
+04)--this Keyword used in local Variable
+class Employee   //eid,ename,esal,eaddr
+{
+	private String eid;
+	private String ename;
+	private float esal;
+	private String eaddr;
+
+	public void setEmpID(String eid) //class level varible same as local variable
+	{
+		this.eid=eid;
+	}
+	public void setEmpName(String ename) ////class level varible same as local variable
+	{
+		this.ename=ename;
+	}
+	public void setEmpsal(float esal) //class level varible same as local variable
+	{
+		this.esal=esal;
+	}
+	public void setEmpAddr(String eaddr) //class level varible same as local variable
+	{
+		this.eaddr=eaddr;
+	}
+
+	public String getEmpID()
+	{	
+		return eid;
+	}
+	public String getEmpName()
+	{
+		return ename;
+	}
+	public float getEmpSal()
+	{
+		return esal;
+	}
+	public String getEmpAddr()
+	{
+		return eaddr;
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		Employee emp=new Employee();
+		emp.setEmpID("abc123");
+		emp.setEmpName("Druga");
+		emp.setEmpsal(5000);
+		emp.setEmpAddr("HYD");
+
+		System.out.println("Employee Details       :");
+		System.out.println("-----------------------------");
+		System.out.println("Employee Name        :"+emp.getEmpName());
+		System.out.println("Employee ID          :"+emp.getEmpID());
+		System.out.println("Employee Salary      :"+emp.getEmpSal());
+		System.out.println("Employee Address     :"+emp.getEmpAddr());
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Employee Details       :
+-----------------------------
+Employee Name        :Druga
+Employee ID          :abc123
+Employee Salary      :5000.0
+Employee Address     :HYD
+
+05)--Calling of one Instance method in another Instance method
+class A
+{
+	void m1()
+	{
+		System.out.println("m1-A");
+		m2();                                                   //m2() method calling/Here we can use  "this.m2()"  also.
+	}
+	void m2()
+	{
+		System.out.println("m2-A");
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+		a.m1();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-A
+
+06) This Keyword in method
+-----------------------------------
+class A
+{
+	void m1()
+	{
+		System.out.println("m1-A");
+		m2();
+		this.m2();  //Calling of "m2()" method by using "this" keyword
+	}
+	void m2()
+	{
+		System.out.println("m2-A");
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+		a.m1();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-A
+m2-A
+
+07)--To refer current class constructors:
+class A
+{
+	A()
+	{
+		System.out.println("A-con");
+	}
+	A(int i)
+	{
+		System.out.println("A-int-param-con");
+	}
+	A(float f)
+	{
+		System.out.println("A-float-param-con");
+	}
+	A(double d)
+	{
+		System.out.println("A-double-param-con");
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+A-con
+
+08)-- To refer current class constructors:
+class A
+{
+	A()
+	{
+		this(10);  			//To refer current class constructor Syn-This(parameter);
+		System.out.println("A-con");
+	}
+	A(int i)
+	{
+		this(22.22f);
+		System.out.println("A-int-param-con");
+	}
+	A(float f)
+	{
+		this(2345.4563);
+		System.out.println("A-float-param-con");
+	}
+	A(double d)
+	{
+		System.out.println("A-double-param-con");
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+A-double-param-con
+A-float-param-con
+A-int-param-con
+A-con
+
+09) 
+class A
+{
+	A()
+	{
+		System.out.println("A-con");   //Error-"This" keyword is used in 1st statement of the constructor only
+		this(10);
+	}
+	A(int i)
+	{
+		System.out.println("A-int-param-con");
+		this(22.22f);
+	}
+	A(float f)
+	{
+		System.out.println("A-float-param-con");
+		this(2345.4563);
+	}
+	A(double d)
+	{
+		System.out.println("A-double-param-con");
+	}
+	
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+	}
+}
+
+Error
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:6: error: call to this must be first statement in constructor
+                this(10);
+                    ^
+Test.java:11: error: call to this must be first statement in constructor
+                this(22.22f);
+                    ^
+Test.java:16: error: call to this must be first statement in constructor
+                this(2345.4563);
+                    ^
+3 errors

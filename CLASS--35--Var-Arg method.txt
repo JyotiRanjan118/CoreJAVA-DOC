@@ -1,0 +1,135 @@
+A
+{
+void add(int i, int j)
+{
+System.out.println(i+j);
+}
+}
+class Test
+{
+public static void main(String[] args)
+{
+A a=new A();
+a.add(10,20);// Valid.
+//a.add();--> Invalid
+//a.add(10);--> Invalid
+//a.add(10,20,30);--> Invalid
+}
+}
+
+Note:  void m1(float f, int ... i){} ----> valid  //In Var-Arg methods, normal parameters are allowed along 
+with Var-ARg parameter but they must be provided before var-Arg parameter,not after var-Arg parameter, because, 
+var-Arg parameter must be last parameter in var-Arg method.
+
+Var-Arg Method
+-------------------------
+01)
+class A
+{
+	void m1(int...a)
+	{
+		System.out.println("Var-Arg");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		a.m1();
+		a.m1(10);
+		a.m1(10,20)
+	}   
+}
+
+Var-Arg
+Var-Arg
+Var-Arg
+
+03)
+
+class A
+{
+	void m1(int...a) //int[] a
+	{
+		System.out.println("No of Arg  :"+a.length);
+		System.out.print("Arg list   :");
+		for (int i=0;i<a.length ;i++ )
+		{
+			System.out.print(a[i]+"\t");
+		}
+		System.out.println();
+		System.out.println("--------------------------");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		a.m1();
+		a.m1(10);
+		a.m1(10,20);
+	}   
+}
+
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+No of Arg  :0
+Arg list   :
+--------------------------
+No of Arg  :1
+Arg list   :10
+--------------------------
+No of Arg  :2
+Arg list   :10  20
+--------------------------
+
+04) 
+class A
+{
+	void m1(int...a) //int[] a
+	{
+		System.out.println("No of Arg  :"+a.length);
+		System.out.print("Arg list   :");
+		int result=0;
+		for (int i=0;i<a.length ;i++ )
+		{
+			System.out.print(a[i]+"\t");
+			result=result+a[i];
+		}
+		System.out.println();
+		System.out.println("Addition   :"+result);
+		System.out.println("--------------------------");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		a.m1();
+		a.m1(10);
+		a.m1(10,20);
+	}   
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+No of Arg  :0
+Arg list   :
+Addition   :0
+--------------------------
+No of Arg  :1
+Arg list   :10
+Addition   :10
+--------------------------
+No of Arg  :2
+Arg list   :10  20
+Addition   :30
+--------------------------
+

@@ -1,0 +1,97 @@
+01) Try ,Catch Block
+-----------------------------
+
+try{
+}
+catch(ArithmeticException e){        //Unchecked Exception any order no inheritance relation between Exception
+}
+catch(ClassCastException e){
+}
+catch(NullPointerException e){
+}
+Status:Valid Combination
+
+Ex2:
+try{
+}
+catch(NullPointerException e){     //Unchecked Exception any order no inheritance relation between Exception
+}
+catch(ArithmeticException e){
+}
+catch(ClassCastException e){
+}
+status:Valid Combination
+
+Ex3:
+try{
+}
+catch(ArithmeticException e){          //Unchecked Exception, inheritance relation between Exception Icreasing order
+}
+catch(RuntimeException e){
+}
+catch(Exception e){
+}
+Status:Valid
+
+Ex4:
+try{
+}
+catch(Exception e){               //Unchecked Exception any order , inheritance relation between Exception bt( Decreasing order)
+}
+catch(RuntimeException e){
+}
+catch(ArithmeticException e){
+}
+status: Invalid
+
+Ex5:
+try{
+throws new ArithmeticException("My Exception");   // If any pure checked exception is specified in catch block then corresponding 
+}					        try block must rise some pure checked exception
+catch(ArithmeticException e){
+}
+catch(IOException e){
+}
+catch(NullPointerException e){
+}
+Status:Invalid
+
+Ex6:
+try{
+throw new IOException("My Exception");         // If any pure checked exception is specified in catch block then corresponding exception is defined in Throw keyword
+}
+catch(ArithmeticException e){
+}
+catch(IOException e){
+}
+catch(NullPointerException e){
+}
+status:Valid
+
+
+Program
+--------------
+
+package com.durgasoft.core;
+class A{
+	int m1() {
+		try {
+			return 10;
+		} catch (Exception e) {
+			return 20;
+		}finally {
+			return 30;
+		}
+	}
+}
+class Test
+{
+	public static void main(String[] args) throws Exception {
+		A a=new A();
+		int val=a.m1();
+		System.out.println(val);
+	}
+}
+			
+
+			

@@ -1,0 +1,262 @@
+-->Concreate methods are allowed in both classes and in abstract classes.
+-->Abstract methods are allowed in abstract classes and interfaces
+
+01)--CREATE abstract class
+Procedure to use abstract classes:
+a)Declare an abstract class with "abstract".
+b)Declare concreate methods and abstract methods in abstract class as per the requirement.
+c)Declare sub class for abstract class.
+d)Implement abstract methods in sub class.
+e)in main class and in main() method, create object for sub class and declare reference variable either for abstract class or for sub class.
+f)Access abstract class members.
+
+Ex: 
+
+abstract class A
+{
+	void m1()
+	{
+		System.out.println("m1-A");
+	}
+	abstract void m2();
+	abstract void m3();
+
+}
+class B extends A
+{
+	void m2()
+	{
+		System.out.println("m2-B");
+	}
+	void m3()
+	{
+		System.out.println("m3-B");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new B();
+		a.m1();
+		a.m2();
+		a.m3();
+    }  
+}
+
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-B
+m3-B
+
+02) 
+abstract class A
+{
+	void m1()
+	{
+		System.out.println("m1-A");
+	}
+	abstract void m2();
+	abstract void m3();
+
+}
+class B extends A
+{
+	void m2()
+	{
+		System.out.println("m2-B");
+	}
+	void m3()
+	{
+		System.out.println("m3-B");
+	}
+	void m4()
+	{
+		System.out.println("m4-B");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new B();
+		a.m1();
+		a.m2();
+		a.m3();
+		a.m4();
+    }   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:34: error: cannot find symbol
+                a.m4();
+                 ^
+  symbol:   method m4()
+  location: variable a of type A
+1 error
+
+03) 
+abstract class A
+{
+	void m1()
+	{
+		System.out.println("m1-A");
+	}
+	abstract void m2();
+	abstract void m3();
+
+}
+class B extends A
+{
+	void m2()
+	{
+		System.out.println("m2-B");
+	}
+	void m3()
+	{
+		System.out.println("m3-B");
+	}
+	void m4()
+	{
+		System.out.println("m4-B");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new B();
+		a.m1();
+		a.m2();
+		a.m3();
+		//a.m4();
+		System.out.println();
+		B b=new B();
+		b.m1();
+		b.m2();
+		b.m3();
+		b.m4();
+    }   
+}
+
+
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-B
+m3-B
+
+m1-A
+m2-B
+m3-B
+m4-B
+
+04)--INTERFACE 
+===============
+
+Procedure to Use interfaces in Java applications:
+a)Declare an interface with "inetrface" keyword.
+b)Declare variables and methods in interface as per the requirement.
+No static method in Interface
+variable value will not be changed
+c)Declare an implementation class for interface by including "implements" keyword.
+d)Provide implementation for abstract methods in implementation class which are declared in interface.
+e)In main class, in main() method, create object for implementation class ,but, declare reference variable either for interface or for implementation class.
+f)Access interface members.
+
+Final method cant be overriden
+---------------
+
+4.1) 
+interface I
+{
+	int x=20;//public static final
+	void m1(); //public and abstract
+	void m2(); //public and abstract
+}
+class A implements I
+{
+	public void m1()
+	{
+		System.out.println("m1-A");
+	}
+	public void m2()
+	{
+		System.out.println("m2-A");
+	}
+	public void m3()
+	{
+		System.out.println("m3-A");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		//I i=new I(); --->Error,Because we cant create object of interface.
+		I i=new A();
+		i.m1();
+		i.m2();
+		
+					OR
+		System.out.println();
+		A a=new A();
+		a.m1();
+		a.m2();
+		a.m3();
+    }   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-A
+
+m1-A
+m2-A
+m3-A
+
+4.2) interface I
+{
+	int x=20;        //public static final
+	void m1();     //public and abstract
+	void m2();    //public and abstract
+}
+class A implements I
+{
+	public void m1()
+	{
+		System.out.println("m1-A");
+	}
+	public void m2()
+	{
+		System.out.println("m2-A");
+	}
+	public void m3()
+	{
+		System.out.println("m3-A");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		//I i=new I(); --->Error,Because we cant create object of interface.
+		I i=new A();
+		i.m1();
+		i.m2();
+		//i.m3(); -->Error since the method is not declared in interface.
+    }   
+}
+
+
+
+
+

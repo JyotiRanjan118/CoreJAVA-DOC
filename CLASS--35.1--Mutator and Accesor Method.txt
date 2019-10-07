@@ -1,0 +1,75 @@
+ MUTATOR METHOD AND ACCESSOR METHOD
+-------------------------------------------------------------
+class Employee
+{
+	private String eid;
+	private String ename;
+	private float esal;
+	private String eaddr;
+	
+	//Mutator Method
+
+	public void setEid(String Emp_id) 
+	{
+		eid=Emp_id;
+	}
+	public void setEname(String Emp_name)
+	{
+		ename=Emp_name;
+	}
+	public void setEsal(float Emp_sal)
+	{
+		esal=Emp_sal;
+	}
+	public void setEaddr(String Emp_eaddr)
+	{
+		eaddr=Emp_eaddr;
+	}
+
+	//Accessor Method
+
+	public String getEid()
+	{
+		return eid;
+	}
+	public String getEname()
+	{
+		return ename;
+	}
+	public float getEsal()
+	{
+		return esal;
+	}
+	public String getEaddr()
+	{
+		return eaddr;
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		Employee emp=new Employee();
+		emp.setEid("E-111");
+		emp.setEname("Durga");
+		emp.setEsal(50000.0f);
+		emp.setEaddr("NALCO");
+
+		System.out.println("Employee Details");
+		System.out.println("-------------------------");
+		System.out.println("Employee ID    :"+emp.getEid());
+		System.out.println("Employee Name  :"+emp.getEname());
+		System.out.println("Employee Sal   :"+emp.getEsal());
+		System.out.println("Employee Addr  :"+emp.getEaddr());
+		
+		
+    }   
+}
+O/P:
+-------
+Employee Details
+-------------------------
+Employee ID    :E-111
+Employee Name  :Durga
+Employee Sal   :50000.0
+Employee Addr  :NALCO

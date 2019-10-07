@@ -1,0 +1,99 @@
+01)--More than one Main Method in Single JAVA application?
+-------------------------------
+class A
+{
+	public static void main(String[] args) throws Exception
+	{
+		System.out.println("Main()--A");
+	}
+}
+class B
+{
+	public static void main(String[] args) throws Exception
+	{
+		System.out.println("Main()--B");
+	}
+}
+
+O/P:
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java A
+Main()--A
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java B
+Main()--B
+
+02)--Calling Main Method by another main method
+-------------------------------------------------------------------
+class A
+{
+	public static void main(String[] args) throws Exception
+	{
+		System.out.println("Main()--A");
+		String[] str={"AAA","BBB"};
+		B.main(str);
+		B.main(args);
+	}
+}
+class B
+{
+	public static void main(String[] args) throws Exception
+	{
+		System.out.println("Main()--B");
+	}
+}
+
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java A
+Main()--A
+Main()--B
+Main()--B
+
+03)--Main Method OverLoading
+------------------------------------------
+class A
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("String[]-Main()");
+	}
+	public static void main(int[] args) 
+	{
+		System.out.println("int[]-Main()");
+	}
+	public static void main(float[] args) 
+	{
+		System.out.println("Float[]-Main()");
+	}
+}
+
+O/P: 
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java A
+String[]-Main()
+
+04)--Valid Syntax
+-
+1.public static void main(String[] args)--> Valid
+2.public static void main(String[] abc)---> valid
+3.public static void main(String args)----> Invalid
+4.public static void main(String[][] args)-->Invalid
+5.public static void main(String args[])---> Valid
+6.public static void main(String []args)---> Valid
+7.public static void main(string[] args)---> Invalid
+8.public static void Main(String[] args)---> Invalid
+9.public static int main(String[] args)----> Invalid
+10.public final void main(String[] args)---> Invalid
+11.public void main(String[] args)---------> Invalid
+12.static void main(String[] args)---------> Invalid
+13.static public void main(String[] args)--> Valid
+14.public static void main(String ... args)-> Valid
+

@@ -1,0 +1,173 @@
+ENUM:
+---------
+In Java applications to declare constant variables Java has provided a convention like to declare constants with "public static final".
+In System Class:
+public static final PrintStream out;
+public static final InputStream in;
+public static final PrintStream err;
+In Thread Class:
+public static final int MIN_PRIORITY=1;
+public static final int NORM_PRIORITY=5;
+public static final int MAX_PRIORITY=10;
+
+To declare constant variables in Java applications if we use the above convention then we are able to get the following problems.
+1.We must declare "public static final" for each and every constant variable explicitly.
+2.It is possible to allow multiple data types to represent one type,it will reduce typedness in Java applications.
+3.If we access constant variables then these variables will display their values,here constant variable values may or 
+     may not reflect the actual meaning of constant variables.
+
+To overcome all the problems,we have to go for "enum".
+In case of enum,
+1.All the constant variables are by default "public static final",no need to declare explicitly.
+2.All the constant variables are by default the same enum type,it will improve Typedness in Java applications.
+3.All the constant variables are by default "Named Constants" that is,these constant variables are displaying their names instead of their values.
+
+Note: In Java applications,it is possible to implement inheritance between two classes 
+but it is not possible to implement inheritance between two "enums", because, bydefault enums are final classses.
+In Java applications,we can utilize enum like as classes,where we can provide normal variables,methods,constructors....
+
+NOTE:The default super class for every enum is “java.lang.Enum” class and “Object” class is Super class to “Enum” class.
+If we compile the above Java file then Compiler will translate "User_Status" enum into "User_Status" final class like below.
+final class User_Status extends java.lang.Enum{
+public static final MailStatus AVAILABLE;
+public static final MailStatus BUSY;
+public static final MailStatus IDLE;
+
+
+Syntax:
+
+[Access_modifier] enum Enum_Name
+{
+----- List of constants-----
+}
+
+Program:
+------------
+01) 
+package com.durgasoft.core;
+class User_status{
+	public static final String AVAILABLE="User Available";  // To declare Constant Variable we use public static final 
+	public static final String BUSY="User Busy";
+	public static final String IDLE="User Idle";
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			System.out.println(User_status.AVAILABLE);
+			System.out.println(User_status.BUSY);
+			System.out.println(User_status.IDLE);
+			
+		
+	}
+}
+
+O/P:
+--------
+User Available
+User Busy
+User Idle
+
+02)--ENUM USE
+--------------------
+package com.durgasoft.core;
+enum User_status{
+	AVAILABLE,BUSY,IDLE;
+}
+public class Test{
+		public static void main(String[] args)throws Exception{
+			System.out.println(User_status.AVAILABLE);
+			System.out.println(User_status.BUSY);
+			System.out.println(User_status.IDLE);
+			
+		
+	}
+}
+
+O/P:
+---------
+AVAILABLE
+BUSY
+IDLE
+
+03) --Enum Example 2
+-----------------------------
+package com.durgasoft.core;
+enum Apple{
+	A(300),B(200),C(100);
+	int price;
+	Apple(int price){
+		this.price=price;
+	}
+	public int getPrice() {
+		return price;
+	}
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			System.out.println("A-grade Apple price  :"+Apple.A.price);
+			System.out.println("B-grade Apple price  :"+Apple.B.price);
+			System.out.println("C-grade Apple price  :"+Apple.C.price);
+			
+	}
+}
+
+O/P:
+-------
+A-grade Apple price  :300
+B-grade Apple price  :200
+C-grade Apple price  :100
+
+NOTE: 
+------------
+If we compile the above programme,then compiler will translate enum into the following class:
+final class Apple extends Enum{
+public static final Apple A=new Apple(500);
+public static final Apple B=new Apple(250);
+public static final Apple C=new Apple(100);
+int price;
+Apple(int price){
+this.price=price;
+}
+public int getPrice(){
+return price;
+}
+----
+}
+-----------------------****-------------------------------------------
+
+DOC Example:
+---------------------
+enum Book{
+A(500,250),B(300,150),C(200,100);
+int no_of_pages;
+int cost;
+Book(int no_of_pages,int cost){
+this.no_of_pages=no_of_pages;
+this.cost=cost;
+}
+public void getBookDetails(){
+System.out.println(no_of_pages+"--------->"+cost);
+}
+}
+class Test{
+public static void main(String args[]){
+System.out.println("Durga Books Store");
+System.out.println("-------------------");
+System.out.println("No of Pages Cost");
+System.out.println("-------------------");
+Book.A.getBookDetails();
+Book.B.getBookDetails();
+Book.C.getBookDetails();
+}
+}
+
+O/P:
+-----
+Durga Books Store
+---------------------------
+No of Pages Cost
+---------------------------
+500------------->250
+300------------->150
+200------------->100
+
+

@@ -1,0 +1,644 @@
+--CONSTRUCTOR
+=================
+1.Constructor is a java feature, it can be used to create Object.
+2.The role of the constructors in Object creation is to provide initial values inside the object.
+3.In java applications, Constructors are executed exactly at the time of creating objects, not before creating objects and not after creating objects.
+4.The main utilization of constructors is to provide initializations for class level variables mainly instance variable.
+7.Constructors are not allowing the access modifiers like static, final,...
+8.Constructors are able to allow the access modifiers like public, protected,<default> and private.
+9.Constructors are allowing 'throws' keyword in its syntax to bypass exceptions from present constructor to the caller
+
+Syn: [Access_Modifier] Class_Name([Param_List])[throws Exception_List]
+{
+-----
+}
+
+Program
+-----------
+01) 
+class A
+{
+	A()
+	{
+		System.out.println("A-con");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+	}   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+A-con
+
+02)
+class A
+{
+	void A()                   //Constructor Treated as Normal Java Method
+	{
+		System.out.println("A-con");     //JVM will take it as a method 
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();     
+		a.A();         
+	}   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+A-con
+
+03)--Static Key words in CONSTRUCTOR
+---------------------------------
+class A
+{
+	static A()                         //Static Keyword is not allowed in Constructor    
+	{
+		System.out.println("A-con");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		
+	}   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:3: error: modifier static not allowed here
+        static A()
+               ^
+1 error
+
+04) 
+class A
+{
+	private A()                //If we declare constructor as "private" then that constructor is available upto the respective class only, 
+		                     not available to out side of the respective class.In this context, If we want to create object for the respective class
+		                     then it is possible inside the same class only.
+	{
+		System.out.println("A-con");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		
+	}   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:12: error: A() has private access in A
+                A a=new A();
+                    ^
+1 error
+
+05) 
+class A
+{
+	private A()
+	{
+		System.out.println("A-con");
+	}
+}
+class Test 
+{
+	public static void main(String[] args)
+	{
+		//A a=new A();
+		
+	}   
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+
+06)--DEFAULT CONSTRUCTOR
+-----------------------------------------
+
+class Test 
+{
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>javap Test
+Compiled from "Test.java"
+class Test {
+  Test();
+}
+
+07)--
+public class Test 
+{
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>javap Test
+Compiled from "Test.java"
+public class Test {
+  public Test();
+}
+
+If any access modifier is defined under class that access modifier is same as default constructor. 
+
+08) class Test 
+{
+	Test()
+	{
+
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>javap Test
+Compiled from "Test.java"
+class Test {
+  Test();
+}
+
+09) 
+class Test 
+{
+	int i=10;
+	Test(int i)
+	{
+
+	}
+	void m1()
+	{
+
+	}
+	public static void main(String[] arg)
+	{
+
+	}
+
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>javap Test
+Compiled from "Test.java"
+class Test {
+  int i;
+  Test(int);
+  void m1();
+  public static void main(java.lang.String[]);
+}
+
+10) 
+class Account
+{
+	String accNo;
+	String accName;
+	String accType;
+	long balance;
+
+	public void setAccountDetails(String acc_No,String acc_Name,String acc_Type,long acc_bal)
+	{
+		accType=acc_No;
+		accName=acc_Name;
+		accType=acc_Type;
+		balance=acc_bal;
+	}
+
+	public void getAccountDetails()
+	{
+		System.out.println("Account Details");
+		System.out.println("-----------------------");
+		System.out.println("Account No      :"+accType);
+		System.out.println("Account Name    :"+accName);
+		System.out.println("Account Type    :"+accType);
+		System.out.println("Account balance :"+balance);
+	}
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		Account acc=new Account();
+		//acc.setAccountDetails("abc123","Durga","Saving",25000);
+		acc.getAccountDetails();
+	}
+
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Account Details
+-----------------------
+Account No      :null
+Account Name    :null
+Account Type    :null
+Account balance :0
+
+CONSTRUCTOR 
+=============
+11)--BY USING 0 ARG CONSTRUCTOR 
+
+class Account
+{
+	String accNo;
+	String accName;
+	String accType;
+	long balance;
+
+	Account()
+	{
+		accType="abc123";
+		accName="Durga";
+		accType="Saving";
+		balance=25000;
+	}
+
+	public void getAccountDetails()
+	{
+		System.out.println("Account Details");
+		System.out.println("-----------------------");
+		System.out.println("Account No      :"+accType);
+		System.out.println("Account Name    :"+accName);
+		System.out.println("Account Type    :"+accType);
+		System.out.println("Account balance :"+balance);
+	}
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		Account acc=new Account();
+		acc.getAccountDetails();
+	}
+
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Account Details
+-----------------------
+Account No      :Saving
+Account Name    :Durga
+Account Type    :Saving
+Account balance :25000
+
+12)--ACCOUNT OPENING OF 3 DIFFERENT PEOPLE BY USING PARAMETERIZED CONSTRUCTOR
+--- 
+class Account
+{
+	String accNo;
+	String accName;
+	String accType;
+	long balance;
+
+	Account(String acc_No,String acc_Name,String acc_Type,long acc_bal)
+	{
+		accType=acc_No;
+		accName=acc_Name;
+		accType=acc_Type;
+		balance=acc_bal;
+	}
+
+	public void getAccountDetails()
+	{
+		System.out.println("Account Details");
+		System.out.println("-----------------------");
+		System.out.println("Account No      :"+accType);
+		System.out.println("Account Name    :"+accName);
+		System.out.println("Account Type    :"+accType);
+		System.out.println("Account balance :"+balance);
+	}
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		Account acc1=new Account("abc123","Durga","Saving",25000);
+		acc1.getAccountDetails();
+		System.out.println();
+		Account acc2=new Account("xyz123","JYOTI","FD",100000);
+		acc2.getAccountDetails();
+		System.out.println();
+		Account acc3=new Account("asd098","DIPU","RD",15000);
+		acc3.getAccountDetails();
+	}
+
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Account Details
+-----------------------
+Account No      :Saving
+Account Name    :Durga
+Account Type    :Saving
+Account balance :25000
+
+Account Details
+-----------------------
+Account No      :FD
+Account Name    :JYOTI
+Account Type    :FD
+Account balance :100000
+
+Account Details
+-----------------------
+Account No      :RD
+Account Name    :DIPU
+Account Type    :RD
+Account balance :15000
+
+13)--CONSTRUCTOR OVERLOADING (Same Name with different parameter)
+--------------------------------------------------------------------------------------------------
+class A
+{
+	int i,j,k;
+	A()
+	{
+
+	}
+	A(int i1)
+	{
+		i=i1;
+	}
+	A(int i1,int j1)
+	{
+		i=i1;
+		j=j1;
+	}
+	A(int i1,int j1,int k1)
+	{
+		i=i1;
+		j=j1;
+		k=k1;
+	}
+	void add()
+	{
+		System.out.println("Addition :"+(i+j+k));
+	}
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		A a1=new A();
+		a1.add();
+		A a2=new A(10);
+		a2.add();
+		A a3=new A(10,20);
+		a3.add();
+		A a4=new A(10,20,30);
+		a4.add();
+
+	}
+
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Addition :0
+Addition :10
+Addition :30
+Addition :60
+
+14) 
+class A
+{
+	int i=10;
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		A a=new A();
+		System.out.println(a.i);
+		A a1=null;
+		System.out.println(a1.i);
+		
+	}
+
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+10
+Exception in thread "main" java.lang.NullPointerException
+        at Test.main(Test.java:12)
+
+15) 
+INSTANCE METHOD
+===================
+In Java applications,instance variables must be declared at class level and non-static,
+ instance variables never be declared as local variables and static variables.
+Ex-1
+-------
+class A
+{
+	int i=m1();
+	A()
+	{
+		System.out.println("A-con");
+	}
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+}
+class Test 
+{
+	public static void main(String[] arg)
+	{
+		A a=new A();
+	}
+
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+A-con
+
+16) 
+INSTANCE METHOD
+-------------------------
+EX-2:
+class A 
+{
+	int j=m1();
+	int m2()
+	{
+		System.out.println("m2-A");
+		return 10;
+	}
+	A()
+	{
+		System.out.println("A-con");
+	}
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 20;
+	}
+	int i=m2();
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a =new A();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+m2-A
+A-con
+
+17) 
+INSTANCE BLOCK
+==================
+Ex-
+class A 
+{
+	A()
+	{
+		System.out.println("m1-A");
+	}
+	{
+		System.out.println("IB-A");
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a =new A();
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+IB-A
+m1-A
+
+18)INSTANCE VARIABLE ,INSTANCE BLOCK AND CONSTRUCTOR
+======================================================= 
+class A 
+{
+	int i=m1();
+	{
+		System.out.println("IB-A");
+	}
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+	A()
+	{
+		System.out.println("A-con");
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a =new A();
+	}
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A
+IB-A
+A-con
+
+19) 
+package com.durgasoft.core;
+class A{
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+	{
+		System.out.println("IB-A");
+	}
+	int i=m2();
+	A(){
+		System.out.println("A-con");
+	}
+	int j=m1();
+	{
+		System.out.println("IB1-A");
+	}
+	int m2()
+	{
+		System.out.println("m2-A");
+		return 20;
+	}
+}
+
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a1=new A();
+		}
+}
+
+O/P:
+--------
+IB-A
+m2-A
+m1-A
+IB1-A
+A-con
+
+			
+
+			
+
+
+
+
+

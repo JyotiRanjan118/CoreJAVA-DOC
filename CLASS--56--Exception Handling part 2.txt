@@ -1,0 +1,528 @@
+RUNTIME EXCEPTION
+-------------------------------
+01)  ArithmeticException
+-----------------------------------
+package com.durgasoft.core;
+
+class Test{
+	public static void main(String[] args){
+		int a=100;
+		int b=0;
+		float f= a/b;
+		System.out.println(f);
+	}
+}
+
+O/P:
+------
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at com.durgasoft.core.Test.main(Test.java:7)
+
+02) NullPointerException:
+-----------------------------------
+package com.durgasoft.core;
+
+import java.util.Date;
+
+class Test{
+	public static void main(String[] args){
+		Date date = null;
+		System.out.println(date.toString());
+	}
+			
+}
+
+Exception in thread "main" java.lang.NullPointerException
+	at com.durgasoft.core.Test.main(Test.java:8)
+
+03) ArrayIndexOutOfBoundsException:
+--------------------------------------------------
+package com.durgasoft.core;
+
+import java.util.Date;
+
+class Test{
+	public static void main(String[] args){
+		int[] a= {1,2,3,4,5};
+		System.out.println(a[3]);
+		System.out.println(a[4]);
+		System.out.println(a[5]);
+	}
+}
+
+O/P:
+---------
+4
+5
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at com.durgasoft.core.Test.main(Test.java:10)
+
+04) ClassCastException
+--------------------------------
+package com.durgasoft.core;
+class A{
+	
+}
+class B extends A{
+	
+}
+class Test{
+	public static void main(String[] args){
+		A a=new A();
+		B b=(B)a;
+	}
+}
+
+Exception in thread "main" java.lang.ClassCastException: com.durgasoft.core.A cannot be cast to com.durgasoft.core.B
+	at com.durgasoft.core.Test.main(Test.java:11)
+
+05) ClassNotFoundException:
+---------------------------------------
+
+package com.durgasoft.core;
+class A{
+   static
+   {
+	   System.out.println("Class Loading");
+   }
+}
+class Test{
+	public static void main(String[] args) throws Exception
+	{
+		Class c=Class.forName("AAA");
+ }
+}
+
+Exception in thread "main" java.lang.ClassNotFoundException: AAA
+
+06) java.lang.instantiationException
+-----------------------------------------------
+package com.durgasoft.core;
+
+class A{
+	static
+	{
+		System.out.println("Class Loading");
+	}
+	A(int i)
+	{
+		System.out.println("Object Creating");
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			Class c=Class.forName("com.durgasoft.core.A");
+			Object obj=c.newInstance();
+		}
+}
+O/P:
+--------
+Class Loading
+Exception in thread "main" java.lang.InstantiationException: com.durgasoft.core.A
+	at java.lang.Class.newInstance(Unknown Source)
+	at com.durgasoft.core.Test.main(Test.java:18)
+Caused by: java.lang.NoSuchMethodException: com.durgasoft.core.A.<init>()
+	at java.lang.Class.getConstructor0(Unknown Source)
+	... 2 more
+
+07)--java.lang.IllegalAccessException
+-------------------------------------------------
+package com.durgasoft.core;
+
+class A{
+	static
+	{
+		System.out.println("Class Loading");
+	}
+	private A()
+	{
+		System.out.println("Object Creating");
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			Class c=Class.forName("com.durgasoft.core.A");
+			Object obj=c.newInstance();
+		}
+}
+
+O/P:
+------			
+Class Loading
+Exception in thread "main" java.lang.IllegalAccessException: Class com.durgasoft.core.
+Test can not access a member of class com.durgasoft.core.A with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at com.durgasoft.core.Test.main(Test.java:18)
+
+08) Throw KeyWord
+---------------------------
+Syntax:
+throw new Exception_Name("----Exception Description-----");
+
+package com.durgasoft.core;
+
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			String accNo=args[0];
+			String accName=args[1];
+			int pin_Num=Integer.parseInt(args[2]);
+			String accType=args[3];
+			System.out.println("Account Details");
+			System.out.println("--------------------");
+			System.out.println("Account Number    :"+accNo);
+			System.out.println("Account Name      :"+accName);
+			System.out.println("Account Type      :"+accType);
+			System.out.println("Account Pin_Number:"+pin_Num);
+			if (pin_Num>=1000 && pin_Num<=9999) {
+				System.out.println("Valid Pin Number");
+			} else {
+				throw new RuntimeException("Invalid Pin Number,Enter valid 4 digit phone number");
+			}
+			
+			
+		}
+}
+			
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test abc123 AAA 1234 Savings
+Account Details
+--------------------
+Account Number    :abc123
+Account Name      :AAA
+Account Type      :Savings
+Account Pin_Number:1234
+Valid Pin Number
+
+D:\Packages\Default>java Test abc123 AAA 123 Savings
+Account Details
+--------------------
+Account Number    :abc123
+Account Name      :AAA
+Account Type      :Savings
+Account Pin_Number:123
+Exception in thread "main" java.lang.RuntimeException: Invalid Pin Number,Enter valid 4 digit phone number
+        at Test.main(Test.java:18)
+
+09) class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			String accNo=args[0];
+			String accName=args[1];
+			int pin_Num=Integer.parseInt(args[2]);
+			String accType=args[3];
+			System.out.println("Account Details");
+			System.out.println("--------------------");
+			System.out.println("Account Number    :"+accNo);
+			System.out.println("Account Name      :"+accName);
+			System.out.println("Account Type      :"+accType);
+			System.out.println("Account Pin_Number:"+pin_Num);
+			if (pin_Num>=1000 && pin_Num<=9999) {
+				System.out.println("Valid Pin Number");
+			} else {
+				throw new RuntimeException("Invalid Pin Number,Enter valid 4 digit phone number");
+				System.out.println("After throw");    //Unreachable statement
+			}
+			
+			
+		}
+}
+
+D:\Packages\Default>javac Test.java
+Test.java:19: error: unreachable statement
+                                System.out.println("After throw");
+                                ^
+1 error
+
+10) THROWS KEYWORD
+------------------------------
+import java.io.*;;
+class A
+{
+	void add()
+	{
+
+	}
+	void concat()
+	{
+		throw new IOException("My IOException");
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			A a=new A();
+			a.add();
+		}
+}
+
+D:\Packages\Default>javac Test.java
+Test.java:10: error: unreported exception IOException; must be caught or declared to be thrown
+                throw new IOException("My IOException");
+                ^
+1 error
+
+11)--Passing Exception to method 
+import java.io.*;;
+class A
+{
+	void add()
+	{
+		concat();		//6
+	}
+	void concat()throws IOException         //Pass the exception to "concat" method prototype 
+	{
+		throw new IOException("My IOException");      //10
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			A a=new A();
+			a.add();
+		}
+}
+
+
+D:\Packages\Default>javac Test.java
+Test.java:6: error: unreported exception IOException; must be caught or declared to be thrown
+                concat();
+                      ^
+1 error
+
+12)--Passing Exception to Add method
+import java.io.*;;
+class A
+{
+	void add()throws Exception
+	{
+		concat();
+	}
+	void concat()throws IOException 
+	{
+		throw new IOException("My IOException");
+	}
+}
+class Test
+	{
+		public static void main(String[] args) 
+		{
+			A a=new A();
+			a.add();
+		}
+}
+
+D:\Packages\Default>javac Test.java
+Test.java:18: error: unreported exception Exception; must be caught or declared to be thrown
+                        a.add();
+                             ^
+1 error
+
+13)--Passing Exception to main method
+---------------------------------------------------
+import java.io.*;;
+class A
+{
+	void add()throws Exception
+	{
+		concat();
+	}
+	void concat()throws IOException         //Pass the exception to "concat" method prototype 
+	{
+		throw new IOException("My IOException");
+	}
+}
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+			A a=new A();
+			a.add();
+		}
+}
+
+O/P:
+-------
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test
+Exception in thread "main" java.io.IOException: My IOException
+        at A.concat(Test.java:10)
+        at A.add(Test.java:6)
+        at Test.main(Test.java:18)
+
+
+-----------------------**THE END**----------------------------
+
+Try Catch Finally
+===============
+try{}
+catch(Exception_Name ref_value){}
+finally{}
+
+To display Exception in Command Prompt
+1.e.printStackTrace()   //Display Exception Name,Exception Description and Exception Location.
+2.System.out.println(e):   // Exception name,Exception description.
+3.System.out.println(e.getMessage());      //  Exception Description
+
+01) 
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+		 try {
+			int a=100;
+			int b=0;
+			float f=a/b;
+			System.out.println("After Exception"); //It will not be Executed. since the execution going to catch block
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println();
+			System.out.println(e);
+			System.out.println();
+			System.out.println(e.getMessage());
+		}finally {
+			
+		}
+			
+	}
+}
+
+java.lang.ArithmeticException: / by zero
+	at com.durgasoft.core.Test.main(Test.java:10)
+
+java.lang.ArithmeticException: / by zero
+
+/ by zero
+
+
+02) 
+class Test
+	{
+		public static void main(String[] args) throws Exception
+		{
+		 System.out.println("Before try");
+		 try {
+			System.out.println("Inside Try");
+		} catch (Exception e) {
+			System.out.println("Inside Catch");   //It will not be Executed.
+		}finally {
+			System.out.println("Inside Finally");
+		}
+		System.out.println("After Finally");	
+		}
+}
+
+Before try
+Inside Try
+Inside Finally
+After Finally
+
+01) 
+try{
+}finally{
+}
+
+02) 
+try{
+}
+catch(Exception e)
+{
+}
+
+03) 
+try {
+   try{
+       }catch(Exception e){
+       }finally{
+     }
+}catch(Exception e){
+}finally{
+}
+
+
+04) 
+try{
+       }catch(Exception e){
+        try{
+       }catch(Exception e){
+       }finally{
+     }
+   }finally{
+     }			
+
+05) 
+try{
+       }catch(Exception e){
+       }finally{
+      try{
+       }catch(Exception e){
+       }finally{
+     }
+     }
+
+			
+			
+
+			
+
+
+	
+
+
+			
+
+			
+
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+
+			
+
+			
+			
+			
+			
+			
+			
+
+			
+
+Exception in thread "main" java.lang.NullPointerException
+	at com.durgasoft.core.Test.main(Test.java:8)
+
+03) 			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			
+			
+			
+			
+
+			

@@ -1,0 +1,214 @@
+STATIC IMPORT 
+==============
+01) 
+package com.durgasoft.core;
+
+public class Test 
+{
+	public static void main(String[] args)
+	{ 
+		System.out.println(Thread.MIN_PRIORITY);   //Thread is a class 
+		System.out.println(Thread.MAX_PRIORITY);
+		System.out.println(Thread.NORM_PRIORITY);
+	}
+}
+
+O/P
+-------
+1
+10
+5
+
+02) 
+package com.durgasoft.core;
+import static java.lang.Thread.*;         //Using Static Import 
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		System.out.println(MIN_PRIORITY);
+		System.out.println(MAX_PRIORITY);
+		System.out.println(NORM_PRIORITY);
+	}
+}
+
+O/P
+-----
+1
+10
+5
+
+03) 
+package com.durgasoft.core;
+import static java.lang.Thread.*;
+import static java.lang.System.out;  //importing System(Class).out(Member) 
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		out.println(MIN_PRIORITY);
+		out.println(MAX_PRIORITY);
+		out.println(NORM_PRIORITY);
+	}
+}
+
+O/P
+-----
+1
+10
+5
+
+04)--Static Flow
+-------------------- 
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("SB-A");
+	}
+	static int i=m1();
+	static int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+	}
+}
+
+O/P
+------
+SB-A
+m1-A
+
+05)--Double object Creation of Class A in Static Context
+package com.durgasoft.core;
+class A{
+	static int m1() {
+		System.out.println("m1-A");
+		return 10;
+	}
+	static int i=m1();
+	static {
+		System.out.println("SB-A");
+	}
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		A a1=new A();                //It is not excuted as the static member already loaded in memory
+	}
+}
+
+O/P
+====
+m1-A
+SB-A
+
+06)--Static Flow
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-con");
+	}
+	static {
+		System.out.println("SB-A");
+	}
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+	static int i=m2();
+	{
+		System.out.println("IB-A");
+	}
+	static int m2()
+	{
+		System.out.println("m2-A");
+		return 20;
+	}
+	int j=m1();
+	
+
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		
+	}
+}
+
+O/P
+-----
+SB-A
+m2-A
+IB-A
+m1-A
+A-con
+
+07) 
+package com.durgasoft.core;
+class A{
+	A(){
+		System.out.println("A-con");
+	}
+	static {
+		System.out.println("SB-A");
+	}
+	int m1()
+	{
+		System.out.println("m1-A");
+		return 10;
+	}
+	static int i=m2();
+	{
+		System.out.println("IB-A");
+	}
+	static int m2()
+	{
+		System.out.println("m2-A");
+		return 20;
+	}
+	int j=m1();
+	
+
+}
+public class Test 
+{
+	public static void main(String[] args)
+	{
+		A a=new A();
+		System.out.println();
+		A a1=new A();
+		
+	}
+}
+
+O/P
+------
+SB-A
+m2-A
+IB-A
+m1-A
+A-con
+
+IB-A
+m1-A
+A-con
+
+--------------------------*****-----------------------------
+
+
+
+
+
+

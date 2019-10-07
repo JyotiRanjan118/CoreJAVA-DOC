@@ -1,0 +1,68 @@
+MAIN METHOD
+==============
+Importance of main() method in Java:
+1.To define application logic in Java program.
+2.To define starting point and ending point for the applications execution.
+
+Main() method is not predefined method and it is not user defined method,
+it is a conventional method with fixed prototype and with user defined implementation.
+
+01) 
+class Test 
+{
+	static void main(String[] args)       //Without Public keyword
+	{
+		System.out.println("main()--Test");
+	}
+}
+
+O/P:
+
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test
+Error: Main method not found in class Test, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+
+02)--Without void return type
+class Test 
+{
+	static public int main(String[] args) 
+	{
+		System.out.println("main()--Test");  //can interchange the position of static and public
+		return 10;
+	}
+}
+
+O/P:
+------
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test
+Error: Main method must return a value of type void in class Test, please
+define the main method as:
+   public static void main(String[] args)
+
+03)--
+class Test 
+{
+	static public int main(String[] args) 
+	{
+		System.out.println("main()--Test");
+		return 10;
+	}
+}
+
+O/P:
+------
+D:\Packages\Default>javac Test.java
+
+D:\Packages\Default>java Test
+Error: Main method must return a value of type void in class Test, please
+define the main method as:
+   public static void main(String[] args)
+
+
+
+

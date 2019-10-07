@@ -1,0 +1,617 @@
+Method Overriding 
+--------------------------
+Rules and Regulation for method Overriding
+------------------------------------------------------------
+01) To override super class method with sub class then super class method must not be declared as private.
+02) To override super class method with sub class method then sub class method should have the same return type of the super class method.
+03) To override super class method with sub class method then super class method must not be declared as final sub class method may or may not be final.
+04) To override super class method with subclass method,sub class method must have either same scope of the super 
+        class method or more scope when compared with super class method scope otherwise compiler will rise an error.
+05) In method Overriding ,if we have inheritance relation between super class method throws exception and sub class method throws exception then sub class method
+        throws exception must be sub class to the super class method throws exception.
+06) To override super class method with subclass method subclass method should have either 
+        same access privileges or weaker access privileges when compared with super class method access privileges.
+
+Program
+----------------
+01) 
+class A{
+	void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+m2-B
+
+02) To override super class method with sub class then super class method must not be declared as
+private.
+
+class A{
+	private void m1(){
+		System.out.println("m1-A");                 //Private cannt be taken in Super class
+	}
+}
+class B extends A{
+	void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:15: error: m1() has private access in A
+                 a.m1();
+                  ^
+1 error
+
+03) 
+To override super class method with sub class method then sub class method should have the same
+return type of the super class method.
+P-1
+------
+class A{
+	int m1(){
+		System.out.println("m1-A");
+		return 10;
+	}
+}
+class B extends A{
+	void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-----
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:8: error: m1() in B cannot override m1() in A
+        void m1(){
+             ^
+  return type void is not compatible with int
+1 error
+
+04) To override super class method with sub class method then sub class method should have the same
+return type of the super class method.
+P-2
+------
+class A{
+	void m1(){
+		System.out.println("m1-A");
+		
+	}
+}
+class B extends A{
+	int m1(){
+		System.out.println("m2-B");
+		return 10;
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+---------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:8: error: m1() in B cannot override m1() in A
+        int m1(){
+            ^
+  return type int is not compatible with void
+1 error
+
+05) To override super class method with sub class method then sub class method should have the same
+return type of the super class method.
+P-3
+-----
+class A{
+	int m1(){
+		System.out.println("m1-A");
+		return 20;
+		
+	}
+}
+class B extends A{
+	int m1(){
+		System.out.println("m2-B");
+		return 10;
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-----------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m2-B
+
+06)--Rule-3 
+To override super class method with sub class method then super class method must not be declared as final sub class method may or may not be final.
+
+class A{
+	final void m1(){
+		System.out.println("m1-A");		// final keyword in superclass
+	}
+}
+class B extends A{
+	void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:7: error: m1() in B cannot override m1() in A
+        void m1(){
+             ^
+  overridden method is final
+1 error
+
+07)--Final keyword in both Super class and sub class in overriding 
+ class A{
+	final void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	final void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:7: error: m1() in B cannot override m1() in A
+        final void m1(){
+                   ^
+  overridden method is final
+1 error
+
+08)--Subclass final method
+class A{
+	void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	final void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m2-B
+
+09)--Static keyword in Overriding 
+To override superclass method with sub class method either super class method or subclass method as static then compiler will rise an error
+If we declare both super and sub class method as static in method overriding compiler will not rise any error,JVM will provide output from the super class method.
+
+class A{
+	static void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+--------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:7: error: m1() in B cannot override m1() in A
+        void m1(){
+             ^
+  overridden method is static
+1 error
+
+10) 
+class A{
+	void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	static void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:7: error: m1() in B cannot override m1() in A
+        static void m1(){
+                    ^
+  overriding method is static
+1 error
+
+11)--Static keyword in both super class and sub class in method oveririding
+If we are trying to override superclass static method with sub class static method then super class static method will 
+override subclass static method,where JVM will generate output from super class static method.
+class A{
+	static void m1(){
+		System.out.println("m1-A");		//Method Overriding is not performed
+	}
+}
+class B extends A{
+	static void m1(){
+		System.out.println("m2-B");		//Method Overriding is not performed
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+----------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-A					
+
+12) --Public and protected in Method overriding 
+         To override super class method with subclass method,sub class method must have either same scope of the super 
+         class method or more scope when compared with super class method scope otherwise compiler will rise an error.
+class A{
+	public void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	protected void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+--------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:7: error: m1() in B cannot override m1() in A
+        protected void m1(){
+                       ^
+  attempting to assign weaker access privileges; was public
+1 error
+
+13)--Protected in Super class and Public in subclass in Method Overriding
+
+class A{
+	protected void m1(){
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	public void m1(){
+		System.out.println("m2-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-----
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m2-B
+
+14)--Exception in Method Overriding
+
+In method Overriding ,if we have inheritance relation between super class method throws exception and sub class method throws exception then sub class method
+throws exception must be sub class to the super class method throws exception.
+
+class A
+{
+	 void m1() throws ArithmeticException        //ArithmeticException is sub class of Exception
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1() throws Exception
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args){
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:10: error: m1() in B cannot override m1() in A
+         void m1() throws Exception
+              ^
+  overridden method does not throw Exception
+1 error
+
+15)--Exception class in Super class and ArithmeticException in Sub class
+
+class A
+{
+	 void m1() throws Exception
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1() throws ArithmeticException
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) throws Exception{
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+-------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-B
+
+16)--NullPointerException in Super class and ArithmeticException in sub class
+
+class A
+{
+	 void m1() throws NullPointerException		//NullPointerException is the sub class of Exception
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1() throws ArithmeticException		//ArithmeticException is the sub class of Exception
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) throws Exception{
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+m1-B
+
+17)--NullPointerException in Super class Exception and Exception in sub class
+
+class A
+{
+	 void m1() throws NullPointerException
+	{
+		System.out.println("m1-A");
+	}
+}
+class B extends A
+{
+	 void m1() throws Exception
+	{
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+	 public static void main(String[] args) throws Exception{
+		 A a=new B();
+		 a.m1();
+	}
+
+}
+
+O/P:
+------
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Test.java:10: error: m1() in B cannot override m1() in A
+         void m1() throws Exception
+              ^
+  overridden method does not throw Exception
+1 error
+
+18) 
+To override super class method with subclass method subclass method should have either 
+same access privileges or weaker access privileges when compared with super class method access privileges.
+
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("Old Functionality With 1000 code");
+	}
+}
+class B extends A{
+	void m1() {
+		System.out.println("New Functionality with 100 code");
+	}
+}
+class Test
+{
+	public static void main(String[] args) {
+		A a=new B();
+		a.m1();
+	}
+}
+
+O/P:
+--------
+New Functionality with 100 code
+
+19) 
+package com.durgasoft.core;
+abstract class A{
+	abstract void m1();
+}
+class B extends A{
+	void m1() {
+		System.out.println("New Functionality with 100 code");
+	}
+}
+class Test
+{
+	public static void main(String[] args) {
+		A a=new B();
+		a.m1();
+	}
+}
+-
+O/P:
+-------
+New Functionality with 100 code
+
+			
+
+			
+			
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

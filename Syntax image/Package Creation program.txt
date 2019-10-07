@@ -1,0 +1,194 @@
+01)--Employee Class 
+package com.durgasoft.core;
+public class Employee
+{
+	String ename;
+	String eid;
+	float esal;
+	String eaddr;
+
+	public Employee(String ename,String eid,float esal,String eaddr)
+	{
+		this.ename=ename;
+		this.eid=eid;
+		this.esal=esal;
+		this.eaddr=eaddr;
+	}
+	public void getEmpDetails()
+	{
+		System.out.println("Employee Details:");
+		System.out.println("-----------------------");
+		System.out.println("Employee Name     :"+ename);
+		System.out.println("Employee Id       :"+eid);
+		System.out.println("Employee sal      :"+esal);
+		System.out.println("Employee address  :"+eaddr);
+	}
+	
+}
+
+
+
+03) --Test Class
+--------------------
+import com.durgasoft.core.*;
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		Employee emp=new Employee("E-111","AAA",5000,"HYD");
+		emp.getEmpDetails();
+	}
+}
+
+
+
+Process
+-----------
+D:\Packages\app1>E:
+
+E:\abc>javac -d C:/xyz Employee.java
+
+E:\abc>D:
+
+D:\Packages\app1>set classpath=C:/xyz;
+
+D:\Packages\app1>javac Test.java
+
+D:\Packages\app1>java Test
+Employee Details:
+-----------------------
+Employee Name     :E-111
+Employee Id       :AAA
+Employee sal      :5000.0
+Employee address  :HYD
+
+
+               
+TWO PACKAGES IN ONE CLASS
+============================
+01)--Employee Class
+-------------------------- 
+package com.durgasoft.Emp;
+public class Employee
+{
+	String ename;
+	String eid;
+	String eaddr;
+
+	public Employee(String ename,String eid,String eaddr)
+	{
+		this.ename=ename;
+		this.eid=eid;
+		this.eaddr=eaddr;
+	}
+	public void getEmpDetails()
+	{
+		System.out.println("Employee Details:");
+		System.out.println("-----------------------");
+		System.out.println("Employee Name     :"+ename);
+		System.out.println("Employee Id       :"+eid);
+		System.out.println("Employee address  :"+eaddr);
+	}
+
+}
+
+02) Student Class
+-----------------------
+package com.durgasoft.Std;
+public class Student
+{
+	String sname;
+	String sid;
+	String saddr;
+
+	public Student(String sname,String sid,String saddr)
+	{
+		this.sname=sname;
+		this.sid=sid;
+		this.saddr=saddr;
+	}
+	public void getStuDetails()
+	{
+		System.out.println("Student Details:");
+		System.out.println("-----------------------");
+		System.out.println("Student Name     :"+sname);
+		System.out.println("Student Id       :"+sid);
+		System.out.println("Student address  :"+saddr);
+	}
+	
+}
+
+03)--Test Class
+------------------- 
+import com.durgasoft.Emp.*;
+import com.durgasoft.Std.*;
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		Employee emp=new Employee("AAA","E-111","HYD");
+		emp.getEmpDetails();
+		System.out.println();
+		Student std=new Student("S-111","BBB","Pune");
+		std.getStuDetails();
+	}
+}
+
+C:/abc---->create Employee.java and send the class file to E:/xyz
+E:/abc----->create Student.java and send the class file to C:/xyz
+D:\packages\app2--Create Test.java
+
+
+D:\Packages\app2>set classpath=C:/xyz;E:/xyz;
+
+D:\Packages\app2>javac Test.java
+
+D:\Packages\app2>java Test
+Employee Details:
+-----------------------
+Employee Name     :E-111
+Employee Id       :AAA
+Employee address  :HYD
+
+Student Details:
+-----------------------
+Student Name     :S-111
+Student Id       :BBB
+Student address  :Pune
+
+D:\Packages\app2>
+
+
+INSIDE THE Same location create package 
+-----------------------------------------------------
+package com.durgasoft.test;  --->Create package name 
+import com.durgasoft.Emp.*;
+import com.durgasoft.Std.*;
+public class Test 
+{
+	public static void main(String[] args) 
+	{
+		Employee emp=new Employee("AAA","E-111","HYD");
+		emp.getEmpDetails();
+		System.out.println();
+		Student std=new Student("S-111","BBB","Pune");
+		std.getStuDetails();
+	}
+}
+
+D:\Packages\app2>javac -d . Test.java
+
+D:\Packages\app2>java com.durgasoft.test.Test
+Employee Details:
+-----------------------
+Employee Name     :AAA
+Employee Id       :E-111
+Employee address  :HYD
+
+Student Details:
+-----------------------
+Student Name     :S-111
+Student Id       :BBB
+Student address  :Pune
+
+

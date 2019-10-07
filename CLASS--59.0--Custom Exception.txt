@@ -1,0 +1,192 @@
+Custom Exception
+================
+1.Define User defined Exception class:
+Class MyException extends Exception         //"MyException"-User Defined Name
+{
+
+}
+
+2.Declare a String parametrized constructor in User-Defined Exception class and access String parametrized super class constructor by using "super" keyword
+
+class MyException extends Exception
+{
+     MyException(String err_Msg)  //String Parameterized Constructor
+    {
+          super(err_Msg);
+    }
+}
+
+3.Create and Rise exception in Java application as per the application requirement:
+
+try{
+throw new MyException("My Custom Exception");
+}
+catch(MyException me){
+me.printStackTrace();
+}
+
+---------------------------------------------------------------
+4.Display Student Mark and Raise Exception of MarksOutofBound
+-------------
+package customexceptionapp1;
+
+class MarksOutOfBoundException extends Exception{
+   public MarksOutOfBoundException(String exc_Desc) {
+	   super(exc_Desc);
+   }
+}
+class Student{
+	String sid;
+	String sname;
+	int smark;
+	
+	public Student(String sid,String sname,int smark) {
+		this.sid=sid;
+		this.sname=sname;
+		this.smark=smark;
+	}
+	
+	public void getStatus() {
+		try {
+			System.out.println("Student Details: ");
+			System.out.println("---------------------");
+			System.out.println("Student ID    :"+sid);
+			System.out.println("Student Name  :"+sname);
+			System.out.println("Student mark  :"+smark);
+			if(smark>=0 && smark<=100) {
+				System.out.println("Mark Status : VALID");
+			}else {
+				System.out.println("Mark Status : INVALID");
+				throw new MarksOutOfBoundException("Marks are Invalid ,Please provide valid marks between 0 and 100");
+			}
+		} catch (Exception e) {
+			System.out.println("Reason  :"+e.getMessage());
+		}
+		
+	}
+}
+public class Test {
+ 	public static void main(String[] args) {
+		Student st1=new Student("S-111", "BABU", 87);
+		st1.getStatus();
+		System.out.println();
+		Student st2=new Student("S-222","BBB",150);
+		st2.getStatus();
+	}
+}
+
+O/P:
+------
+Student Details: 
+---------------------
+Student ID    :S-111
+Student Name  :BABU
+Student mark  :87
+Mark Status : VALID
+
+Student Details: 
+---------------------
+Student ID    :S-222
+Student Name  :BBB
+Student mark  :150
+Mark Status : INVALID
+Reason  :Marks are Invalid ,Please provide valid marks between 0 and 100
+
+05)--WithDrawal Program 
+-----------------------------------
+package customexceptionapp2;
+
+class InsufficientFundsException extends Exception{
+	public InsufficientFundsException(String exc_Desc) {
+		super(exc_Desc);
+	}
+}
+class Account{
+	String accNo;
+	String accName;
+	String accType;
+	int balance;
+	
+	public Account(String accNo,String accName,String accType,int balance) {
+		this.accNo=accNo;
+		this.accName=accName;
+		this.accType=accType;
+		this.balance=balance;
+	}
+}
+
+class Transaction{
+	String tid;
+	public Transaction(String tid) {
+		this.tid=tid;
+	}
+	public void withdraw(Account acc,int wd_amt) {
+		try {
+			System.out.println("Transaction Details");
+			System.out.println("-----------------------");
+			System.out.println("Transaction ID    :"+tid);
+			System.out.println("Account Number    :"+acc.accNo);
+			System.out.println("Account Name      :"+acc.accName);
+			System.out.println("Account Type      :"+acc.accType);
+			System.out.println("Transaction Type  :WITHDRAW");
+			if (wd_amt <=acc.balance) {
+				acc.balance=acc.balance-wd_amt;
+				System.out.println("Total Balance      :"+acc.balance);
+				System.out.println("Transaction Status :SUCCESS");
+			} else {
+				System.out.println("Total Balance      :"+acc.balance);
+				System.out.println("Transaction Status :FAILURE");
+				throw new InsufficientFundsException("Funds are not sufficient in your account,please enter valid amount");
+			}
+			
+		} catch (InsufficientFundsException e) {
+			System.out.println("Resaon  :"+e.getMessage());
+		}finally {
+			System.out.println("*****Thank you,Visit Again*****");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		Account acc1 =new Account("a-111","AAA","Saving",20000);
+		Transaction tx1 =new Transaction("T-111");
+		tx1.withdraw(acc1, 10000);
+		System.out.println();
+		Account acc2 =new Account("a-111","AAA","Saving",15000);
+		Transaction tx2 =new Transaction("T-222");
+		tx1.withdraw(acc2, 20000);
+	}
+
+}
+ 
+Transaction Details
+-----------------------
+Transaction ID    :T-111
+Account Number    :a-111
+Account Name      :AAA
+Account Type      :Saving
+Transaction Type  :WITHDRAW
+Total Balance      :10000
+Transaction Status :SUCCESS
+*****Thank you,Visit Again*****
+
+Transaction Details
+-----------------------
+Transaction ID    :T-111
+Account Number    :a-111
+Account Name      :AAA
+Account Type      :Saving
+Transaction Type  :WITHDRAW
+Total Balance      :15000
+Transaction Status :FAILURE
+Resaon  :Funds are not sufficient in your account,please enter valid amount
+*****Thank you,Visit Again*****
+
+
+----------------------------------------THE END----------------------------------------------------
+
+
+
+
+

@@ -1,0 +1,72 @@
+01)--FileOutPutStream
+-------------------------------
+package com.IO;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class FileOutPut {
+	public static void main(String[] args) throws IOException {
+		FileOutputStream fos=new FileOutputStream("D:/abc.txt");
+		String data="Welcome to LiveTech";
+		byte[] byte_data=data.getBytes();
+		fos.write(byte_data);
+		System.out.println("Data Sent to abc.txt");
+		fos.close();
+		
+	}
+}
+
+O/P:
+-------
+Data Sent to abc.txt
+
+1.1)--False condition on FileOutputStream
+---------------------------------------------------------
+FileOutputStream fos=new FileOutputStream("D:/abc.txt",false);		//False means the new text will override the old text
+		String data="Welcome to Ameerpet";
+		byte[] byte_data=data.getBytes();
+		fos.write(byte_data);
+		System.out.println("Data Sent to abc.txt");
+		//fos.close();
+O/P:
+-------
+Welcome to Ameerpet
+
+1.2)--True condition on FileOutputStream
+-------------------------------------------------------
+FileOutputStream fos=new FileOutputStream("D:/abc.txt",true);		//True means the new text will append with the previous one also
+		String data="Welcome to LiveTech";
+		byte[] byte_data=data.getBytes();
+		fos.write(byte_data);
+		System.out.println("Data Sent to abc.txt");
+		fos.close();
+O/P:
+------
+Welcome to AmeerpetWelcome to LiveTech
+
+2)--FileInputStream
+----------------------------
+package com.IO;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class FileInput {
+
+	public static void main(String[] args) throws IOException {
+		FileInputStream fis=new FileInputStream("D:/abc.txt");
+		int size=fis.available();
+		byte[] b=new byte[size];
+		fis.read(b);
+		String data=new String(b);
+		System.out.println(data);
+		fis.close();
+	}
+
+}
+O/P:
+------
+Welcome to Ameerpet

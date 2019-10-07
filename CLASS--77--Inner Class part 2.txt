@@ -1,0 +1,431 @@
+01)--Abstract Class in Inner Class
+------------------------------------------- 
+package innerclasses;
+class A{
+	abstract class B{
+		void m1() {
+			System.out.println("m1-B");
+		}
+		abstract void m2();
+		abstract void m3();
+	}
+	class C extends B{
+		void m2() {
+			System.out.println("m2-C");
+		}
+		void m3() {
+			System.out.println("m3-C");
+		}
+	}
+}
+
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new A().new C();
+		ab.m1();
+		ab.m2();
+		ab.m3();
+	}
+
+}
+
+O/P:
+-------
+m1-B
+m2-C
+m3-C
+
+
+Inside Abstract Class  
+---------------------------
+02)--Class Inside a Abstract Class:
+--------------------------------------------
+package innerclasses;
+abstract class A{
+	class B{
+		void m1() {
+			System.out.println("m1-B");
+		}
+		void m2() {
+			System.out.println("m2-B");
+		}
+		void m3() {
+			System.out.println("m3-B");
+		}
+	}
+}
+class C extends A{
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new C().new B();
+		ab.m1();
+		ab.m2();
+		ab.m3();
+	}
+
+}
+
+O/P:
+------
+m1-B
+m2-B
+m3-B
+
+03)--Abstract Class Inside Abstract Class
+------------------------------------------------------
+package innerclasses;
+abstract class A{
+	abstract class B{
+		void m1() {
+			System.out.println("m1-B");
+		}
+		abstract void m2();
+		abstract void m3();
+	}
+	class C extends B{
+		void m2() {
+			System.out.println("m2-C");
+		}
+		void m3() {
+			System.out.println("m3-C");
+		}
+	}
+}
+class D extends A{
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new D().new C();
+		ab.m1();
+		ab.m2();
+		ab.m3();
+		
+		A.C ac=new D().new C();
+		ac.m1();
+		ac.m2();
+		ac.m3();
+		
+	}
+
+}
+
+O/P:
+--------
+m1-B
+m2-C
+m3-C
+m1-B
+m2-C
+m3-C
+
+04)--Interface in Abstract Class
+-----------------------------------------
+package innerclasses;
+abstract class A{
+	interface I{
+		void m1();
+		void m2();
+		void m3();
+	}
+	class B implements I{
+		public void m1() {
+			System.out.println("m1-B");
+		}
+		public void m2() {
+			System.out.println("m2-B");
+		}
+		public void m3() {
+			System.out.println("m3-B");
+		}
+	}
+}
+class C extends A{
+	
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.I ai=new C().new B();
+		ai.m1();
+		ai.m2();
+		ai.m3();
+	}
+
+}
+
+O/P:
+---------
+m1-B
+m2-B
+m3-B
+
+Topic
+--------
+ Static Inner class:
+-----------------------------
+Declaring a static class inside a class is called as Static inner class.
+Syntax:
+class Outer {
+     static class Inner
+     {
+          ----
+     }
+}
+
+If we want to access the members of static inner class we have to create object for static inner class, for this we have to use the following syntax.
+
+Syn:    Outer.Inner ref_Var= new Outer.Inner();
+
+1.Static inner classes are able to allow only static members of the outer class, it will not allow non static members of the outer class.
+2.IN general, inner classes are not allowing static keyword directly, but, static inner class is able to allow static declarations directly.
+
+01) 
+package innerclasses;
+class A{
+	static class B{
+		void m1() {
+			System.out.println("m1-B");
+		}
+		void m2() {
+			System.out.println("m2-B");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new A.B();
+		ab.m1();
+		ab.m2();
+	}
+
+}
+
+O/P:
+---------
+m1-B
+m2-B
+
+02)--Program 2
+---------------------- 
+package innerclasses;
+class A{
+	int i=10;
+	static int j=20;
+	static class B{
+		void m1() {
+			System.out.println("m1-B");
+			System.out.println(j);
+			//System.out.println(i); -->Error because non-static members of outer class are not allowed in static inner class 
+		}
+		void m2() {
+			System.out.println("m2-B");
+		}
+		
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new A.B();
+		ab.m1();
+		ab.m2();
+		
+	}
+
+}
+
+O/P:
+-------
+m1-B
+20
+m2-B
+
+03)--Program 3
+----------------------
+package innerclasses;
+class A{
+	int i=10;
+	static int j=20;
+	static class B{
+		void m1() {
+			System.out.println("m1-B");
+			System.out.println(j);
+			//System.out.println(i); -->Error because non-static members of outer class are not allowed in static inner class 
+		}
+		void m2() {
+			System.out.println("m2-B");
+		}
+		static void m3() {
+			System.out.println("m3-B");
+		}
+		
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		A.B ab=new A.B();
+		ab.m1();
+		ab.m2();
+		ab.m3();
+		A.B.m3();
+		
+	}
+
+}
+
+O/P:
+-------
+m1-B
+20
+m2-B
+m3-B
+m3-B
+
+Inside Interface
+---------------------
+ Is it possible to write a class inside an interface?
+Ans:
+Yes, it is possible to write a class inside an interface, 
+If we declare a class inside an interface then that class is converted as a static inner class, we can access members of this inner class like static inner class members.
+
+04)--Class Inside Interface
+-----------------------------------
+package innerclasses;
+interface I{
+	class A{
+		void m1() {
+			System.out.println("m1-A");
+		}
+		void m2() {
+			System.out.println("m2-A");
+		}
+		void m3() {
+			System.out.println("m3-A");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		I.A ia=new I.A();
+		ia.m1();
+		ia.m2();
+		ia.m3();
+		
+	}
+
+}
+
+m1-A
+m2-A
+m3-A
+
+Note :->Implementation class is not required for Interface I since the innerclass inside Interface is by Default Static inner class
+
+05) Abstract class inside Interface
+---------------------------------------
+We can write abstract class inside an interface,but, 
+the respective sub class must be declared in the same interface, here the declared sub class is converted as static inner class.
+
+package innerclasses;
+interface I{
+	abstract class A{
+		void m1() {
+			System.out.println("m1-A");
+		}
+		abstract void m2();
+		abstract void m3();
+	}
+	class B extends A{
+		void m2() {
+			System.out.println("m2-A");
+		}
+		void m3() {
+			System.out.println("m3-A");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		I.A ia=new I.B();
+		ia.m1();
+		ia.m2();
+		ia.m3();
+			
+	}
+
+}
+
+O/P:
+--------
+m1-A
+m2-B
+m3-B
+
+06) Interface Inside Interface
+---------------------------------------
+NOTE: We can write an interface inside an interface, but, the respective iplementation class must be provided with in the same outer interface.
+package innerclasses;
+interface I1{
+	interface I2{
+		void m1();
+		void m2();
+		void m3();
+	}
+	class A implements I2{
+		public void m1() {
+			System.out.println("m1-A");
+		}
+		public void m2() {
+			System.out.println("m2-A");
+		}
+		public void m3() {
+			System.out.println("m3-A");
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		I1.I2 i12=new I1.A();
+		i12.m1();
+		i12.m2();
+		i12.m3();
+	}
+
+}
+
+O/P:
+---------
+m1-A
+m2-A
+m3-A
+
+
+-----------------------------***THE END***-----------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

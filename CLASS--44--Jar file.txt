@@ -1,0 +1,191 @@
+01) 
+package com.durgasoft.icicibank.accounts;
+public class Account
+{
+	String accNo;
+	String accName;
+	String accType;
+	int balance;
+
+	public Account(String accNo,String accName,String accType,int balance)
+	{
+		this.accNo=accNo;
+		this.accName=accName;
+		this.accType=accType;
+		this.balance=balance;
+	}
+	public void getAccountDetails()
+	{
+		System.out.println("Account Details");
+		System.out.println("---------------------");
+		System.out.println("Account No    :"+accNo);
+		System.out.println("Account Name  :"+accName);
+		System.out.println("Account Type  :"+accType);
+		System.out.println("Account bal   :"+balance);
+	}
+}
+
+02) 
+import com.durgasoft.icicibank.accounts.*;
+class Bank 
+{
+	public static void main(String[] args) 
+	{
+		Account acc=new Account("abc123","AAA","Savings",10000);
+		acc.getAccountDetails();
+	}
+}
+
+
+
+O/P:
+-------
+
+
+
+C:\abc>javac -d E:/abc Account.java
+
+C:\abc>E:
+
+E:\>cd abc
+
+E:\abc>jar -cvf icici_bank.jar *
+added manifest
+adding: com/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/accounts/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/accounts/Account.class(in = 1118) (out= 585)(deflated 47%)
+
+E:\abc>dir
+ Volume in drive E has no label.
+ Volume Serial Number is 04CD-DCBE
+
+ Directory of E:\abc
+
+26-Mar-19  11:22 AM    <DIR>          .
+26-Mar-19  11:22 AM    <DIR>          ..
+26-Mar-19  11:21 AM    <DIR>          com
+26-Mar-19  11:22 AM             1,565 icici_bank.jar
+               1 File(s)          1,565 bytes
+               3 Dir(s)  206,271,918,080 bytes free
+
+E:\abc>D:
+
+D:\>cd packages
+
+D:\Packages>cd app3
+
+D:\Packages\app3>dir
+ Volume in drive D has no label.
+ Volume Serial Number is 4ED1-225C
+
+ Directory of D:\Packages\app3
+
+26-Mar-19  11:25 AM    <DIR>          .
+26-Mar-19  11:25 AM    <DIR>          ..
+26-Mar-19  11:25 AM               201 Bank.java
+               1 File(s)            201 bytes
+               2 Dir(s)  53,701,566,464 bytes free
+
+D:\Packages\app3>set classpath=D:/abcj/icici_bank.jar;
+
+D:\Packages\app3>javac Bank.java
+
+D:\Packages\app3>java Bank
+Account Details
+---------------------
+Account No    :abc123
+Account Name  :AAA
+Account Type  :Savings
+Account bal   :10000
+
+
+Xtract jar file
+==============
+
+
+D:\Packages\app3>cd..
+
+D:\Packages>cd..
+
+D:\>cd abcj
+
+D:\abcj>jar -xvf icici_bank.jar
+  created: META-INF/
+ inflated: META-INF/MANIFEST.MF
+  created: com/
+  created: com/durgasoft/
+  created: com/durgasoft/icicibank/
+  created: com/durgasoft/icicibank/accounts/
+ inflated: com/durgasoft/icicibank/accounts/Account.class
+
+
+Mainifest File in Jar file
+=====================
+         jar -cvfm file_name.jar xyz.txt*
+Syn: jar -cvfm app.jar abc.txt *          (Creating Jar file with Mainifest file )
+
+
+D:\abcj>E:
+
+E:\abc>dir
+ Volume in drive E has no label.
+ Volume Serial Number is 04CD-DCBE
+
+ Directory of E:\abc
+
+26-Mar-19  01:01 PM    <DIR>          .
+26-Mar-19  01:01 PM    <DIR>          ..
+26-Mar-19  01:01 PM                18 abc.txt
+26-Mar-19  11:21 AM    <DIR>          com
+               1 File(s)             18 bytes
+               3 Dir(s)  206,271,901,696 bytes free
+
+E:\abc>jar -cvfm app.jar abc.txt *
+added manifest
+adding: abc.txt(in = 18) (out= 20)(deflated -11%)
+adding: com/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/accounts/(in = 0) (out= 0)(stored 0%)
+adding: com/durgasoft/icicibank/accounts/Account.class(in = 1118) (out= 585)(deflated 47%)
+
+EXECUTABLE JAR FILE 
+---------------------------
+Syntax:-java -jar app.jar
+
+import java.awt.*;
+class LogoFrame extends Frame 
+{
+	LogoFrame()
+	{
+		this.setVisible(true);
+		this.setSize(700,300);
+		this.setTitle("Logo Frame");
+		this.setBackground(Color.green);
+	}
+	public void paint(Graphics g)
+	{
+		Font f=new Font("arial",Font.BOLD,30);
+		g.setFont(f);
+		this.setForeground(Color.red);
+		g.drawString("DURGA SOFTWARE SOLUTION",100,100);
+	}
+}
+class Test
+{
+	public static void main(String[] args)
+	{
+		LogoFrame frame=new LogoFrame();
+	}
+}
+
+
+
+D:\Packages\app4>javac Test.java
+
+D:\Packages\app4>java Test
+
+
+

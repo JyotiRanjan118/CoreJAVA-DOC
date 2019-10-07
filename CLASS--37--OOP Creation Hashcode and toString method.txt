@@ -1,0 +1,192 @@
+HashCode and toString Method
+-----------------------------------------
+01) 
+class A
+{
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+		int hc=a.hashCode();
+		String ref=a.toString();
+		System.out.println(hc);
+		System.out.println(ref);
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+366712642
+A@15db9742
+
+02)--toString Method
+class A
+{
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		A a=new A();
+		String ref=a.toString();
+		System.out.println(ref);  // can be access by a declared variable
+		System.out.println(a.toString()); //can be access by method
+		System.out.println(a);    //can be access by reference variable
+	}
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+A@15db9742
+A@15db9742
+A@15db9742
+
+03)
+class Employee
+{
+	String ename="E-111";
+	String eid="Durga";
+	float esal=50000.0f;
+	String eaddr="Hyd";
+
+	public String toString()
+	{
+		System.out.println("Employee Details");
+		System.out.println("-----------------------");
+		System.out.println("Employee ID      :"+eid);
+		System.out.println("Employee Name    :"+ename);
+		System.out.println("Employee sal     :"+esal);
+		System.out.println("Employee addr    :"+eaddr);
+		return "";
+	}
+}
+class Test
+{
+	public static void main(String args[])
+	{
+		Employee emp=new Employee();
+		System.out.println(emp);
+		System.out.println(emp.toString());
+
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Employee Details
+-----------------------
+Employee ID      :Durga
+Employee Name    :E-111
+Employee sal     :50000.0
+Employee addr    :Hyd
+
+Employee Details
+-----------------------
+Employee ID      :Durga
+Employee Name    :E-111
+Employee sal     :50000.0
+Employee addr    :Hyd
+
+04)--Predefined Classes
+-------------------------------- 
+class Test
+{
+	public static void main(String args[])
+	{
+		String str=new String("abc");
+		System.out.println(str);
+
+		Exception ex=new Exception("My Own Exception");
+		System.out.println(ex);
+
+		Thread t=new Thread();
+		System.out.println(t);
+
+		Integer in=new Integer(10);
+		System.out.println(in);
+	}
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+abc
+java.lang.Exception: My Own Exception
+Thread[Thread-0,5,main]
+10
+
+05) 
+import java.util.*;
+class Test
+{
+	public static void main(String args[])
+	{
+		String str=new String("abc");
+		System.out.println(str);
+		Exception ex=new Exception("My Own Exception");
+		System.out.println(ex);
+		Thread t=new Thread();
+		System.out.println(t);
+		Integer in=new Integer(10);
+		System.out.println(in);
+		ArrayList al=new ArrayList();   //import java.util.*;
+		al.add("AAA");
+		al.add("BBB");
+		al.add("CCC");
+		al.add("DDD");
+		System.out.println(al);
+	}
+}
+
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+Note: Test.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+abc
+java.lang.Exception: My Own Exception
+Thread[Thread-0,5,main]
+10
+[AAA, BBB, CCC, DDD]
+
+06 )String and StringBuffer Class (concat and Append method)
+class Test 
+{
+	public static void main(String[] args)
+	{
+		String str1=new String("Durga");
+		String str2=str1.concat("Software");
+		String str3=str2.concat("Solution");
+		System.out.println(str1);
+		System.out.println(str2);
+		System.out.println(str3);
+		System.out.println();
+		StringBuffer sb1=new StringBuffer("Durga");
+		StringBuffer sb2=sb1.append("Software");
+		StringBuffer sb3=sb2.append("Solution");
+		System.out.println(sb1);
+		System.out.println(sb2);
+		System.out.println(sb3);
+	}   
+}
+
+D:\Java\JAVA tutorial Video\Java classes>javac Test.java
+
+D:\Java\JAVA tutorial Video\Java classes>java Test
+Durga
+DurgaSoftware
+DurgaSoftwareSolution
+
+DurgaSoftwareSolution
+DurgaSoftwareSolution
+DurgaSoftwareSolution
+
+

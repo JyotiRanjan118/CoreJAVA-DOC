@@ -1,0 +1,213 @@
+Polymorphism
+--------------------
+Method Overloading:(Same Method but different parameter)
+---------------------------------------------------------------------------------
+01)--
+package com.durgasoft.core;
+class A{
+	void add(int i,int j) {
+		System.out.println("Addition   :"+(i+j));
+	}
+	void add(float f1,float f2) {
+		System.out.println("Addition   :"+(f1+f2));
+	}
+	void add(String s1,String s2) {
+		System.out.println("Addition   :"+(s1+s2));
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a=new A();
+			a.add(10,20);
+			a.add(22.22f,33.33f);
+			a.add("abc","def");
+		}
+}
+
+O/P:
+----
+Addition   :30
+Addition   :55.550003
+Addition   :abcdef
+
+
+02)--Method Overloading program 2
+------------------------------------------------
+package com.durgasoft.core;
+class Employee{
+	public void generateSalary(int basic,float hk,float pf,int ta) {
+		float sal=basic+((basic*hk)/100)-((basic*pf)/100)+ta;
+		System.out.println("Salary     :"+sal);
+	}
+	public void generateSalary(int basic,float hk,float pf,int ta,int bonus) {
+		float sal=basic+((basic*hk)/100)-((basic*pf)/100)+ta+bonus;
+		System.out.println("Salary     :"+sal);
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			Employee emp=new Employee();
+			emp.generateSalary(25000, 25.0f, 12.25f, 1000);
+			emp.generateSalary(25000, 25.0f, 12.25f, 1000, 5000);
+		}
+}
+
+O/P:
+-------
+Salary     :29187.5
+Salary     :34187.5
+
+Method Overriding(Method Same and must have Inheritance Relation)
+----------------------------------------------------------------------------------------------
+03)--
+package com.durgasoft.core;
+class Loan{
+	float getIR() {
+		return 5.0f;
+	}
+	
+}
+class GoldLoan extends Loan{
+	float getIR() {
+		return 8.0f;
+	}
+}
+class StudyLoan extends Loan{
+	float getIR() {
+		return 12.5f;
+	}
+}
+class CraftLoan extends Loan{
+	
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			Loan gold_Loan=new GoldLoan();
+			System.out.println("Gold Loan IR   :"+gold_Loan.getIR());
+			Loan study_Loan=new StudyLoan();
+			System.out.println("Study Loan IR  :"+study_Loan.getIR());
+			Loan craft_Loan=new CraftLoan();
+			System.out.println("Craft Loan IR  :"+craft_Loan.getIR());
+		}
+}
+
+O/P:
+------
+Gold Loan IR   :8.0
+Study Loan IR  :12.5
+Craft Loan IR  :5.0
+
+Method Overriding program 2
+----------------------------------------
+04) 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			A a=new A();
+			a.m1();
+		}
+
+}
+
+O/P:
+--------
+m1-A
+
+Method Overriding program 3
+---------------------------------------
+05) 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			/*
+			A a=new A();
+			a.m1();
+			*/
+			B b=new B();
+			b.m1();
+		}
+}
+
+O/P:
+-------
+m1-B
+
+Method Overriding program 4
+----------------------------------------
+06) 
+package com.durgasoft.core;
+class A{
+	void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	void m1() {
+		System.out.println("m1-B");
+	}
+}
+class Test
+{
+		public static void main(String[] args) 
+		{
+			/*
+			A a=new A();
+			a.m1();
+			*/
+			/*
+			B b=new B();
+			b.m1()
+			*/
+			A a=new B();         //Object creation of sub-class and reference variable of Super Class
+			a.m1();	             // Calling sub class object through Super class
+		}
+}
+
+O/P:
+-----
+m1-B
+
+-------------------------------------**THE END**-------------------------------------------
+			
+
+			
+
+
+
+			
+
+			
+
+			
+
+			

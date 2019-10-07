@@ -1,0 +1,126 @@
+Class.forName();
+----------------------
+As per the requirement, if we want to load class byte code to the memory with out creating object then we have to use the following method from java.lang.Class class
+
+public static Class forName(String class_Name)throws ClassNotFoundException
+EX: Class c=Class.forName("A");
+01)
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("Class Loading..");
+	}
+	A(){
+		System.out.println("Object Loading..");
+	}
+}
+class Test{
+		public static void main(String[] args){
+			A a=new A();
+		
+	}
+}
+
+O/P:
+------
+Class Loading..
+Object Loading..
+
+02) create respective class bytecode with out creating object
+---------------------------------------------------------------------------------
+Syn: Class c=Class.forName
+
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("Class Loading..");
+	}
+	A(){
+		System.out.println("Object Loading..");
+	}
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			Class c=Class.forName("com.durgasoft.core.A");   //Class.forName() Method used
+		
+	}
+}
+
+Class Loading..
+
+03)After loading class bytecode by using Class.forName(-) method, if we want to create object explicitly then we have to use the following method.
+--public Object newInstance()throws InstantiationException, IllegalAccessException
+Syn: Object obj=c.newInstance();
+
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("Class Loading..");
+	}
+	A(){
+		System.out.println("Object Loading..");
+	}
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			Class c=Class.forName("com.durgasoft.core.A");
+			Object obj=c.newInstance();
+		
+	}
+}
+
+Class Loading..
+Object Loading..
+
+04) 
+
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("Class Loading..");
+	}
+	A(int i){
+		System.out.println("Object Loading..");
+	}
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			Class c=Class.forName("com.durgasoft.core.A");
+			Object obj=c.newInstance();
+		
+	}
+}
+
+Class Loading..
+Exception in thread "main" java.lang.InstantiationException: com.durgasoft.core.A
+	at java.lang.Class.newInstance(Unknown Source)
+	at com.durgasoft.core.Test.main(Test.java:13)
+Caused by: java.lang.NoSuchMethodException: com.durgasoft.core.A.<init>()
+	at java.lang.Class.getConstructor0(Unknown Source)
+	... 2 more
+
+05) 
+package com.durgasoft.core;
+class A{
+	static {
+		System.out.println("Class Loading..");
+	}
+	private A(){
+		System.out.println("Object Loading..");    //Private key So java.lang.IllegalAccessException will occur
+	}
+}
+class Test{
+		public static void main(String[] args)throws Exception{
+			Class c=Class.forName("com.durgasoft.core.A");
+			Object obj=c.newInstance();
+		
+	}
+}
+
+Class Loading..
+Exception in thread "main" java.lang.IllegalAccessException: Class com.durgasoft.core.Test can not access a member of class com.durgasoft.core.A with modifiers "private"
+	at sun.reflect.Reflection.ensureMemberAccess(Unknown Source)
+	at java.lang.Class.newInstance(Unknown Source)
+	at com.durgasoft.core.Test.main(Test.java:13)
+
+-----------------------------****---------------------------------------

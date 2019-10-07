@@ -1,0 +1,201 @@
+01)--In Java applications, it is not possible to extend more than one class to a single class but it is possible
+to extend more than one interface to a single interface.
+
+package com.durgasoft.core;
+interface I1{
+	void m1();
+}
+interface I2{
+	void m2();
+}
+interface I3 extends I1,I2{
+	void m3();
+}
+class A implements I1,I2,I3{
+	public void m1() {
+		System.out.println("m1-A");
+	}
+	public void m2() {
+		System.out.println("m2-A");
+	}
+	public void m3() {
+		System.out.println("m3-A");
+	}
+}
+class Test
+{
+	public static void main(String[] args) {
+		I1 i1=new A();
+		i1.m1();
+		
+		I2 i2=new A();
+		i2.m2();
+		System.out.println();
+		I3 i3=new A();
+		i3.m1();
+		i3.m2();
+		i3.m3();
+		System.out.println();
+		A a=new A();
+		a.m1();
+		a.m2();
+		a.m3();
+	}
+}
+
+O/P:
+------
+m1-A
+m2-A
+
+m1-A
+m2-A
+m3-A
+
+m1-A
+m2-A
+m3-A
+
+02)--
+package com.durgasoft.core;
+interface I{
+	void m1();
+	void m2();
+	void m3();
+}
+abstract class A implements I{
+	public void m1() {
+		System.out.println("m1-A");
+	}
+}
+class B extends A{
+	public void m2() {
+		System.out.println("m2-A");
+	}
+	public void m3() {
+		System.out.println("m3-A");
+	}
+}
+class Test
+{
+	public static void main(String[] args) {
+		I i=new B();
+		i.m1();
+		i.m2();
+		i.m3();
+		
+	}
+}
+
+O/P:
+------
+m1-A
+m2-A
+m3-A
+
+03)--InterFace DB example
+----------------------------------
+package com.durgasoft.core;
+interface DB_Driver{
+	void registerDriver();
+	void connect();
+}
+class OracleDriver implements DB_Driver{
+	public void registerDriver(){
+		System.out.println("OracleDriver is registered Successfully");
+	}
+	public void connect() {
+		System.out.println("Connection is established between Java and Oracle DB");
+	}
+}
+class MySQLDriver implements DB_Driver{
+	public void registerDriver(){
+		System.out.println("MySQLDriver is registered Successfully");
+	}
+	public void connect() {
+		System.out.println("Connection is established between Java and MySQLDriver");
+	}
+}
+class DB2Driver implements DB_Driver{
+	public void registerDriver() {
+		System.out.println("DB2Driver is registered Successfully");
+	}
+	public void connect() {
+		System.out.println("Connection is established between Java and DB2Driver");
+	}
+	
+}
+class Test
+{
+	public static void main(String[] args) {
+		DB_Driver oracle_Driver=new OracleDriver();
+		oracle_Driver.registerDriver();
+		oracle_Driver.connect();
+		System.out.println();
+		DB_Driver mysql_Driver=new MySQLDriver();
+		mysql_Driver.registerDriver();
+		mysql_Driver.connect();
+		System.out.println();
+		DB_Driver db2_Driver=new DB2Driver();
+		db2_Driver.registerDriver();
+		db2_Driver.connect();
+		
+	}
+}
+
+O/P:
+-------
+OracleDriver is registered Successfully
+Connection is established between Java and Oracle DB
+
+MySQLDriver is registered Successfully
+Connection is established between Java and MySQLDriver
+
+DB2Driver is registered Successfully
+Connection is established between Java and DB2Driver
+
+Q)Fond Valid Syntaxes between classes,abstract classes and Interfaces from the following list of syntaxes?
+
+class extends class --->Valid
+class extends class,class--->InValid
+class extends abstract class--->Valid
+class extends abstract class,class--->InValid
+class extends abstract class,abstract class--->InValid
+class extends interface--->InValid
+class implements interface--->Valid
+class implements interface,interface--->Valid
+class implements interface extends class--->InValid
+class implements interface extends abstract class--->InValid
+class extends class implements interface--->Valid
+class extends abstract class implements interface--->Valid
+
+abstract class extends class--->Valid
+abstract class extends abstract class--->Valid
+abstract class extends class,class--->InValid
+abstract class extends abstract class,abstract class--->InValid
+abstract class extends class,abstract class--->InValid
+abstract class extends interface--->InValid
+abstract class implements interface--->Valid
+abstract class implements interface,interface--->Valid
+abstract class extends class implements interface--->Valid
+abstract class extends abstract class implements interface--->Valid
+abstract class implements interface extends class-->InValid
+abstract class implements interface extends abstract class-->InValid
+
+interface extends interface -->Valid
+interface extends interface,interface -->Valid
+interface extends class -->InValid
+interface extends abstract class -->InValid
+interface implements interface -->InValid
+
+05) 
+ java.io.Serializable , java.lang.Cloneable
+
+
+
+			
+
+			
+			
+
+			

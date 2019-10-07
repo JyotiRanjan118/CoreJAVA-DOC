@@ -1,0 +1,52 @@
+07) Status Example           69 class time- 41.00
+   class A{
+}
+class B extends A{ 
+}
+class C extends B{
+}
+class D extends C{
+}
+
+Rule.1--Error Checking--Cast operator Data type must be same or sub class to the left side Class data Type
+Rule.2--Exception Checking---Object class must be same as Cast operator datatype or sub class to the Cast operator Data type
+
+7.1) A a=new B();
+         B b=(B) a;		//(B) -->Cast operator Data type
+         Status : No Compilation Error,No Exception
+
+7.2) A a=new A();
+         B b= a;
+         Status : Compilation Error
+
+7.3) A a=new A();
+         B b=(B) a;
+         Status :No Compilation Error, ClassCastException
+
+7.4) A a=new C(); 
+         B b=(C) a;
+         Status :No Compilation Error, No Exception
+
+7.5) A a = new C();
+         B b = (B) a;
+         Status :No Compilation Error, No Exception
+
+7.6) A a = new C();
+         B b = (D)a;
+         Status: No Compilation Error,ClassCastException
+
+7.7) B b = new C();
+         C c = (D) b;
+         Status: No Compilation Error, ClassCastException
+
+7.8) A a = new C();
+         D d = (C) a;
+         Status: Compilation Error
+
+7.9) A a = new D();
+         D d=(D) (C) (B) a;
+         Status: No Compilation Error, No Exception   // Left most side to be considered for Checking Error
+
+7.10) A a = new C();
+           C  c = (D) (C) (B) a;
+           Status: No compilation Error ,ClassCastException

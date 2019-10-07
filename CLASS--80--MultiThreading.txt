@@ -1,0 +1,289 @@
+Threads Design in Java:
+There are two approaches to create threads in java applications.
+a)Extending Thread class
+b)Implementing Runnable interface
+a)Extending Thread class
+1)Declare an user defined class.
+2)Extend java.lang.Thread class to user defined class
+3)Override Thread class run() method in user defined thread class with the implementation repersenting a particular task which we want to perfrom by creating a thread.
+4)In main class, in main() method, create object for user defined class
+
+package com.durgasoft.core;
+
+class MyThread extends Thread{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread   :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		MyThread mt=new MyThread();
+		mt.start();
+	}
+
+}
+
+User Thread   :0
+User Thread   :1
+User Thread   :2
+User Thread   :3
+User Thread   :4
+User Thread   :5
+User Thread   :6
+User Thread   :7
+User Thread   :8
+User Thread   :9
+
+02) 
+
+package com.durgasoft.core;
+
+class MyThread extends Thread{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread    :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		MyThread mt=new MyThread();
+		mt.start();
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread    :"+i);
+		}
+	}
+
+}
+
+Main Thread    :0
+User Thread    :0
+Main Thread    :1
+User Thread    :1
+User Thread    :2
+User Thread    :3
+User Thread    :4
+User Thread    :5
+User Thread    :6
+User Thread    :7
+User Thread    :8
+Main Thread    :2
+User Thread    :9
+Main Thread    :3
+Main Thread    :4
+Main Thread    :5
+Main Thread    :6
+Main Thread    :7
+Main Thread    :8
+Main Thread    :9
+
+2nd Output
+----------------
+Main Thread    :0
+User Thread    :0
+User Thread    :1
+User Thread    :2
+User Thread    :3
+User Thread    :4
+User Thread    :5
+User Thread    :6
+User Thread    :7
+User Thread    :8
+User Thread    :9
+Main Thread    :1
+Main Thread    :2
+Main Thread    :3
+Main Thread    :4
+Main Thread    :5
+Main Thread    :6
+Main Thread    :7
+Main Thread    :8
+Main Thread    :9
+
+03) package com.durgasoft.core;
+
+class MyThread implements Runnable{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread   :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		/*
+		MyThread mt=new MyThread();
+		mt.start();  //Start method not available in Object Class i.e super class of MyThread Class
+		*/
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread   :"+i);
+		}
+	}
+
+}
+
+Main Thread   :0
+Main Thread   :1
+Main Thread   :2
+Main Thread   :3
+Main Thread   :4
+Main Thread   :5
+Main Thread   :6
+Main Thread   :7
+Main Thread   :8
+Main Thread   :9
+
+04) package com.durgasoft.core;
+
+class MyThread implements Runnable{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread   :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		/*
+		MyThread mt=new MyThread();
+		mt.start();  //Start method not available in Runnable Interface
+		*/
+		MyThread mt=new MyThread();
+		mt.run();
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread   :"+i);
+		}
+	}
+
+}
+
+User Thread   :0
+User Thread   :1
+User Thread   :2
+User Thread   :3
+User Thread   :4
+User Thread   :5
+User Thread   :6
+User Thread   :7
+User Thread   :8
+User Thread   :9
+Main Thread   :0
+Main Thread   :1
+Main Thread   :2
+Main Thread   :3
+Main Thread   :4
+Main Thread   :5
+Main Thread   :6
+Main Thread   :7
+Main Thread   :8
+Main Thread   :9
+
+05) 
+package com.durgasoft.core;
+
+class MyThread implements Runnable{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread   :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		/*
+		MyThread mt=new MyThread();
+		mt.start();  //Start method not available in default super class i.e Object class
+		*/
+		/*
+		MyThread mt=new MyThread();
+		mt.run();
+		*/
+		MyThread mt=new MyThread();
+		Thread t=new Thread();
+		t.start();			//User Thread is executing Thread class run() method which is only open and close(Without having implementation) so no output from mythread class
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread   :"+i);
+		}
+	}
+
+}
+
+Main Thread   :0
+Main Thread   :1
+Main Thread   :2
+Main Thread   :3
+Main Thread   :4
+Main Thread   :5
+Main Thread   :6
+Main Thread   :7
+Main Thread   :8
+Main Thread   :9
+
+06)
+package com.durgasoft.core;
+
+class MyThread implements Runnable{
+	public void run() {
+		for (int i = 0; i < 10; i++) {
+			System.out.println("User Thread   :"+i);
+		}
+	}
+}
+public class Test {
+
+	public static void main(String[] args) {
+		/*
+		MyThread mt=new MyThread();
+		mt.start();  //Start method not available in Runnable Interface
+		*/
+		/*
+		MyThread mt=new MyThread();
+		mt.run();
+		*/
+		MyThread mt=new MyThread();
+		Thread t=new Thread(mt);
+		t.start();
+		
+		for (int i = 0; i < 10; i++) {
+			System.out.println("Main Thread   :"+i);
+		}
+	}
+
+}
+
+O/P:
+-----
+Main Thread   :0
+User Thread   :0
+Main Thread   :1
+User Thread   :1
+Main Thread   :2
+User Thread   :2
+Main Thread   :3
+User Thread   :3
+User Thread   :4
+User Thread   :5
+User Thread   :6
+User Thread   :7
+User Thread   :8
+User Thread   :9
+Main Thread   :4
+Main Thread   :5
+Main Thread   :6
+Main Thread   :7
+Main Thread   :8
+Main Thread   :9
+
+
+
+
+

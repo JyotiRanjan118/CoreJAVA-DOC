@@ -1,0 +1,135 @@
+01) --Print the whole program in CMD
+--------------------------------------------
+import java.io.*;
+class Test 
+{
+	public static void main(String[] args) throws Exception {
+		String file_Name=args[0];
+		FileInputStream fis=new FileInputStream(file_Name);
+		int size=fis.available();
+		byte[] b=new byte[size];
+		fis.read(b);
+		String data=new String(b);
+		System.out.println(data);
+		fis.close();
+	}
+}
+
+02)--Steps to Print the Program on Command Prompt
+----------------------------------------------------------------------			
+D:\packages\default>javac Test.java
+
+D:\packages\default>java Test Test.java
+O/P:
+----------
+import java.io.*;
+class Test
+{
+        public static void main(String[] args) throws Exception {
+                String file_Name=args[0];
+                FileInputStream fis=new FileInputStream(file_Name);
+                int size=fis.available();
+                byte[] b=new byte[size];
+                fis.read(b);
+                String data=new String(b);
+                System.out.println(data);
+                fis.close();
+        }
+}
+
+03)--File Store in some other Location
+---------------------------------------------------
+D:\packages\default>java Test "D:\Java\Java Project\Application Under Test\Core_Java_Nagoor\src\com\IO\FileInput.java"
+
+Ans 
+O/P:
+-----
+package com.IO;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class FileInput {
+
+        public static void main(String[] args) throws IOException {
+                FileInputStream fis=new FileInputStream("D:/abc.txt");
+                int size=fis.available();
+                byte[] b=new byte[size];
+                fis.read(b);
+                String data=new String(b);
+                System.out.println(data);
+                fis.close();
+
+        }
+
+}
+
+04)--WAP to read the data from a particular file and the no of words existed in the file and to find the no of word "Durga" repeated?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+package com.IO;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class FIleInputNo_Of_Words {
+
+	public static void main(String[] args) throws IOException {
+		FileInputStream fis=new FileInputStream("D:/abc.txt");
+		int size=fis.available();
+		byte[] b=new byte[size];
+		fis.read(b);
+		String data=new String(b);
+		String[] str=data.split(" ");
+		System.out.println("No of words :"+str.length);
+		int count=0;
+		for(String s: str) {
+			if(s.equals("Durga")) {
+				count=count+1;
+			}
+		}
+		System.out.println("Durga is repeated  :"+count);
+		fis.close();
+	}
+
+}
+
+No of words :28
+Durga is repeated  :3
+
+04)--WAP to copy of an image from one location to another location
+--------------------------------------------------------------------------------------
+package com.IO;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+public class FileImageCopyPaste {
+		public static void main(String[] args) throws IOException {
+			FileInputStream fis=new FileInputStream("D:\\iamges.jpg");
+			
+			byte[] b=new byte[fis.available()];
+			fis.read(b);
+			
+			FileOutputStream fos=new FileOutputStream("E:\\iamges.jpg");
+			fos.write(b);
+			System.out.println("File transferred to E drive");
+			fis.close();
+			fos.close();
+		}
+}
+
+O/P:
+------
+File transferred to E drive
+
+
+
+
+
+
+

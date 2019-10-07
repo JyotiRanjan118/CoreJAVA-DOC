@@ -1,0 +1,13 @@
+01) To create JAR file
+        jar -cvf File_Name.jar *
+
+02) To xtract JAR file
+        jar -xvf file_Name.jar
+
+03) To create JAR file with MAINIFEST file 
+        jar -cvfm durgaapp.jar abc.txt *
+
+04)--Execute JAR file 
+          java -jar durgaapp.jar
+
+
