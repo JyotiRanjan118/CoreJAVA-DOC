@@ -1,5 +1,5 @@
 01) --Print the whole program in CMD
---------------------------------------------
+--------------------------------------------------
 import java.io.*;
 class Test 
 {
@@ -126,6 +126,295 @@ public class FileImageCopyPaste {
 O/P:
 ------
 File transferred to E drive
+
+05)--File Writer(String to char )
+------------------------------------------
+package com.IO;
+
+import java.io.FileWriter;
+import java.io.IOException;
+
+public class Filewriter {
+	public static void main(String[] args) throws IOException {
+		FileWriter fw=new FileWriter("D:/abc.txt");
+		String data="Durga Software solution";
+		char[] ch=data.toCharArray();
+		fw.write(ch);
+		System.out.println("Data transferred");
+		fw.close();
+	
+	}
+}
+
+O/P:
+--------
+Data transferred
+
+06)--FileReader
+---------------------
+package com.IO;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Filereader {
+	public static void main(String[] args) throws IOException {
+		FileReader fr=new FileReader("D:/abc.txt");
+		String data="";
+		int val=fr.read();
+		while(val!=-1) {		//end of ASCII value
+			data=data+(char)val;
+			val=fr.read();
+			
+		}
+		System.out.println(data);
+		fr.close();
+	}
+}
+
+
+Durga Software solution
+
+07.0)--BufferReader
+------------------------
+package com.IO;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Bufferreader {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Enter Text Data");
+		String data=br.readLine();
+		System.out.print("Enter the same text again");
+		int val=br.read();
+		System.out.println("First entered: "+data);
+		System.out.println("Second entered: "+val+"["+(char)val+"]");
+	}
+
+}
+
+O/P:
+-------
+Enter Text DataJyoti Ranjan Nath
+Enter the same text againJyoti Ranjan Nath
+First entered: Jyoti Ranjan Nath
+Second entered: 74[J]
+
+07.1)--
+package com.IO;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Bufferreader {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Enter Text Data");
+		String val1=br.readLine();
+		System.out.print("Enter the same text again");
+		String val2=br.readLine();
+		System.out.println("Addition:  "+val1+val2);
+
+	}
+
+}
+
+Enter Text Data20
+Enter the same text again30
+Addition:  2030
+
+7.2)--Additon
+--------------------
+package com.IO;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Bufferreader {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("Enter Text Data");
+		String val1=br.readLine();
+		System.out.print("Enter the same text again");
+		String val2=br.readLine();
+		int fval1=Integer.parseInt(val1);
+		int fval2=Integer.parseInt(val2);
+		System.out.println("Addition:  "+(fval1+fval2));
+
+	}
+
+}
+
+Enter Text Data50
+Enter the same text again60
+Addition:  110
+
+8.0) Scanner Class
+-------------------------
+1.Create Scanner class Object. 
+           public Scanner(InputStream is)
+           Scanner s=new Scanner(System.in)
+
+2.Read Dynamic Input through Scanner:
+            To read String data from Scanner
+            public String nextLine()
+            public String next()
+      To read primitiv data
+            public xxx nextXxxx()
+            xxx ----->  byte,short,int,..........
+            xxx
+
+8.1) --package com.IO;
+
+import java.util.Scanner;
+
+public class ScannerClass {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Employee Number :");
+		int eno=s.nextInt();
+		System.out.println("Employee Name :");
+		String ename=s.next();			//  nextLine() -->Multiple line words   ex--JYOTI RANJAN NATH
+		System.out.println("Employee Salary :");	//  next()   -- Single word  ex--JYOTI
+		float esal=s.nextFloat();
+		System.out.println("Employee Address :");
+		String eaddr=s.next();
+		
+		System.out.println("Employee Details");
+		System.out.println("----------------------");
+		System.out.println("Employee Number  :"+eno);
+		System.out.println("Employee Name    :"+ename);
+		System.out.println("Employee Salary  :"+esal);
+		System.out.println("Employee Salary  :"+eaddr);
+
+	}
+
+}
+
+O/P:
+-------
+Employee Number :123
+Employee Name :JYOTI 
+Employee Salary :3000
+Employee Address :NALCO
+Employee Details
+----------------------
+Employee Number  :123
+Employee Name    :JYOTI
+Employee Salary  :3000.0
+Employee Salary  :NALCO
+
+8.2)--package com.IO;
+
+import java.util.Scanner;
+
+public class ScannerClass {
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		System.out.print("Employee Name :");
+		String ename=s.nextLine();
+		System.out.print("Employee Address :");
+		String eaddr=s.next();
+		
+		System.out.println("Employee Details");
+		System.out.println("----------------------");
+		System.out.println("Employee Name    :"+ename);
+		System.out.println("Employee Salary  :"+eaddr);
+
+	}
+
+}
+
+O/P:
+-----
+Employee Name :JYOTI RANJAN 
+Employee Address :NALCO
+Employee Details
+----------------------
+Employee Name    :JYOTI RANJAN 
+Employee Salary  :NALCO
+
+9)--Drawbacks of BufferReader and Scanner
+------------------------------------------------------------
+package com.IO;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class ConSole {
+
+	public static void main(String[] args) throws IOException {
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		System.out.print("User Name :");
+		String uname=br.readLine();
+		System.out.print("Enter Password :");
+		String pwd=br.readLine();
+		if(uname.equals("Durga") && pwd.equals("durga")){
+			System.out.println("Login Success");
+		}
+		else {
+			System.out.println("Login Fail");
+		}
+		
+
+	}
+
+}
+
+O/P:
+------
+User Name :Durga
+Enter Password :durga		//No security for the application like Password or PIN no
+Login Success
+
+10)--Console(Do it on Editplus)
+-----------------------------------------
+
+import java.io.*;
+class Test 
+{
+	public static void main(String[] args) throws Exception {
+		Console c=System.console();
+		String uname=c.readLine("UserName  :");
+		char[] ch=c.readPassword("Password  :");
+		String upwd=new String(ch);
+		if(uname.equals("durga") && upwd.equals("durga")) {
+			System.out.println("Login Success");
+		}
+		else {
+			System.out.println("Login Fail");
+		}
+
+	}
+}
+
+O/P:
+--------
+
+D:\packages\default>javac Test.java
+
+D:\packages\default>java Test
+UserName  :durga
+Password  :			//Invisible password on Console class
+Login Success
+
+
+			
+
+
+
 
 
 

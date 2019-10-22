@@ -1,0 +1,72 @@
+01)--Serialization
+-----------------------
+package com.SerializeDeserialize;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class Employee implements Serializable {
+	int eno;
+	String ename;
+	float esal;
+	String eaddr;
+	
+	public Employee(int eno,String ename,float esal,String eaddr) {
+		this.eno=eno;
+		this.ename=ename;
+		this.esal=esal;
+		this.eaddr=eaddr;
+	}
+	
+		
+}
+
+
+1.1)--Employee Class
+----------------------------
+package com.SerializeDeserialize;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+public class Test {
+	public static void main(String[] args) throws IOException {			//Serialization
+		Employee emp1=new Employee(101, "DURGA", 5000, "HYD");
+		FileOutputStream fos=new FileOutputStream("D:/abc.txt");
+		ObjectOutputStream oos=new ObjectOutputStream(fos);
+		System.out.println("Employee details before serialization");
+		emp1.getEmpDetails();
+		oos.writeObject(emp1);
+
+
+		FileInputStream fis=new FileInputStream("D:/abc.txt");		//Deserialization
+		ObjectInputStream ois=new ObjectInputStream(fis);
+		Employee emp2=(Employee)ois.readObject();
+		System.out.println("Employee Details after Serilization");
+		emp2.getEmpDetails();
+	}
+}
+
+O/P:
+------
+Employee details before serialization
+Employee Details
+-----------------------
+Employee Number  :101
+Employee Name    :DURGA
+Employee sal     :5000.0
+Employee address :HYD
+
+Employee Details after Serilization
+Employee Details
+-----------------------
+Employee Number  :101
+Employee Name    :DURGA
+Employee sal     :5000.0
+Employee address :HYD
+
+
