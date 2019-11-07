@@ -1,0 +1,152 @@
+1)--WAP to establish communication between ClientApp and ServerApp
+-----------------------------------------------------------------------------------------------
+ClientApp
+---------------
+import java.io.*;
+import java.net.*;
+public class ClientApp 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		Socket s=new Socket("localhost",4444);
+
+		OutputStream os=s.getOutputStream();
+		PrintStream ps=new PrintStream(os);
+		BufferedReader br1=new BufferedReader(new InputStreamReader(System.in));
+		String data1=br1.readLine();
+		ps.println(data1);
+
+		InputStream is=s.getInputStream();
+		BufferedReader br2=new BufferedReader(new InputStreamReader(is));
+		String data2=br2.readLine();
+		System.out.println(data2);
+	}
+}
+
+1.1)--ServerApp
+---------------------
+import java.io.*;
+import java.net.*;
+public class ServerApp
+{
+	public static void main(String[] args)throws Exception
+	{
+		ServerSocket ss=new ServerSocket(4444);
+		Socket s=ss.accept();
+
+		InputStream is=s.getInputStream();
+		BufferedReader br1=new BufferedReader(new InputStreamReader(is));
+		String data1=br1.readLine();
+		System.out.println(data1);
+
+		OutputStream os=s.getOutputStream();
+		PrintStream ps=new PrintStream(os);
+		BufferedReader br2=new BufferedReader(new InputStreamReader(System.in));
+		String data2=br2.readLine();
+		ps.println(data2);
+
+	}
+}
+
+O/P:
+------
+D:\packages\default>javac *.java
+
+Note:-1st run ServerApp
+--------------------------------
+D:\packages\default>java ClientApp			D:\packages\default>java ServerApp
+Hello						Hello
+JYOTI
+						JYOTI
+
+
+02)--Write a program to communicate between Client and Server Infinite times till the bye is getting printed on console
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+--ClientAPP
+---------------------
+import java.io.*;
+import java.net.*;
+public class ClientApp 
+{
+	public static void main(String[] args) throws Exception 
+	{
+		Socket s=new Socket("localhost",4444);
+
+		OutputStream os=s.getOutputStream();
+		PrintStream ps=new PrintStream(os);
+		BufferedReader br1=new BufferedReader(new InputStreamReader(System.in));
+		
+		InputStream is=s.getInputStream();
+		BufferedReader br2=new BufferedReader(new InputStreamReader(is));
+		
+		while(true)
+		{
+			String data1=br1.readLine();
+			ps.println(data1);
+			String data2=br2.readLine();
+			System.out.println(data2);
+			if(data1.equals("bye") && data2.equals("bye"))
+			{
+				System.exit(0);
+			}
+		}
+
+	}
+}
+
+2.1)--ServerApp
+---------------------
+import java.io.*;
+import java.net.*;
+public class ServerApp
+{
+	public static void main(String[] args)throws Exception
+	{
+		ServerSocket ss=new ServerSocket(4444);
+		Socket s=ss.accept();
+
+		InputStream is=s.getInputStream();
+		BufferedReader br1=new BufferedReader(new InputStreamReader(is));
+		
+
+		OutputStream os=s.getOutputStream();
+		PrintStream ps=new PrintStream(os);
+		BufferedReader br2=new BufferedReader(new InputStreamReader(System.in));
+	
+		while(true)
+		{
+			String data1=br1.readLine();
+			System.out.println(data1);
+			String data2=br2.readLine();
+			ps.println(data2);
+
+			if(data1.equals("bye") && data2.equals("bye"))
+			{
+				System.exit(0);
+			}
+		}
+	}
+}
+
+
+O/P:
+-------
+D:\packages\default>java ClientApp			
+JYOTI
+RANJAN
+NATH
+BABU
+DIBYA
+NIDRA
+bye
+bye
+
+D:\packages\default>java ServerApp
+JYOTI
+RANJAN
+NATH
+BABU
+DIBYA
+NIDRA
+bye
+bye

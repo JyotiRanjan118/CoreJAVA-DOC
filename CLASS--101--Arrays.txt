@@ -1,0 +1,173 @@
+01) 
+package com.Collection;
+
+public class ArraySample {
+
+	public static void main(String[] args) {
+		int[] a= {1,2,3,4,5};
+		System.out.println(a);
+		System.out.println(a.length);
+		System.out.println(a[2]);
+		System.out.println(a[a.length-2]);
+		System.out.println(a[a.length]);
+	}
+
+}
+
+O/P:
+--------
+[I@15db9742
+5
+3
+4
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 5
+	at com.Collection.ArraySample.main(ArraySample.java:11)
+
+Multi-Dimensional Array
+---------------------------------
+a)--Declare and intiative
+Data_type[][]...[] ref_var={{......{val1,val2,val3,val4}}}
+Ex: int[][] a={{1,2,3},{2,3,4},{3,4,5}}
+
+b)--Declare then Intiative
+Data_type[][]...[] ref_var = new Data_Type[Size1][Size2].......[Sizen];
+ref_var[0][0]..........[0]= val1;
+ref_var[0][0]..........[1]= val2;
+............................................
+
+ref_var[Size1-1][size2-1]........[size_n-1] = 99999;
+
+Ex: int [][] a=new int[2][3];
+a[0][0] = 1;
+a[0][1] = 2;
+a[0][2] = 3;
+a[1][0] = 4;
+a[1][1] = 5;
+a[1][2] = 6;
+
+02)--package com.Collection;
+
+public class ArraySample {
+
+	public static void main(String[] args) {
+		int[] a= {1,2,3,4,5};
+		System.out.println(a);
+		System.out.println(a.length);
+		System.out.println(a[2]);
+		System.out.println(a[a.length-2]);
+		//System.out.println(a[a.length]);
+		System.out.println();
+		for(int i=0;i<a.length;i++) {
+			System.out.println(a[i]);
+		}
+		System.out.println();
+		for(int x:a) {
+			System.out.println(x);
+		}
+	}
+
+}
+
+O/P:
+-------
+[I@15db9742
+5
+3
+4
+
+1
+2
+3
+4
+5
+
+1
+2
+3
+4
+5
+
+03)--
+package com.Collection;
+
+public class MultiDimensional_Array {
+
+	public static void main(String[] args) {
+		int[][] a={{1,2,3},{2,3,4},{3,4,5}};
+		System.out.println(a);
+		System.out.println(a.length);
+		System.out.println(a[1]);
+		System.out.println(a[1].length);
+		System.out.println(a[2][2]);
+		System.out.println(a[a[0].length-2][a[1].length-1]);
+		System.out.println();
+		for(int i=0;i<a.length;i++) {
+			for(int j=0;j<a[i].length;j++) {
+				System.out.print(a[i][j]+"\t");
+			}
+			System.out.println();
+		}
+		System.out.println();
+		
+		OR
+
+		for(int[] x:a) {
+			for(int y:x) {
+				System.out.print(y+"\t");
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+O/P:
+--------
+[[I@15db9742
+3
+[I@6d06d69c
+3
+5
+4
+
+1	2	3	
+2	3	4	
+3	4	5	
+
+
+1	2	3	
+2	3	4	
+3	4	5
+
+04)--Anonymous Array
+-------------------------------
+package com.Collection;
+class Bank{
+	public void display_Customer_list(String[] cust_Names) {
+		for(String cust_Name:cust_Names) {
+			System.out.println(cust_Name);
+		}
+	}
+}
+public class AnonymousArray {
+
+	public static void main(String[] args) {
+		Bank bank=new Bank();
+		String[] cust_Name= {"AAA","BBB","CCC","DDD"};
+		bank.display_Customer_list(cust_Name);
+
+		//or
+		bank.display_Customer_list(new String[] {"AAA","BBB","CCC","DDD"});
+
+	}
+
+}
+
+O/P:
+---------
+AAA
+BBB
+CCC
+DDD
+
+05)

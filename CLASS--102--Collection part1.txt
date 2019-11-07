@@ -1,0 +1,114 @@
+package com.Collection;
+class Course{
+	String cid;
+	String cname;
+	int cost;
+	
+	public void setCid(String cid) {
+		this.cid=cid;
+	}
+	public String getCid() {
+		return cid;
+	}
+	public void setCname(String cname) {
+		this.cname=cname;
+	}
+	public String getCname() {
+		return cname;
+	}
+	public void setCost(int cost) {
+		this.cost=cost;
+	}
+	public int getCost() {
+		return cost;
+	}
+}
+
+class Student{
+	private String sid;
+	private String sname;
+	private String saddr;
+	private Course[] courses;
+	public String getSid() {
+		return sid;
+	}
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
+	public String getSname() {
+		return sname;
+	}
+	public void setSname(String sname) {
+		this.sname = sname;
+	}
+	public String getSaddr() {
+		return saddr;
+	}
+	public void setSaddr(String saddr) {
+		this.saddr = saddr;
+	}
+	public Course[] getCourse() {
+		return courses;
+	}
+	public void setCourse(Course[] courses) {
+		this.courses = courses;
+	}
+	
+	public void getStudentDetails() {
+		System.out.println("Student Details");
+		System.out.println("----------------------");
+		System.out.println("Student ID      :"+sid);
+		System.out.println("Student Name    :"+sname);
+		System.out.println("Student Address :"+saddr);
+		System.out.println();
+		System.out.println("CID\tCNAME\tCOST");
+		System.out.println("------------------------");
+		for(Course course:courses) {
+			System.out.print(course.getCid()+"\t");
+			System.out.print(course.getCname()+"\t");
+			System.out.print(course.getCost()+"\n");
+		}
+	}
+}
+public class Course_Student_Array {
+	public static void main(String[] args) {
+		Course course1=new Course();
+		course1.setCid("C-111");
+		course1.setCname("C");
+		course1.setCost(1000);
+		
+		Course course2=new Course();
+		course2.setCid("C-222");
+		course2.setCname("C++");
+		course2.setCost(2000);
+		
+		Course course3=new Course();
+		course3.setCid("C-333");
+		course3.setCname("Java");
+		course3.setCost(3000);
+		
+		Course[] courses= {course1,course2,course3};
+		
+		Student std=new Student();
+		std.setSid("S-111");
+		std.setSname("Durga");
+		std.setSaddr("Hyd");
+		std.setCourse(courses);
+		
+		std.getStudentDetails();
+	}
+}
+
+O/P:
+-----
+Student Details
+----------------------
+Student ID      :S-111
+Student Name    :Durga
+Student Address :Hyd
+
+CID	CNAME	COST
+------------------------
+C-111	C	1000
+C-222	C++	2000
+C-333	Java	3000
