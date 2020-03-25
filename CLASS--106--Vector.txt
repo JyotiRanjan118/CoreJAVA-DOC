@@ -1,0 +1,263 @@
+Vector(367)
+----------------
+-->It is Legacy Collection.
+-->It is a direct implementation class to List interface.
+-->It is index based.
+-->It allows duplicate elements.
+-->It follows insertion order.
+-->It will not follow sorting order.
+-->It allows heterogeneous elements.
+-->It allows any no of null values.
+-->Its internal data structer is "Resizable Array".
+-->Its initial capacity is 10 elements.
+-->It is best choice for frequent retrival operations.
+-->It is not good for frequent insertions and deletion operations.
+-->Its incremental capacity is double the current capacity.
+New_capacity=2*Current_Capacity
+-->it is synchronized elemenet.
+-->All the methods of vector class are synchronized.
+-->It allows only one thread at a time.
+-->It follows sequential execution.
+-->It will increase execution time.
+-->It will reduce application performance.
+-->It is giving guarantee for data consistency.
+-->It is threadsafe.
+
+01)--Constructors:
+------------------------
+1) public Vector()
+2) public Vector(int capacity)
+3) public Vector(int capacity, int incremental_Ratio)
+4) public Vector(Collection c)
+
+Methods:
+1.public void addElement(Object obj)
+-->It will add the specified element to Vector.
+2.public Object firstElement()
+-->It will return first element of the Vector.
+3.public Object lastElement()
+-->It will return last element of the Vector.
+4.public Object elementAt(int index)
+-->It will return an element available at the specified index.
+5.public void removeElement(Object obj)
+-->It will remove the specified element from Vector.
+6.public void removeElementAt(int index)
+-->It will remove an element existed at the specified index value.
+7.public void removeAllElements()
+-->It will remove all elements from Vector.
+
+public Vector()
+--------------------
+--> It can be used to create an empty Vector object with the initial capacity 10 elements.
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<String> v=new Vector<String>();
+		System.out.println(v.capacity());
+	}
+}
+
+O/P:
+-------
+10
+
+02)--2.public Vector(int capacity)
+--> It can be used to create an empty vector object with the specified capacity value.
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<String> v=new Vector<String>(20);
+		System.out.println(v.capacity());
+	}
+}
+
+O/P:
+-------
+20
+
+
+03) public Vector(int capacity, int incremental_Ratio)
+----------------------------------------------------------------------
+--import java.util.Vector;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<Integer> v=new Vector<Integer>(5);
+		System.out.println(v.capacity());
+		for(int i=1;i<=6;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+	}
+}
+
+O/P:
+-------
+5
+10
+
+04)--import java.util.Vector;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<Integer> v=new Vector<Integer>(5);
+		System.out.println(v.capacity());
+		for(int i=1;i<=6;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+		for(int i=7;i<=11;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+		for(int i=12;i<=21;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+	}
+	}
+}
+
+O/P:
+------
+5
+10
+20
+40
+
+05)--import java.util.Vector;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<Integer> v=new Vector<Integer>(5,5);
+		System.out.println(v.capacity());
+		for(int i=1;i<=6;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+		for(int i=7;i<=11;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+		for(int i=12;i<=16;i++) {
+			v.add(i);
+		}
+		System.out.println(v.capacity());
+	}
+}
+
+O/P:
+-------
+5
+10
+15
+20
+
+06)--4.public Vector(Collection c)
+---------------------------------------------
+public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<String> v1=new Vector<String>();
+		v1.add("AAA");
+		v1.add("BBB");
+		v1.add("CCC");
+		v1.add("DDD");
+		System.out.println(v1);
+		Vector<String> v2=new Vector<String>(v1);
+		System.out.println(v2);
+	}
+}
+
+O/P:
+-------
+[AAA, BBB, CCC, DDD]
+[AAA, BBB, CCC, DDD]
+
+Method:
+------------
+Methods:
+1.public void addElement(Object obj)			v1.add
+-->It will add the specified element to Vector.
+
+2.public Object firstElement()				v1.firstElement()
+-->It will return first element of the Vector.
+
+3.public Object lastElement()				v1.lastElement()
+-->It will return last element of the Vector.
+
+4.public Object elementAt(int index)			v1.elementAt(2)
+-->It will return an element available at the specified index.
+
+5.public void removeElement(Object obj)		v1.removeElement("BBB")
+-->It will remove the specified element from Vector.
+
+6.public void removeElementAt(int index)		v1.removeElementAt(2)
+-->It will remove an element existed at the specified index value.
+
+7.public void removeAllElements()			v1.removeAllElements()
+-->It will remove all elements from Vector.
+
+
+07)--public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<String> v1=new Vector<String>();
+		v1.add("AAA");
+		v1.add("BBB");
+		v1.add("CCC");
+		v1.add("DDD");
+		System.out.println(v1);
+		System.out.println(v1.firstElement());
+		System.out.println(v1.lastElement());
+
+		v1.removeElementAt(2);
+		System.out.println(v1);
+		
+		v1.removeAllElements();
+		System.out.println(v1);
+		
+	}
+}
+
+O/P:
+------
+[AAA, BBB, CCC, DDD]
+AAA
+DDD
+
+[AAA, BBB, DDD]
+
+[]
+
+08)--Q)What are the differences between ArrayList and Vector?
+
+Ans:
+1.ArrayList class was introduced in JDK1.2 version.
+Vector class was introduced in JDK1.0 version.
+2.ArrayList is not Legacy Collection.
+Vector is Legacy Collection.
+3.ArrayList is not synchronized.
+Vector is synchronized.
+4.No method is synchronized method in ArrayList.
+Almost all the methods are synchronized methods in vector.
+5.ArrayList allows more than one thread at a time to access data.
+Vector allows only one thread at a time to access data.
+
+6.ArrayList follows parallel execution.
+Vector follows sequential execution.
+7.ArrayList is able to reduce application execution time.
+Vector is able to increase application execution time.
+8.ArrayList is able to improve application performance.
+Vector is able to reduce application performance.
+9.ArrayList is not giving guarantee for data consistency.
+vector is giving guarantee for data consistency.
+10.ArrayList is not threadsafe.
+Vector is threadsafe.
+11.ArrayList incremental capacity is (Current_Capacity*3/2)+1
+Vector incremental capacity is
+2*Current_Capacity
+12.We are unable to get capacity value of ArrayList, because, no capacity() method in ArrayList class.
+
+We can get capacity value of Vector, because, capacity() method is existed in vector class.
+
+
+
+
+

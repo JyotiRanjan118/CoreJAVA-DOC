@@ -1,0 +1,59 @@
+01)--
+package com.Collection;
+
+import java.util.HashSet;
+
+public class HashSet_Collection {
+
+	public static void main(String[] args) {
+		HashSet hs=new HashSet();
+		System.out.println(hs.add("AAA"));
+		hs.add("BBB");
+		hs.add("CCC");
+		hs.add("DDD");
+		System.out.println(hs);		//[AAA, CCC, BBB, DDD]
+		System.out.println(hs.add("AAA"));	//False(Since AAA is added already ,So no duplicate element is allowed)
+		System.out.println(hs);		//[AAA, CCC, BBB, DDD]
+
+	}
+
+}
+
+O/P:
+------
+true
+[AAA, CCC, BBB, DDD]
+false
+[AAA, CCC, BBB, DDD]
+
+02)--package com.Collection;
+
+import java.util.HashSet;
+
+public class HashSet_Collection {
+
+	public static void main(String[] args) {
+		HashSet hs=new HashSet();
+		System.out.println(hs.add("AAA"));	//True
+		hs.add("CCC");
+		hs.add("DDD");
+		System.out.println(hs);		//[AAA,CCC,DDD]
+		HashSet hs2=new HashSet();
+		System.out.println(hs2.addAll(hs));	//True
+		System.out.println(hs2);
+		
+		System.out.println(hs2.addAll(hs));		
+		System.out.println(hs2);
+	}
+
+}
+
+O/P:
+-------
+true
+[AAA, CCC, DDD]
+true
+[AAA, CCC, DDD]
+false
+[AAA, CCC, DDD]
+

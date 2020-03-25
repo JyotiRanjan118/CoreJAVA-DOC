@@ -1,4 +1,4 @@
-01) 
+01)--
 package com.Collection;
 
 public class ArraySample {
@@ -87,7 +87,8 @@ O/P:
 4
 5
 
-03)--
+03)--MultiDimensional Array(Important)
+====================================	
 package com.Collection;
 
 public class MultiDimensional_Array {
@@ -102,7 +103,7 @@ public class MultiDimensional_Array {
 		System.out.println(a[a[0].length-2][a[1].length-1]);
 		System.out.println();
 		for(int i=0;i<a.length;i++) {
-			for(int j=0;j<a[i].length;j++) {
+			for(int j=0;j<a[i].length;j++) {			
 				System.out.print(a[i][j]+"\t");
 			}
 			System.out.println();

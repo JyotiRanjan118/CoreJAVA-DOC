@@ -1,4 +1,4 @@
-package com.Collection;
+01) --package com.Collection;
 class Course{
 	String cid;
 	String cname;

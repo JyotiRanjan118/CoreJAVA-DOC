@@ -1,0 +1,21 @@
+01) What is the difference between add(--) method and set(--) metod?
+
+Ans:
+add(--) method is able to perform insert operation.
+if any element is existed at the specified element then add() method will insert the specified new element at the specified index value and add() 
+method will adjust the existed element to next index value. If no element is existed at the specified index then add() method add the specified element 
+at the specified index.
+set(--) method is able to perform replace operation.
+If any element is existed at the specified index then set() method will remove the existed element and set(-) method will 
+add the specified element to the specified index and set() method will return the removed element.
+If no element is existed at the specified index value then set() method will rise an exception like java.lang.indexOutOfBoundsException.
+
+02) What are the differences between Collection and Map?
+
+Ans:
+Collections are able to store all the elements individually, not in the form of Key-value pairs.
+EX: To store 10 Employee objects we will use Collection.
+Maps are able to store all the elements in the form of Key-value pairs.
+EX: To repersent Telephone Directory , where we are representing phone number and Customer Name we have to use Maps.
+
+03) 

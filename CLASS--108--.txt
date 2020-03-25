@@ -1,0 +1,284 @@
+Page--375
+--------------
+To achieve the above requirment, Collection Framework has provided the following three Cursors or Iterators.
+1.Enumeration
+2.Iterator
+3.ListIterator
+
+1.Enumeration:
+---------------------
+It is a Legacy Cursor, it is applicable for only Legacy Collections to retirve elements in one by one fashion.
+To retrive elements from Collections by using Enumeration we have to use the following steps.
+
+1.Create Enumeration object:
+
+To create Enumeration object we have to use the following method from Legacy Collections.
+public Enumeration elements()
+
+
+2.Retrive elements from Enumeration:
+a)Check whether more elements are available or not from Current cursor position by using the following method.
+public boolean hasMoreElements()
+--> It will return true value if atleast next element is existed.
+-->It will return false value if no element is existed from current cursor position.
+b)If atleast next element is existed then read next element and move cursor to next position by using the following method.
+public Object nextElement()
+
+1.1) public class PraticeClass {
+	public static void main(String[] args) {
+		Vector<String> v1=new Vector<String>();
+		v1.add("AAA");
+		v1.add("BBB");
+		v1.add("CCC");
+		v1.add("DDD");
+		System.out.println(v1);
+		Enumeration<String> e=v1.elements();
+		while(e.hasMoreElements()) {				//public boolean hasMoreElements()
+			System.out.println(e.nextElement());		//Display elements individually (public Object nextElement())
+		}
+	}
+}
+
+Drawbacks
+-----------------
+Drawbacks:
+1.Enumeration is applicable for only Legacy Collections.
+2.Enumeration is able to allow only read operation while iterating elements.
+
+2) Iterator:(Page -376)
+-------------------------------
+Iterator is an interface provided JAVA along with its JDK1.2 version.
+Iterator can be used to retrive all the elements from Collection objects in one by one fashion.
+Iterator is applicable for all the Collection interface implementation classes to retrive elements.
+Iterator is able to allow both read and remove operatins while iterating elements.
+If we want to use Iterator in java applications then we have to use the following steps.
+
+1.Create Iterator object:
+To create Iterator object we have to use the following method from all Collection implementation classes.
+
+public Iterator iterator()
+EX:Iterator it=al.iterator();
+
+2.Retrive elements from Iterator:
+To retrive elements from Iterator we have to use the following steps.
+a) Check whether next element is existed or not from the current cursor position by using the
+following method.
+
+public boolean hasNext()
+-->This method will return true if next element is existed.
+-->This method will return false if no element is existed from current cursor position.
+
+b)If next element is existed then read next element and move cursor to next position by using the following method.
+public Object next()
+NOTE: To remove an element available at current cursor position then we have to use the following method
+public void remove()
+
+Ex: 
+2.1)
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("AAA");
+		al.add("BBB");
+		al.add("CCC");
+		al.add("DDD");
+		System.out.println(al);
+		
+		Iterator<String> it=al.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+		
+	}
+}
+
+O/P:
+--------
+[AAA, BBB, CCC, DDD]
+AAA
+BBB
+CCC
+DDD
+
+2.2)package com.RoughWork;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("AAA");
+		al.add("BBB");
+		al.add("CCC");
+		al.add("DDD");
+		System.out.println(al);
+		
+		Iterator<String> it=al.iterator();
+		while(it.hasNext()) {
+			String str=it.next();
+			System.out.println(str);
+			if(str.equals("BBB")) {
+				it.remove();
+			}
+		}
+		System.out.println(al);
+	}
+}
+
+O/P:
+--------
+[AAA, BBB, CCC, DDD]
+AAA
+BBB
+CCC
+DDD
+[AAA, CCC, DDD]
+
+Q)What are the differences between Enumeration and Iterator?
+Ans:
+1.Enumeration is Legacy Cursor, it was introduced in JDK1.0 version.
+Iterator is not Legacy Cursor, it was introduced in JDK1.2 version.
+2.Enumeration is not Universal Cursor, it is applicable for only Legacy Collections.
+Iterator is an universal Cursor, it is applicable for all Collection implementations.
+3.Enumeration is able to allow only read operation while iterating elements.
+Iterator is able to allow both read operation and remove operation while iterating elements.
+
+3) ListIterator(Page-379)
+---------------------------------
+ListIterator:
+It is an interface provided by JAVA along with JDK1.2 version.
+It able to allow to read elements in both forward direction and backward direction.
+It able to allow the operations like read, insert, replace and remove while iterating elements .
+If we want to use ListIterator in java applications then we have to use the following steps.
+
+1.Create ListIterator Object:
+To create ListIterator object we have to use the following method.
+public ListIterator listIterator()
+EX: ListIterator lit=ll.listIterator();
+
+2.Retrive Elements from ListIterator
+To retirv elements from ListIterator in Forward direction then we have to use the following methods.
+public boolean hasNext()
+--> It will check whether next element is existed or not from the current cursor position.
+public Object next()
+-->It will return next element and it will move cursor to the next position in forward direction.
+public int nextIndex()
+--> It will return next index value from the current cursor position.
+To retirive elements in Backward direction we have to use the following methods.
+public boolean hasPrevious()
+--> It will check whether previous element is existed or not from the current cursor position, If previous element is existed then it will return "true" value, if previous element is not existed then it will return false value.
+public Object previous()
+-->It will return previous element and it will mo ve cursor to the next previous position.
+public int previousIndex()
+-->It will return previous index value from the current cursor position.
+To perform the operations like remove, insert and replace over the elements we have to use the following methods.
+public void remove()
+public void add(Object obj)
+public void set(Object obj)
+
+3.1)--
+package com.RoughWork;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("AAA");
+		al.add("BBB");
+		al.add("CCC");
+		al.add("DDD");
+		System.out.println(al);
+		System.out.println();
+		
+		ListIterator<String> lit=al.listIterator();
+		System.out.println("Elements in forward direction");
+		while(lit.hasNext()) {
+			System.out.println(lit.nextIndex()+"----->"+lit.next());
+		}
+		System.out.println();
+		System.out.println("Elements in backward direction");
+		while(lit.hasPrevious()) {
+			System.out.println(lit.previousIndex()+"------>"+lit.previous());
+		}
+	}
+}
+
+O/P:
+------
+[AAA, BBB, CCC, DDD]
+
+Elements in forward direction
+0----->AAA
+1----->BBB
+2----->CCC
+3----->DDD
+
+Elements in backward direction
+3------>DDD
+2------>CCC
+1------>BBB
+0------>AAA
+
+3.2) package com.RoughWork;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.ListIterator;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		ArrayList<String> al=new ArrayList<String>();
+		al.add("AAA");
+		al.add("BBB");
+		al.add("CCC");
+		al.add("DDD");
+		al.add("EEE");
+		System.out.println(al);
+		System.out.println();
+		
+		ListIterator<String> lit=al.listIterator();
+		while(lit.hasNext()) {
+			String str=lit.next();
+			if(str.equals("BBB")) {
+				lit.remove();
+			}
+			if(str.equals("DDD")) {
+				lit.add("XXX");	//it will add XXX after DDD element
+			}
+			if(str.equals("EEE")) {	//it will add YYY in the place of EEE
+				lit.set("YYY");
+			}
+		}
+		System.out.println(al);
+	}
+}
+
+O/P:
+------
+[AAA, BBB, CCC, DDD, EEE]
+
+[AAA, CCC, DDD, XXX, YYY]
+
+Q)What are the differences between Enumeration, Iterator and ListIterator?
+Ans:
+1.Enumeration is applicable for only Legacy Collections.
+Iterator is applicable for all Collection implementations.
+ListIterator is applicable for only List implementations.
+2.Enumeration and Iterator are allowd to iterate elements in only Forward direction.
+ListIterator is able to allow to iterate elements in both Forward direction and backward direction.
+3.Enumeration is able to allow only read operation while iterating elements.
+Iterator is able to allow both read and remove operations while iterating elements.
+ListIterator is able to allow the operations like insert, replace, remove adn read operations while iterating elements.
+
+
+
+
+
+

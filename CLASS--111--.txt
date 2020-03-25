@@ -1,0 +1,283 @@
+01) If we provide both implicit sorting through comparable and Explicit sorting through Comparator at a time to Treeset then which sorting logic would be taken by Treeset?
+package com.RoughWork;
+
+import java.util.Scanner;
+import java.util.TreeSet;
+class Student implements Comparable<Student> {
+	String sid;
+	String sname;
+	String saddr;
+	
+	public Student(String sid,String sname,String saddr) {
+		this.sid=sid;
+		this.sname=sname;
+		this.saddr=saddr;
+	}
+	
+	public String toString() {
+		return "["+sid+","+sname+","+saddr+"]";
+	}
+
+	@Override
+	public int compareTo(Student std) {
+		int val=0;
+		val=this.sname.compareTo(std.sname);		
+		return val;
+	}
+}
+public class PraticeClass {
+	public static void main(String[] args) {
+		Student std1=new Student("S-111","AAA","Hyd");
+		Student std2=new Student("S-222","BBB","Hyd");
+		Student std3=new Student("S-333","CCC","Hyd");
+		Student std4=new Student("S-444","DDD","Hyd");
+		Student std5=new Student("S-555","EEE","Hyd");
+		
+		TreeSet<Student> ts=new TreeSet<Student>();
+		ts.add(std4);
+		ts.add(std2);
+		ts.add(std5);
+		ts.add(std1);
+		ts.add(std3);
+		
+		System.out.println(ts);
+ 	}
+}
+
+O/P:
+------
+[[S-111,AAA,Hyd], [S-222,BBB,Hyd], [S-333,CCC,Hyd], [S-444,DDD,Hyd], [S-555,EEE,Hyd]]
+
+02) package com.RoughWork;
+
+import java.util.Comparator;
+import java.util.Scanner;
+import java.util.TreeSet;
+class Mycomparator implements Comparator<Student>{
+
+	@Override
+	public int compare(Student std1, Student std2) {
+		int val=std1.sname.compareTo(std2.sname);
+		return -val;
+	}
+	
+}
+class Student implements Comparable<Student> {
+	String sid;
+	String sname;
+	String saddr;
+	
+	public Student(String sid,String sname,String saddr) {
+		this.sid=sid;
+		this.sname=sname;
+		this.saddr=saddr;
+	}
+	
+	public String toString() {
+		return "["+sid+","+sname+","+saddr+"]";
+	}
+
+	@Override
+	public int compareTo(Student std) {
+		int val=0;
+		val=this.sname.compareTo(std.sname);		
+		return val;
+	}
+}
+public class PraticeClass {
+	public static void main(String[] args) {
+		Student std1=new Student("S-111","AAA","Hyd");
+		Student std2=new Student("S-222","BBB","Hyd");
+		Student std3=new Student("S-333","CCC","Hyd");
+		Student std4=new Student("S-444","DDD","Hyd");
+		Student std5=new Student("S-555","EEE","Hyd");
+		
+		Mycomparator mc=new Mycomparator();
+				
+		TreeSet<Student> ts=new TreeSet<Student>(mc);
+		ts.add(std4);
+		ts.add(std2);
+		ts.add(std5);
+		ts.add(std1);
+		ts.add(std3);
+		
+		System.out.println(ts);
+ 	}
+}
+
+O/P:
+====
+[[S-555,EEE,Hyd], [S-444,DDD,Hyd], [S-333,CCC,Hyd], [S-222,BBB,Hyd], [S-111,AAA,Hyd]]  (Explicit Sorting====Comprator)
+
+MAP:(Page-400)
+===============
+-->It was introduced in JDK1.2 version.
+-->It is not chaild interface to Collection interface.
+-->It able to arrange all the elements in the form of Key-value pairs.
+-->In Map, both keys and values are objects.
+-->Duplicates are not allowed at keys , but values may be duplicated.
+-->Only one null value is allowed at keys side, but, any no of null values are allowed at values side.
+-->Both keys and Values are able to allow heterogeneous elements.
+-->Insertion order is not followed.
+-->Sorting order is not followed.
+
+Methods:
+1.public void put(Object key, Object value)
+-->It will add the specified key-value pair to Map.
+2.public void putAll(Map m)
+-->It will add all key-value pairs of the specified map to the present Map object.
+3.public Object get(Object key)
+-->It will return value of the specified key.
+4.public Object remove(Object key)
+-->It will remove a key-value pair from Map on the basis of the specified key.
+5.public int size()
+-->It will return number of key-value pairs of a Map
+6.public boolean containsKey(Object key)
+-->It will check whether the specified key is existed or not at keys side.
+7.public boolean cotainsValue(Object key)
+-->It will checkk whether the specified value is avaialble or not at values side.
+8.public Set keySet()
+-->It will return all keys in the form of a Set.
+9.public Collection values()
+-->It will return all values in the form of a Collection object.
+
+10.public boolean isEmpty()
+-->It will check whether the Map object is empty or not, if the present map object is empty then it will return true value otherwise it will return false value.
+
+01) package com.RoughWork;
+
+import java.util.HashMap;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		HashMap<String, String> hm=new HashMap<String,String>();
+		hm.put("A","AAA");
+		hm.put("B","BBB");
+		hm.put("C","CCC");
+		hm.put("D","DDD");
+		System.out.println(hm);
+		HashMap<String, String> hm1=new HashMap<String,String>();
+		hm1.putAll(hm);
+		System.out.println(hm1);
+ 	}
+}
+
+O/P:
+------
+{A=AAA, B=BBB, C=CCC, D=DDD}
+{A=AAA, B=BBB, C=CCC, D=DDD}
+
+02)--
+
+		HashMap<String, String> hm=new HashMap<String,String>();
+		hm.put("A","AAA");
+		hm.put("B","BBB");
+		hm.put("C","CCC");
+		hm.put("D","DDD");
+		System.out.println(hm);
+		System.out.println(hm.get("A"));
+		
+
+O/P:
+--------
+{A=AAA, B=BBB, C=CCC, D=DDD}
+AAA
+
+03)--public class PraticeClass {
+	public static void main(String[] args) {
+		HashMap<String, String> hm=new HashMap<String,String>();
+		hm.put("A","AAA");
+		hm.put("B","BBB");
+		hm.put("C","CCC");
+		hm.put("D","DDD");
+		System.out.println(hm);
+		System.out.println(hm.get("A"));
+		System.out.println(hm.remove("B"));
+		System.out.println(hm);
+		System.out.println(hm.size());
+		System.out.println(hm.isEmpty());      false	
+		hm.clear();	
+		System.out.println(hm);                           {}
+		System.out.println(hm.isEmpty());       True
+		
+ 	}
+}
+
+O/P:
+------
+{A=AAA, B=BBB, C=CCC, D=DDD}
+AAA
+BBB
+{A=AAA, C=CCC, D=DDD}
+3
+false
+
+{}
+true
+
+04)--
+public class PraticeClass {
+	public static void main(String[] args) {
+		HashMap<String, String> hm=new HashMap<String,String>();
+		hm.put("A","AAA");
+		hm.put("B","BBB");
+		hm.put("C","CCC");
+		hm.put("D","DDD");
+		System.out.println(hm);
+		System.out.println(hm.containsKey("B"));
+		System.out.println(hm.containsValue("BBB"));
+		Set<String> s=hm.keySet();
+		System.out.println(s);		//It will display the key value
+		
+		Collection<String> c=hm.values();
+		System.out.println(c);                             //Value will be displayed
+	}
+}
+
+O/P:
+-------
+{A=AAA, B=BBB, C=CCC, D=DDD}
+true
+true
+[A, B, C, D]
+[AAA, BBB, CCC, DDD]
+
+05)--HashMap(403)
+--------------------------
+package com.RoughWork;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Set;
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		HashMap<String, String> hm=new HashMap<String,String>();
+		hm.put("A","AAA");
+		hm.put("B","BBB");
+		hm.put("C","CCC");
+		hm.put("D","DDD");
+		System.out.println(hm);
+		HashMap<String, String> hm1=new HashMap<String,String>(hm);
+		System.out.println(hm1);
+		
+ 	}
+}
+
+O/P:
+------
+{A=AAA, B=BBB, C=CCC, D=DDD}
+{A=AAA, B=BBB, C=CCC, D=DDD}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,239 @@
+SET(Page--382)
+--------------------
+Set:
+-->It was introduced in JDK1.2 version.
+-->It is a direct chaild interface to Collection interface.
+-->It is not index based, it able to arrange all the elements on the basis of elements hashcode values.
+-->It will not allow duplicate elements.
+-->It will not follow insertion order.
+Note:LinkedHashSet will follow insertion order.
+-->It will not follow Sorting order.
+Note: SortedSet, NavigableSet and TreeSet are following Sorting order.
+-->It able to allow only one null value.
+Note: SortedSet, NavigableSet and TreeSet are not allowing even single null value.
+
+HashSet:(Page--383)
+-->HashSet is a direct implementation class to Set interface.
+-->It was introduced in JDK1.2 version.
+-->It is not index based, it able to arrange all the elements on the basis of elements hashcode values.
+-->It will not allow duplicate elements.
+-->It will not follow insertion order.
+-->It will not follow Sorting order.
+-->It able to allow only one null value.
+-->Its interal data structer is "Hashtable".
+-->its initial capacity is "16" elements and its initial fill_Ratio is 75%.
+-->it is not synchronized.
+-->Almost all the methods are not synchronized in HashSet
+-->It allows more than one thread at a time.
+-->It follows parallel execution.
+-->It will reduce execution time.
+-->It improves performance of the applications.
+-->It is not giving guarantee for data consistency.
+-->It is not threadsafe.
+
+Constuctors:
+1.public HashSet()
+--> This constructor can be used to create an empty HashSet object with 16 elements as initial capacity and 75% fill ratio.
+EX: HashSet hs=new HashSet();
+2.public HashSet(int capacity)
+-->This constructor can be used to create an empty HashSet object with the specified capacity as initial capacity and with the default fill ratio 75%.
+EX: HashSet hs=new HashSet(20);
+3.public HashSet(int capacity, float fill_Ratio)
+-->This constructor can be used to create an empty HashSet object with the specified capacity and with the specifiedf fill ratio.
+EX: HashSet hs=new HashSet(20, 0.85f);
+4.public HashSet(Collection c)
+--> This constructor can be used to create HashSet object with all the elements of the specified Collection
+
+1)--
+import java.util.ArrayList;
+import java.util.HashSet;
+public class PraticeClass {
+	public static void main(String[] args) {
+		HashSet<String> hs1=new HashSet<String>();
+		hs1.add("AAA");
+		hs1.add("BBB");
+		hs1.add("CCC");
+		hs1.add("DDD");
+		hs1.add("EEE");
+		
+		System.out.println(hs1);
+		HashSet<String> hs2=new HashSet<String>(hs1);
+		System.out.println(hs2);
+	}
+}
+
+O/P:
+------
+[AAA, CCC, BBB, EEE, DDD]
+[AAA, CCC, BBB, EEE, DDD]
+
+2)--public class PraticeClass {
+	public static void main(String[] args) {
+		HashSet<String> hs1=new HashSet<String>();
+		hs1.add("AAA");
+		hs1.add("BBB");
+		hs1.add("CCC");
+		hs1.add("DDD");
+		hs1.add("EEE");
+		
+		System.out.println(hs1);
+		hs1.add("BBB");
+		System.out.println(hs1);	//Duplicate are allowed or not		
+	}
+}
+
+[AAA, CCC, BBB, EEE, DDD]
+[AAA, CCC, BBB, EEE, DDD]			//Duplicate are not allowed here
+
+03) public class PraticeClass {
+	public static void main(String[] args) {
+		HashSet<String> hs1=new HashSet<String>();
+		hs1.add("AAA");
+		hs1.add("BBB");
+		hs1.add("CCC");
+		hs1.add("DDD");
+		hs1.add("EEE");
+		
+		System.out.println(hs1);
+		hs1.add("BBB");
+		System.out.println(hs1);
+		hs1.add(null);
+		hs1.add(null);
+		System.out.println(hs1);
+	}
+}
+
+O/P:
+-------
+[AAA, CCC, BBB, EEE, DDD]
+[AAA, CCC, BBB, EEE, DDD]
+[null, AAA, CCC, BBB, EEE, DDD]
+
+04) public class PraticeClass {
+	public static void main(String[] args) {
+		HashSet hs1=new HashSet();
+		hs1.add("AAA");
+		hs1.add("BBB");
+		hs1.add("CCC");
+		hs1.add("DDD");
+		hs1.add("EEE");
+		
+		System.out.println(hs1);
+		hs1.add("BBB");
+		System.out.println(hs1);
+		hs1.add(null);
+		hs1.add(null);
+		System.out.println(hs1);
+		hs1.add(new Integer(10));
+		hs1.add(new StringBuffer("XXX"));
+		System.out.println(hs1);
+	}
+}
+
+O/P:
+-------
+[AAA, CCC, BBB, EEE, DDD]
+[AAA, CCC, BBB, EEE, DDD]
+[null, AAA, CCC, BBB, EEE, DDD]
+[null, AAA, CCC, BBB, EEE, DDD, XXX, 10]
+
+LinkedHashSet:
+==============
+Q)What are the differences between HashSet and LinkedHashSet?
+Ans:
+1.HashSet was introduced in JDK1.2 version.
+LinkedhashSet was introduced in JDK1.4 version.
+2.HashSet is not following insertion order.
+LinkedHashSet is following insertion order.
+3.The internal data structer of HashSet is "Hashtable".
+The internal data structer of LinkedHashSet is "Hashtable" and "LinkedList".
+
+public class PraticeClass {
+	public static void main(String[] args) {
+		HashSet<String> hs1=new HashSet<String>();
+		hs1.add("AAA");
+		hs1.add("BBB");
+		hs1.add("CCC");
+		hs1.add("DDD");
+		hs1.add("EEE");
+		
+		System.out.println(hs1);
+		System.out.println();
+		LinkedHashSet<String> lhs=new LinkedHashSet<String>();
+		lhs.add("AAA");
+		lhs.add("BBB");
+		lhs.add("CCC");
+		lhs.add("DDD");
+		lhs.add("EEE");
+		System.out.println(lhs);
+	}
+}
+
+[AAA, CCC, BBB, EEE, DDD]
+
+[AAA, BBB, CCC, DDD, EEE]
+
+Sortedset(Page-385)
+==================
+-->It was introduced in JDK1.2 version.
+-->It is a chaild interface to Set interface.
+-->It is not index based.
+-->It is not allowing duplicate elements.
+-->It is not following insertion order.
+-->It follows Sorting order.
+-->It allows only homogeneous elements.
+-->It will not allow heterogeneous elements, if we are trying to add heterogeneous elements then JVM will rise an exception like java.lang.ClasscastException.
+-->It will not allow null values, if we are trying to add any null value then JVM will rise an exception like java.lang.NullPointerException.
+-->It able to allow only Comparable objects bydefault, if we are trying to add non comparable objects then JVM will rise an exception like java.lang.ClassCastException.
+
+Methods:
+1.public Object first()
+-->It will return first element from SortedSet.
+2.public Object last()
+-->It will return last element from SortedSet.
+3.public SortedSet headSet(Object obj)
+-->It will return SortedSet object with the elements which are less the specified element.
+4.public SortedSet tailSet(Object obj)
+-->It will return SoredSet object with the elements which are greater than or equals to the specified element.
+5.public SortedSet subSet(Object obj1, Object obj2)
+-->It will return SortedSet object with all elements which are greater than or equals to the specified first element and 
+which are less than the specified second element.
+Note:If we are trying to add non comparable objects then we have to use Comparator.
+
+01) public class PraticeClass {
+	public static void main(String[] args) {
+		TreeSet<String> ts=new TreeSet<String>();
+		ts.add("AAA");
+		ts.add("FFF");
+		ts.add("BBB");
+		ts.add("EEE");
+		ts.add("CCC");
+		ts.add("DDD");
+		System.out.println(ts);		//Sorting order
+		System.out.println(ts.headSet("DDD"));	 //It will return SortedSet object with the elements which are less the specified element.	
+		System.out.println(ts.tailSet("DDD"));     //It will return SoredSet object with the elements which are greater than or equals to the specified element.
+		System.out.println(ts.subSet("BBB","EEE"));  // Greater than BBB and Less than EEE
+		System.out.println(ts.first());		//first element 
+		System.out.println(ts.last());		//Last element
+	}
+}
+
+O/P:
+------
+[AAA, BBB, CCC, DDD, EEE, FFF]
+[AAA, BBB, CCC]			// It displays the elements which are less than DDD
+[DDD, EEE, FFF]			//Greater than or equal to DDD
+[BBB, CCC, DDD]			//Greater than or equal to BBB and less than DDD
+AAA				
+FFF
+
+
+
+
+
+
+
+
+
+
+
